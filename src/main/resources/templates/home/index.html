@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ | dangkh0a</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            scroll-behavior: smooth;
+            background: linear-gradient(to right, #7d9eeb, #435add);
+            margin: 0;
+        }
+
+        .container {
+            transition: top 0.3s;
+        }
+
+        .navTop {
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 8px 8px 8px 8px;
+            margin-top: 2%;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        .navTopflex {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .navTop a {
+            float: left;
+            color: #000;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            color: #000000;
+            margin: 0 10px;
+        }
+
+        .navTop a:hover {
+            border-radius: 8px;
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navTop a.active {
+            border-radius: 8px;
+            font-weight: bold;
+            background-color: #435add;
+            color: white;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        img {
+            object-fit: cover;
+        }
+
+        header {
+            margin-top: 80px;
+            padding: 0 80px;
+            height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .left {
+            width: 700px;
+        }
+
+        header .left h1 {
+            font-size: 80px;
+        }
+
+        header .left h1 span {
+            color: #fff;
+        }
+
+        header .left p {
+            margin: 40px 0;
+            color: #fff;
+        }
+
+        header .left a {
+            display: flex;
+            align-items: center;
+            background: #000;
+            width: 200px;
+            padding: 8px;
+            border-radius: 60px;
+        }
+
+        header .left a:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            width: 200px;
+            padding: 8px;
+            border-radius: 60px;
+        }
+
+        header .left a i {
+            background-color: #fff;
+            font-size: 24px;
+            border-radius: 50%;
+            padding: 8px;
+        }
+
+        header .left a span {
+            color: #fff;
+            margin-left: 10px;
+        }
+
+        header img {
+            width: 600px;
+        }
+
+        h2.separator {
+            padding: 0 80px;
+            font-size: 40px;
+            margin-top: 40px;
+        }
+
+        .sell-mouse {
+            padding: 0 80px;
+            margin: 50px 0 80px;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .sell-mouse .item,
+        .mouse-shop .mouse-list .item {
+            transition: transform 0.3s, background-color 0.3s;
+            padding: 20px;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .mouse-list .item:nth-child(n+5) {
+            display: none;
+        }
+
+        .sell-mouse .item:hover,
+        .mouse-shop .mouse-list .item:hover,
+        .sellers .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .sell-mouse .item .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sell-mouse .item .header i {
+            font-size: 40px;
+        }
+
+        .sell-mouse .item .header h5 {
+            font-size: 17px;
+        }
+
+        .sell-mouse .item p {
+            margin-top: 10px;
+            padding: 0 4px;
+        }
+
+        .mouse-shop {
+            padding: 0 80px;
+            margin-top: 30px;
+        }
+
+        .mouse-shop .category {
+            display: flex;
+            gap: 14px;
+        }
+
+        .mouse-shop .category a {
+            background-color: #dfdcdc;
+            padding: 8px 14px;
+            font-size: 15px;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .mouse-shop .category a:hover {
+            color: #fff;
+            background-color: #0f2182;
+        }
+
+        .mouse-shop .mouse-list {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .mouse-shop .mouse-list .item img {
+            width: 280px;
+            height: 280px;
+            border-radius: 18px;
+        }
+
+        .mouse-shop .mouse-list .item .info {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #edecec;
+        }
+
+        .mouse-shop .mouse-list .item .info h5 {
+            font-size: 18px;
+        }
+
+        .mouse-shop .mouse-list .item .info>p {
+            font-size: 12px;
+            color: #989898;
+        }
+
+        .mouse-shop .mouse-list .item .bid {
+            padding: 6% 0 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mouse-shop .mouse-list .item .bid a {
+            background-color: #edecec;
+            padding: 6px 10px;
+            font-size: 13px;
+            border-radius: 10px;
+        }
+
+        .mouse-shop .mouse-list .item .bid a {
+            color: #304ffe;
+            background: transparent;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .mouse-shop .mouse-list .item .bid a:hover {
+            color: #fff;
+            background-color: #000;
+        }
+
+        .view-more {
+            margin: 10px 0 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .view-more button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-more button:hover {
+            color: #fff;
+            background: #0f2182;
+        }
+
+        .sellers {
+            padding: 0 80px;
+            margin: 40px 0 80px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .sellers .item {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            width: 25%;
+            gap: 14px;
+            padding: 14px;
+            border-radius: 18px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .sellers .item img {
+            width: 64px;
+        }
+
+        .sellers .item .info p {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 100px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        footer h3 {
+            font-size: 48px;
+        }
+
+        footer .right {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 26px;
+        }
+
+        footer .right .links {
+            display: flex;
+            gap: 30px;
+        }
+
+        footer .right .links a {
+            color: #989898;
+            transition: color 0.3s ease;
+        }
+
+        footer .right .links a:hover {
+            color: #fff;
+        }
+
+        footer .right .social {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer .right .social i {
+            font-size: 30px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        footer .right .social i:hover {
+            color: #304ffe;
+        }
+
+        footer .right p {
+            font-size: 13px;
+            color: #777;
+        }
+
+        @media screen and (max-width: 1400px) {
+
+            nav,
+            header,
+            h2.separator,
+            .sell-mouse,
+            .mouse-shop,
+            .sellers {
+                padding: 0 40px;
+            }
+
+            header .left h1 {
+                font-size: 60px;
+            }
+
+            header img {
+                width: 540px;
+            }
+
+            .mouse-shop .mouse-list .item img {
+                width: 220px;
+                height: 220px;
+            }
+
+            footer {
+                padding: 100px 40px;
+            }
+
+            footer h3 {
+                font-size: 38px;
+            }
+
+        }
+
+        @media screen and (max-width: 1200px) {
+
+            header .left h1 {
+                font-size: 48px;
+            }
+
+            header img {
+                width: 480px;
+            }
+
+            h2.separator {
+                font-size: 34px;
+            }
+
+            .sell-mouse .item .header i {
+                font-size: 36px;
+            }
+
+            .sell-mouse .item .header h5 {
+                font-size: 15px;
+            }
+
+            .sell-mouse .item p {
+                font-size: 13px;
+            }
+
+            .mouse-shop .mouse-list {
+                flex-wrap: wrap;
+                row-gap: 30px;
+            }
+
+            .mouse-shop .mouse-list .item {
+                width: 48%;
+            }
+
+            .mouse-shop .mouse-list .item img {
+                width: 100%;
+                height: auto;
+            }
+
+            .sellers {
+                flex-wrap: wrap;
+            }
+
+            .sellers .item {
+                width: 48%;
+            }
+
+            footer .links a {
+                font-size: 15px;
+            }
+
+        }
+
+        @media screen and (max-width: 992px) {
+
+            nav a.logo {
+                font-size: 28px;
+            }
+
+            nav .links a {
+                font-size: 14px;
+            }
+
+            header {
+                flex-direction: column-reverse;
+                height: auto;
+                margin-bottom: 60px;
+            }
+
+            header .left {
+                width: 100%;
+            }
+
+            header img {
+                width: 100%;
+            }
+
+            .sell-mouse {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .sell-mouse .item {
+                width: 48%;
+            }
+
+            .sellers {
+                gap: 20px;
+            }
+
+            footer {
+                flex-direction: column;
+                padding: 60px 40px;
+            }
+
+            footer h3 {
+                margin-bottom: 40px;
+                font-size: 32px;
+            }
+
+            footer .right {
+                width: 100%;
+                align-items: center;
+            }
+
+        }
+
+        @media screen and (max-width: 768px) {
+
+            nav,
+            header,
+            h2.separator,
+            .sell-mouse,
+            .mouse-shop,
+            .sellers {
+                padding: 0 20px;
+            }
+
+            nav a.logo {
+                display: none;
+            }
+
+            nav .links a {
+                font-size: 12px;
+            }
+
+            nav .login button {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            header .left h1 {
+                font-size: 36px;
+            }
+
+            header .left p {
+                font-size: 14px;
+            }
+
+            header .left a {
+                padding: 6px;
+                width: 160px;
+                font-size: 14px;
+            }
+
+            header .left a i {
+                padding: 6px;
+            }
+
+            h2.separator {
+                font-size: 30px;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+
+        }
+
+        @media screen and (max-width: 576px) {
+
+            header .left h1 {
+                font-size: 30px;
+            }
+
+            .sell-mouse .item {
+                width: 100%;
+            }
+
+            .mouse-shop .mouse-list .item,
+            .sellers .item {
+                width: 47%;
+            }
+
+            .mouse-shop .category a {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container navTopflex" id="navContainer">
+        <div class="navTop" id="navTop">
+            <a class="active" href="http://localhost:8080/fshop/category">Trang chủ</a>
+            <a href="http://localhost:8080/fshop/category" id="category">Danh mục</a>
+            <a href="#contact">Liên hệ</a>
+            <a href="#about">Thông tin</a>
+        </div>
+    </div>
+    <div class="title">
+        <header>
+            <div class="left">
+                <h1>Hãy lựa chọn <span>Chuột và bàn Phím</span></h1>
+                <p>GearVN là thương hiệu được sinh ra từ giấc mơ của một game thủ, phát triển bởi tập thể các game thủ
+                    để phục vụ cho cộng đồng game thủ Việt.
+                    <br>
+                    Đội ngũ tư vấn của GearVN không đơn thuần là nhân viên kinh doanh, chúng tôi còn là những người yêu
+                    game với mong muốn giúp bạn cùng sở thích có được dàn máy và gear phù hợp.
+                    <br>
+                    Sự hài lòng của khách hàng chính là động lực giúp GearVN không ngừng hoàn thiện, mang lại ngày càng
+                    nhiều giá trị tích cực cho cộng đồng.
+                    <br>
+                </p>
+                <a href="#" onclick="scrollToElement('teleport'); return false;">
+                    <i class='bx bx-basket'></i>
+                    <span>Mua ngay</span>
+                </a>
+            </div>
+            <img style="border-radius: 50%;"
+                src="https://techspace.vn/wp-content/uploads/2022/08/temp-bo-gaming-gears-fan-razer-nha-ngheo-1.jpg">
+        </header>
+        <h2 class="separator">
+            Điểm nổi bật
+        </h2>
+        <div class="sell-mouse">
+            <div class="item">
+                <div class="header">
+                    <i class='bx bx-news'></i>
+                    <h5>Mới nhất</h5>
+                </div>
+                <p>Khác biệt hoàn toàn với các sản phẩm khác, chúng tôi mang lại trải nghiệm chưa từng có !</p>
+            </div>
+            <div class="item">
+                <div class="header">
+                    <i class='bx bx-badge-check'></i>
+                    <h5>Chất lượng nhất</h5>
+                </div>
+                <p>Chúng tôi tự hào cung cấp sản phẩm với chất lượng vượt trội, đảm bảo sự hài lòng tuyệt đối cho bạn !
+                </p>
+            </div>
+            <div class="item">
+                <div class="header">
+                    <i class='bx bx-dollar'></i>
+                    <h5>Giá tốt nhất</h5>
+                </div>
+                <p>Sản phẩm tốt với mức giá cực kỳ hấp dẫn - một cơ hội không nên bỏ lỡ !</p>
+            </div>
+        </div>
+        <div id="teleport"></div>
+        <h2 class="separator">Sản phẩm hot nhất !</h2>
+        <div class="mouse-shop" id="mouse-shop">
+            <div class="category">
+                <a href="#">Giảm giá %</a>
+                <a href="#">Giá tốt nhất $</a>
+                <a href="#">Xu hướng</a>
+            </div>
+            <div class="mouse-list">
+                <div class="item" th:each="mouse : ${lstMouse}">
+                    <th:block th:if="${#lists.size(mouse.imageUrls) > 0}">
+                        <img th:src="${mouse.imageUrls[0].url}" alt="mouse-image">
+                    </th:block>
+                    <div class="info">
+                        <div>
+                            <h5 th:text="${mouse.name}"></h5>
+                        </div>
+                    </div>
+                    <div class="bid">
+                        <h6>Giá:
+                            <h5 style="color: red;" th:text="${mouse.formattedSalePrice}"></h5>
+                            <p style="color: #000; text-decoration: line-through;" th:text="${mouse.formattedPrice}">
+                            </p>
+                        </h6>
+                        <a th:href="@{/fshop/mouse/buy/{id}(id=${mouse.id})}">Mua ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-more">
+            <button id="view-more">
+                <a href="http://localhost:8080/fshop/category">Xem thêm</a>
+            </button>
+        </div>
+        <h2 class="separator">
+            Sản phẩm bán chạy nhất !
+        </h2>
+        <div class="sellers">
+            <div class="item">
+                <img
+                    src="https://product.hstatic.net/200000722513/product/gzsmk3te_fdfbbe49b1524481a9b9feeae16e6d66_1024x1024.png">
+                <div class="info">
+                    <h4>Asus ROG Harpe Ace Aim Lab White</h4>
+                    <p>15.2K</p>
+                </div>
+            </div>
+            <div class="item">
+                <img
+                    src="https://product.hstatic.net/200000722513/product/zkcjs5el_4e9208da4d9648fba24bf590fed636cd_1024x1024.png">
+                <div class="info">
+                    <h4>Wireless Corsair Darkstar RGB</h4>
+                    <p>12.7K</p>
+                </div>
+            </div>
+            <div class="item">
+                <img
+                    src="https://product.hstatic.net/200000722513/product/1-2_d48628cb79b3407cbc7b5c8e81c9db08_1024x1024.png">
+                <div class="info">
+                    <h4>Razer Cobra Pro</h4>
+                    <p>7.9K</p>
+                </div>
+            </div>
+            <div class="item">
+                <img
+                    src="https://product.hstatic.net/200000722513/product/earvn-chuot-logitech-g-pro-wireless-1_d55861073737476eac32b63315542f31_a496c1da0e8d49509a60a8a87744cccf_1024x1024.png">
+                <div class="info">
+                    <h4>Logitech G Pro Wireless</h4>
+                    <p>4.2K</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <h3>FSHOP | Gaming Gears</h3>
+            <div class="right">
+                <div class="links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cooperation</a>
+                    <a href="#">Sponsorship</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="social">
+                    <i class='bx bxl-instagram'></i>
+                    <i class='bx bxl-facebook-square'></i>
+                    <i class='bx bxl-github'></i>
+                </div>
+                <p>Copyright © 2025 dangkh0a, All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    function scrollToElement(elementId) {
+        var element = document.getElementById(elementId);
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+    window.addEventListener('scroll', function () {
+        var container = document.getElementById('navContainer');
+        if (window.scrollY > 100) {
+            container.style.top = '-10px';
+        } else {
+            container.style.top = '20px';
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Staff | Quản lý Tickets</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+            <link rel="stylesheet" type="text/css"
+                  href="https://raw.githubusercontent.com/dangkhoa2004/mystyle/main/staff.css" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --light: #f6f6f9;
+            --primary: #1976D2;
+            --light-primary: #CFE8FF;
+            --grey: #eee;
+            --dark-grey: #AAAAAA;
+            --dark: #363949;
+            --danger: #D32F2F;
+            --light-danger: #FECDD3;
+            --warning: #FBC02D;
+            --light-warning: #FFF2C6;
+            --success: #388E3C;
+            --light-success: #BBF7D0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .bx {
+            font-size: 1.7rem;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body.dark {
+            --light: #181a1e;
+            --grey: #25252c;
+            --dark: #fbfbfb
+        }
+
+        body {
+            background: var(--grey);
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: var(--light);
+            width: 230px;
+            height: 100%;
+            z-index: 2000;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sidebar .logo {
+            margin-left: 10px;
+            margin-top: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+            z-index: 500;
+            box-sizing: content-box;
+        }
+
+        .sidebar .logo .logo-name span {
+            color: var(--dark);
+        }
+
+        .sidebar .logo .bx {
+            min-width: 60px;
+            display: flex;
+            justify-content: center;
+            font-size: 2.2rem;
+        }
+
+        .sidebar .side-menu {
+            width: 100%;
+            margin-top: 48px;
+        }
+
+        .sidebar .side-menu li {
+            height: 75px;
+            background: transparent;
+            margin-left: 6px;
+            border-radius: 15px 0 0 15px;
+            padding: 4px;
+        }
+
+        .sidebar .side-menu li.active {
+
+            background: #4b63ee;
+            position: relative;
+        }
+
+        .sidebar .side-menu li.active::before {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            top: -40px;
+            right: 0;
+            box-shadow: 20px 20px 0 var(--grey);
+            z-index: -1;
+        }
+
+        .sidebar .side-menu li.active::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            bottom: -40px;
+            right: 0;
+            box-shadow: 20px -20px 0 var(--grey);
+            z-index: -1;
+        }
+
+        .sidebar .side-menu li a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #1976D2;
+            white-space: nowrap;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .side-menu li.active a {
+            color: white;
+        }
+
+        .sidebar .side-menu li a .bx {
+            min-width: calc(60px - ((4px + 6px) * 2));
+            display: flex;
+            font-size: 1.6rem;
+            justify-content: center;
+        }
+
+        .sidebar .side-menu li a.logout {
+            color: var(--danger);
+        }
+
+        .content {
+            position: relative;
+            width: calc(100% - 230px);
+            left: 230px;
+            transition: all 0.3s ease;
+        }
+
+        .content nav {
+            height: 56px;
+            background: var(--light);
+            padding: 0 24px 0 0;
+            display: flex;
+            align-items: center;
+            grid-gap: 24px;
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .content nav::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            bottom: -40px;
+            left: 0;
+            border-radius: 50%;
+            box-shadow: -20px -20px 0 var(--light);
+        }
+
+        .content nav a {
+            color: var(--dark);
+        }
+
+        .content nav .bx.bx-menu {
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .content nav form {
+            max-width: 400px;
+            width: 100%;
+            margin-right: auto;
+        }
+
+        .content nav form .form-input {
+            display: flex;
+            align-items: center;
+            height: 36px;
+        }
+
+        .content nav form .form-input input {
+            flex-grow: 1;
+            padding: 0 16px;
+            height: 100%;
+            border: none;
+            background: var(--grey);
+            border-radius: 36px 0 0 36px;
+            outline: none;
+            width: 100%;
+            color: var(--dark);
+        }
+
+        .content nav form .form-input button {
+            width: 80px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--primary);
+            color: var(--light);
+            font-size: 18px;
+            border: none;
+            outline: none;
+            border-radius: 0 36px 36px 0;
+            cursor: pointer;
+        }
+
+        .content nav .notif {
+            font-size: 20px;
+            position: relative;
+        }
+
+        .content nav .notif .count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 20px;
+            height: 20px;
+            background: var(--danger);
+            border-radius: 50%;
+            color: var(--light);
+            border: 2px solid var(--light);
+            font-weight: 700;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content nav .profile img {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .content main {
+            width: 100%;
+            padding: 36px 24px;
+            max-height: calc(100vh - 56px);
+        }
+
+        .content main .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            grid-gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .content main .header .left h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .content main .header .left .breadcrumb {
+            display: flex;
+            align-items: center;
+            grid-gap: 16px;
+        }
+
+        .content main .header .left .breadcrumb li {
+            color: var(--light);
+        }
+
+        .content main .header .left .breadcrumb li a {
+            color: var(--light);
+            pointer-events: none;
+        }
+
+        .content main .header .left .breadcrumb li a.active {
+            color: var(--light);
+            pointer-events: none;
+        }
+
+        .content main .header .report {
+            height: 36px;
+            padding: 0 16px;
+            border-radius: 36px;
+            background: var(--primary);
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-gap: 10px;
+            font-weight: 500;
+        }
+
+        .content main .bottom-data {
+            flex-wrap: wrap;
+            width: 100%;
+            color: var(--dark);
+        }
+
+        .content main .bottom-data .product {
+            border-radius: 15px;
+            background: var(--light);
+            height: 50vh;
+            padding: 24px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .content main .bottom-data .nav-product {
+            display: flex;
+            border-radius: 15px;
+            background: var(--light);
+            padding: 24px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .nav-product .btn {
+            align-items: center;
+            height: 50px;
+            width: 100px;
+            margin-right: 20px;
+        }
+
+        .filter {
+            display: flex;
+            align-items: center;
+        }
+
+        .filter .form-group {
+            margin-right: 20px;
+        }
+
+        .form-group {
+            margin: 20px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 200px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width=".8" d="M0 0l2 2 2-2"/></svg>') no-repeat right 10px center;
+            background-color: white;
+            background-size: 10px;
+        }
+
+        .content main .bottom-data .header {
+            display: flex;
+            align-items: center;
+            grid-gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .content main .bottom-data .header h3 {
+            margin-right: auto;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .content main .bottom-data .header .bx {
+            cursor: pointer;
+        }
+
+        .content main .bottom-data .product {
+            flex-grow: 1;
+            flex-basis: 500px;
+        }
+
+        .content main .bottom-data .product table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .content main .bottom-data .product table th {
+            padding-bottom: 12px;
+            font-size: 13px;
+            text-align: left;
+            border-bottom: 1px solid var(--grey);
+        }
+
+        .content main .bottom-data .product table td {
+            padding: 16px 0;
+        }
+
+        .content main .bottom-data .product table tr td:first-child {
+            display: flex;
+            align-items: center;
+            grid-gap: 12px;
+            padding-left: 6px;
+        }
+
+        .content main .bottom-data .product table td img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .content main .bottom-data .product table tbody tr {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .content main .bottom-data .product table tbody tr:hover {
+            background: var(--grey);
+        }
+
+        .content main .bottom-data .product table tr td .status {
+            font-size: 10px;
+            padding: 6px 16px;
+            color: var(--light);
+            background-color: var(--success);
+            border-radius: 15px;
+            font-weight: 700;
+        }
+
+        .content main .bottom-data .product table tr td .status.success {
+            background: var(--success);
+        }
+
+        .content main .bottom-data .product table tr td .status.process {
+            background: var(--primary);
+        }
+
+        .content main .bottom-data .product table tr td .status.pending {
+            background: var(--warning);
+        }
+
+        .content main .bottom-data {
+            flex-grow: 1;
+            flex-basis: 300px;
+        }
+
+        .content main .bottom-data {
+            width: 100%;
+        }
+
+        .content main .bottom-data li {
+            width: 100%;
+            margin-bottom: 16px;
+            background: var(--grey);
+            padding: 14px 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .content main .bottom-data li .task-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .content main .bottom-data li .task-title p {
+            margin-left: 6px;
+        }
+
+        .content main .bottom-data li .bx {
+            cursor: pointer;
+        }
+
+        .content main .bottom-data li.success {
+            border-left: 10px solid var(--success);
+        }
+
+        .content main .bottom-data li.not-success {
+            border-left: 10px solid var(--danger);
+        }
+
+        .content main .bottom-data li:last-child {
+            margin-bottom: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                width: calc(100% - 60px);
+                left: 200px;
+            }
+
+        }
+
+        @media screen and (max-width: 576px) {
+
+            .content nav form .form-input input {
+                display: none;
+            }
+
+            .content nav form .form-input button {
+                width: auto;
+                height: auto;
+                background: transparent;
+                color: var(--dark);
+                border-radius: none;
+            }
+
+            .content nav form.show .form-input input {
+                display: block;
+                width: 100%;
+            }
+
+            .content nav form.show .form-input button {
+                width: 36px;
+                height: 100%;
+                color: var(--light);
+                background: var(--danger);
+                border-radius: 0 36px 36px 0;
+            }
+
+            .content nav form.show~.notif,
+            .content nav form.show~.profile {
+                display: none;
+            }
+
+            .content main .insights {
+                grid-template-columns: 1fr;
+            }
+
+            .content main .bottom-data .header {
+                min-width: 340px;
+            }
+
+            .content main .bottom-data .product table {
+                min-width: 340px;
+            }
+
+            .content main .bottom-data {
+                min-width: 340px;
+            }
+
+        }
+    </style>
+
+    <body style="background: linear-gradient(to left, #7d9eeb, #435add);">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="#" class="logo">
+                <i class='bx bx-code-alt'>th:logo</i>
+                <div class="logo-name"><span>Trang</span>Quản lý</div>
+            </a>
+            <ul class="side-menu">
+                <li><a href="http://localhost:8080/fshop/staff"><i class='bx bxs-dashboard'></i>Bảng điều khiển</a></li>
+                <li><a href="http://localhost:8080/fshop/staff/shop"><i class='bx bx-store-alt'></i>Cửa hàng</a></li>
+                <li><a href="http://localhost:8080/fshop/staff/report"><i class='bx bx-analyse'></i>Thống kê</a></li>
+                <li class="active"><a href="http://localhost:8080/fshop/staff/ticket"><i class='bx bx-message-square-dots'></i>Vé</a></li>
+                <li><a href="http://localhost:8080/fshop/staff/user"><i class='bx bx-group'></i>Người dùng</a></li>
+                <li><a href="http://localhost:8080/fshop/staff/setting"><i class='bx bx-cog'></i>Cài đặt</a></li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="http://localhost:8080/fshop/login" class="logout">
+                        <i class='bx bx-log-out-circle'></i>
+                        Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End of Sidebar -->
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Navbar -->
+            <nav>
+                <form action="#">
+                    <div class="form-input">
+
+                    </div>
+                </form>
+                <a href="#" class="notif">
+                    <i class='bx bx-bell'></i>
+                    <span class="count">12</span>
+                </a>
+                <a href="#" class="profile">
+                    <img src="images/logo.png">
+                </a>
+            </nav>
+
+            <!-- End of Navbar -->
+            <main>
+                <div class="header">
+                    <div class="left">
+                        <h1>Cửa hàng</h1>
+                        <ul class="breadcrumb">
+                            <li><a href="#">
+                                    Cửa hàng
+                                </a></li>
+                            /
+                            <li><a href="#" class="active">Quản lý sản phẩm</a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="report">
+                        <i class='bx bx-cloud-download'></i>
+                        <span>Tải xuống CSV</span>
+                    </a>
+                </div>
+                <div class="bottom-data">
+                    <div class="nav-product">
+                        <div class="filter">
+                            <button class="btn btn-success">Thêm mới</button>
+                            <div class="form-group">
+                                <label for="category">Hãng:</label>
+                                <select class="form-control" id="category" name="category">
+                                    <option value="all">Tất cả</option>
+                                    <option value="category1">Danh mục 1</option>
+                                    <option value="category2">Danh mục 2</option>
+                                    <option value="category3">Danh mục 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="connection">Kết nối:</label>
+                                <select class="form-control" id="connection" name="connection">
+                                    <option value="all">Tất cả</option>
+                                    <option value="wired">Có dây</option>
+                                    <option value="wireless">Không dây</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Led:</label>
+                                <select class="form-control" id="category" name="category">
+                                    <option value="all">Tất cả</option>
+                                    <option value="category1">Danh mục 1</option>
+                                    <option value="category2">Danh mục 2</option>
+                                    <option value="category3">Danh mục 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Loại sản phẩm:</label>
+                                <select class="form-control" id="category" name="category">
+                                    <option value="all">Tất cả</option>
+                                    <option value="category1">Danh mục 1</option>
+                                    <option value="category2">Danh mục 2</option>
+                                    <option value="category3">Danh mục 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Pin:</label>
+                                <select class="form-control" id="category" name="category">
+                                    <option value="all">Tất cả</option>
+                                    <option value="category1">Danh mục 1</option>
+                                    <option value="category2">Danh mục 2</option>
+                                    <option value="category3">Danh mục 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="color">Màu Sắc:</label>
+                                <select class="form-control" id="color" name="color">
+                                    <option value="all">Tất cả</option>
+                                    <option value="red">Đỏ</option>
+                                    <option value="blue">Xanh dương</option>
+                                    <option value="green">Xanh lá</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="header">
+                            <i class='bx bx-receipt'></i>
+                            <h3>Quản lý sản phẩm</h3>
+                            <i class='bx bx-filter'></i>
+                            <i class='bx bx-search'></i>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Mô tả</th>
+                                    <th>Giá</th>
+                                    <th>Sale</th>
+                                    <th>Phân Loại</th>
+                                    <th>Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="images/profile-1.jpg">th:imageUrl
+                                            <p>th:name</p>
+                                    </td>
+                                    <td>th:description</td>
+                                    <td>th:price</td>
+                                    <td>th:saleprice</td>
+                                    <td>th:type</td>
+                                    <td>
+                                        <button class="btn btn-warning">Sửa</button>
+                                        <button class="btn btn-danger">Xóa</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+    <script>
+        const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+        sideLinks.forEach(item => {
+            const li = item.parentElement;
+            item.addEventListener('click', () => {
+                sideLinks.forEach(i => {
+                    i.parentElement.classList.remove('active');
+                })
+                li.classList.add('active');
+            })
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+
+</html>
