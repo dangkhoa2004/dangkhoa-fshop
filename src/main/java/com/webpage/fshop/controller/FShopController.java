@@ -4,9 +4,8 @@
  */
 package com.webpage.fshop.controller;
 
-import com.webpage.fshop.model.ImageUrl;
+
 import com.webpage.fshop.model.Mouse;
-import com.webpage.fshop.repository.ImageUrlRepository;
 import com.webpage.fshop.repository.MouseRepository;
 import java.util.List;
 import java.util.Optional;

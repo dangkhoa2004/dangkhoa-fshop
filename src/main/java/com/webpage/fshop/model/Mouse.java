@@ -35,18 +35,18 @@ public class Mouse implements Serializable {
     public double saleprice;
 
     @OneToMany(mappedBy = "mouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<ImageUrl> imageUrls;
+    public List<image_url> imageUrl;
 
     public Mouse() {
     }
 
-    public Mouse(String id, String name, String description, double price, double saleprice, List<ImageUrl> imageUrls) {
+    public Mouse(String id, String name, String description, double price, double saleprice, List<image_url> imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.saleprice = saleprice;
-        this.imageUrls = imageUrls;
+        this.imageUrl = imageUrl;
     }
 
     public String getId() {
@@ -89,12 +89,12 @@ public class Mouse implements Serializable {
         this.saleprice = saleprice;
     }
 
-    public List<ImageUrl> getImageUrls() {
-        return imageUrls;
+    public List<image_url> getimage_url() {
+        return imageUrl;
     }
 
-    public void setImageUrls(List<ImageUrl> imageUrls) {
-        this.imageUrls = imageUrls;
+    public void setimage_url(List<image_url> imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getFormattedPrice() {
@@ -106,4 +106,5 @@ public class Mouse implements Serializable {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
         return formatter.format(saleprice) + "₫";
     }
+    
 }

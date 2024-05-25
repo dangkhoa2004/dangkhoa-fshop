@@ -4,7 +4,7 @@
  */
 package com.webpage.fshop.repository;
 
-import com.webpage.fshop.model.ImageUrl;
+import com.webpage.fshop.model.image_url;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author 04dkh
  */
 @Repository
-public interface ImageUrlRepository extends JpaRepository<ImageUrl, Long> {
-    
+public interface ImageUrlRepository extends JpaRepository<image_url, Long> {
+
 }

@@ -4,8 +4,8 @@
  */
 package com.webpage.fshop.repository;
 
-import com.webpage.fshop.model.ImageUrl;
 import com.webpage.fshop.model.Mouse;
+import com.webpage.fshop.model.image_url;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +23,8 @@ public interface MouseRepository extends JpaRepository<Mouse, String> {
 
     // Xóa phương thức không cần thiết getMouseById
 
-    default List<ImageUrl> getImageUrlsByMouseId(String mouseId) {
+    default List<image_url> getImageUrlsByMouseId(String mouseId) {
         Optional<Mouse> optionalMouse = findById(mouseId);
-        return optionalMouse.map(Mouse::getImageUrls).orElse(Collections.emptyList());
+        return optionalMouse.map(Mouse::getimage_url).orElse(Collections.emptyList());
     }
 }
