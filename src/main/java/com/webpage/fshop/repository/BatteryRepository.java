@@ -4,7 +4,8 @@
  */
 package com.webpage.fshop.repository;
 
-import com.webpage.fshop.model.Imageurl;
+
+import com.webpage.fshop.model.Battery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author 04dkh
  */
 @Repository
-public interface ImageUrlRepository extends JpaRepository<Imageurl, Long> {
+public interface BatteryRepository extends JpaRepository<Battery, Integer> {
 
 }

@@ -19,8 +19,8 @@ import java.io.Serializable;
  * @author 04dkh
  */
 @Entity
-@Table(name = "image_url")
-public class image_url implements Serializable {
+@Table(name = "Imageurl")
+public class Imageurl implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -65,6 +65,8 @@ public class FShopController {
 
     @GetMapping("/staff/shop")
     public String staffShop(Model model) {
+        List<Mouse> lstMouse = mouseRepo.findAll();
+        model.addAttribute("lstMouse", lstMouse);
         return "staff/shop";
     }
 

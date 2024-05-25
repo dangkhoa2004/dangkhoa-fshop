@@ -35,18 +35,48 @@ public class Mouse implements Serializable {
     public double saleprice;
 
     @OneToMany(mappedBy = "mouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<image_url> imageUrl;
+    public List<Imageurl> imageUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
+    public Brand brand;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "connect_id")
+    public Connect connect;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "led_id")
+    public LED led;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id")
+    public Type type;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "battery_id")
+    public Battery battery;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "color_id")
+    public Color color;
 
     public Mouse() {
     }
 
-    public Mouse(String id, String name, String description, double price, double saleprice, List<image_url> imageUrl) {
+    public Mouse(String id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl, Brand brand, Connect connect, LED led, Type type, Battery battery, Color color) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.saleprice = saleprice;
         this.imageUrl = imageUrl;
+        this.brand = brand;
+        this.connect = connect;
+        this.led = led;
+        this.type = type;
+        this.battery = battery;
+        this.color = color;
     }
 
     public String getId() {
@@ -89,12 +119,60 @@ public class Mouse implements Serializable {
         this.saleprice = saleprice;
     }
 
-    public List<image_url> getimage_url() {
+    public List<Imageurl> getimage_url() {
         return imageUrl;
     }
 
-    public void setimage_url(List<image_url> imageUrl) {
+    public void setimage_url(List<Imageurl> imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Connect getConnect() {
+        return connect;
+    }
+
+    public void setConnect(Connect connect) {
+        this.connect = connect;
+    }
+
+    public LED getLed() {
+        return led;
+    }
+
+    public void setLed(LED led) {
+        this.led = led;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Battery getBattery() {
+        return battery;
+    }
+
+    public void setBattery(Battery battery) {
+        this.battery = battery;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public String getFormattedPrice() {
@@ -106,5 +184,5 @@ public class Mouse implements Serializable {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
         return formatter.format(saleprice) + "₫";
     }
-    
+
 }
