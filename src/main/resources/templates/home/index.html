@@ -668,9 +668,9 @@
             </div>
             <div class="mouse-list">
                 <div class="item" th:each="mouse : ${lstMouse}">
-<!--                    <th:block th:if="${#lists.size(mouse.imageUrls) > 0}">
+                    <th:block th:if="${#lists.size(mouse.imageUrls) > 0}">
                         <img th:src="${mouse.imageUrls[0].url}" alt="mouse-image">
-                    </th:block>-->
+                    </th:block>
                     <div class="info">
                         <div>
                             <h5 th:text="${mouse.name}"></h5>

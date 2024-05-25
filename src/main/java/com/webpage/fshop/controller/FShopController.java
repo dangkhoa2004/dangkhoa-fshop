@@ -26,30 +26,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FShopController {
 
     @Autowired
-    public MouseRepository mouseRepo;
-
-    @Autowired
-    public ImageUrlRepository imageRepo;
-
-    public Mouse getMouseById(String id) {
-        return mouseRepo.findById(id).orElse(null);
-    }
-
-    public List<ImageUrl> getImageUrlsByMouseId(String mouseId) {
-        Mouse mouse = mouseRepo.findById(mouseId).orElse(null);
-        return mouse != null ? mouse.getImageUrls() : null;
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login/index";
-    }
+    private MouseRepository mouseRepo;
 
     @GetMapping("/view")
     public String main(Model model) {
         List<Mouse> lstMouse = mouseRepo.findAll();
         model.addAttribute("lstMouse", lstMouse);
         return "home/index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login/index";
     }
 
     @GetMapping("/mouse/buy/{idMouse}")

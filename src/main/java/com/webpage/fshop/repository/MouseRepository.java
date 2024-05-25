@@ -4,10 +4,11 @@
  */
 package com.webpage.fshop.repository;
 
+import com.webpage.fshop.model.ImageUrl;
 import com.webpage.fshop.model.Mouse;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,14 @@ import org.springframework.stereotype.Repository;
  * @author 04dkh
  */
 @Repository
-public interface MouseRepository extends JpaRepository<Mouse, String>{
-    
+public interface MouseRepository extends JpaRepository<Mouse, String> {
+
+    // Không cần khai báo ImageUrlRepository ở đây
+
+    // Xóa phương thức không cần thiết getMouseById
+
+    default List<ImageUrl> getImageUrlsByMouseId(String mouseId) {
+        Optional<Mouse> optionalMouse = findById(mouseId);
+        return optionalMouse.map(Mouse::getImageUrls).orElse(Collections.emptyList());
+    }
 }
