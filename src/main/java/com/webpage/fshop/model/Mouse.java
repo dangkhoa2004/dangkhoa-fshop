@@ -9,8 +9,6 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 /**
  *
@@ -25,7 +23,6 @@ public class Mouse implements Serializable {
     @Column(name = "id", nullable = false, length = 50)
     public String id;
 
-    @NotBlank(message = "Không được để trống tên")
     @Column(name = "name", length = 255)
     public String name;
     
@@ -33,11 +30,9 @@ public class Mouse implements Serializable {
     public String description;
     
     @Column(name = "price")
-    @NotNull(message = "Không được để trống giá")
     public double price;
 
     @Column(name = "saleprice")
-    @NotNull(message = "Không được để trống giá sale")
     public double saleprice;
 
     @OneToMany(mappedBy = "mouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -45,32 +40,26 @@ public class Mouse implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
-    @NotNull(message = "Không được để trống hãng")
     public Brand brand;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "connect_id")
-    @NotNull(message = "Không được để trống loại kết nối")
     public Connect connect;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "led_id")
-    @NotNull(message = "Không được để trống loại led")
     public LED led;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
-    @NotNull(message = "Không được để trống loại chuột")
     public Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "battery_id")
-    @NotNull(message = "Không được để trống kiểu pin")
     public Battery battery;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "color_id")
-    @NotNull(message = "Không được để trống màu sắc")
     public Color color;
 
     public Mouse() {

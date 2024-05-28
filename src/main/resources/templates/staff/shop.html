@@ -600,13 +600,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="logo-name"><span>Trang</span>Quản lý</div>
         </a>
         <ul class="side-menu">
-            <li><a href="http://localhost:8080/fshop/staff"><i class='bx bxs-dashboard'></i>Bảng điều khiển</a></li>
-            <li class="active"><a href="http://localhost:8080/fshop/staff/shop"><i class='bx bx-store-alt'></i>Cửa
-                    hàng</a></li>
-            <li><a href="http://localhost:8080/fshop/staff/report"><i class='bx bx-analyse'></i>Thống kê</a></li>
-            <li><a href="http://localhost:8080/fshop/staff/ticket"><i class='bx bx-message-square-dots'></i>Vé</a></li>
-            <li><a href="http://localhost:8080/fshop/staff/user"><i class='bx bx-group'></i>Người dùng</a></li>
-            <li><a href="http://localhost:8080/fshop/staff/setting"><i class='bx bx-cog'></i>Cài đặt</a></li>
+            <li><a href="http://localhost:8080/fshop/view"><i class='bx bxs-dashboard'></i>Bảng điều khiển</a></li>
+            <li class="active">
+                <a href="http://localhost:8080/shop/list"><i class='bx bx-store-alt'></i>Cửahàng</a>
+            </li>
+            <li><a href="http://localhost:8080/report/list"><i class='bx bx-analyse'></i>Thống kê</a></li>
+            <li><a href="http://localhost:8080/ticket/list"><i class='bx bx-message-square-dots'></i>Vé</a></li>
+            <li><a href="http://localhost:8080/user/list"><i class='bx bx-group'></i>Người dùng</a></li>
+            <li><a href="http://localhost:8080/setting/list"><i class='bx bx-cog'></i>Cài đặt</a></li>
         </ul>
         <ul class="side-menu">
             <li>
@@ -658,7 +659,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="bottom-data">
                 <div class="nav-product">
                     <div class="filter">
-                        <a href="http://localhost:8080/fshop/staff/shop/add"
+                        <a href="http://localhost:8080/shop/add"
                             class="btn btn-success d-flex justify-content-center align-items-center" id="backButton">
                             <i class="fas fa-plus"></i>Thêm mới
                         </a>
@@ -751,9 +752,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <td th:text="${mouse.battery.name}"></td>
                                 <td th:text="${mouse.color.name}"></td>
                                 <td>
-                                    <button class="btn btn-info">Chi Tiết</button>
-                                    <button class="btn btn-warning">Sửa</button>
-                                    <button class="btn btn-danger">Xóa</button>
+                                    <button type="button" class="btn btn-rounded bg-warning">
+                                        <a th:href="@{/shop/edit/{id}(id=${mouse.id})}">SỬA</a>
+                                    </button>
+                                    <button type="button" class="btn btn-rounded bg-danger">
+                                        <a th:href="@{/shop/delete/{id}(id=${mouse.id})}">XÓA</a>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

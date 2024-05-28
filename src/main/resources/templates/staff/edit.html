@@ -6,7 +6,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Staff | Thêm sản phẩm</title>
+    <title>Staff | Sửa sản phẩm</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
@@ -410,7 +410,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         /
                         <li><a href="#" class="active">Quản lý sản phẩm</a></li>
                         /
-                        <li><a href="#" class="active">Thêm mới sản phẩm</a></li>
+                        <li><a href="#" class="active">Sửa sản phẩm</a></li>
                     </ul>
                 </div>
             </div>
@@ -420,13 +420,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <i class='bx bx-receipt'></i>
                         <h3>Quản lý sản phẩm</h3>
                     </div>
-                    <form th:action="@{/shop/store}" th:object="${mouse}" method="POST" id="myForm">
+                    <form th:action="@{/shop/update}" th:object="${mouse}" method="POST" id="myForm">
                         <div class="form-input mt-5">
                             <div class="row">
                                 <div class="col-8">
                                     <div class="form-floating mb-4">
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            th:field="*{name}"
+                                        <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
                                             required>
                                         <label for="name">Tên</label>
                                     </div>
@@ -444,7 +443,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <input type="text" class="form-control" id="description" name="description"
                                             th:field="*{description}" style="height: 146px;">
                                         <label for="description">Mô tả</label>
-                                        
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -452,56 +450,56 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <div class="form-group mb-1">
                                             <label for="brand">Thương hiệu:</label>
                                             <select class="form-control" id="brand" name="brand" required>
-                                                <option value="" selected disabled>Chọn thương hiệu</option>
                                                 <option th:each="brand : ${brands}" th:value="${brand.id}"
-                                                    th:text="${brand.name}"></option>
+                                                    th:text="${brand.name}"
+                                                    th:selected="${brand.id} == ${mouse.brand.id}"></option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-1">
                                             <label for="connect">Kết nối:</label>
                                             <select class="form-control" id="connect" name="connect" required>
-                                                <option value="" selected disabled>Chọn kết nối</option>
                                                 <option th:each="connect : ${connects}" th:value="${connect.id}"
-                                                    th:text="${connect.name}"></option>
+                                                    th:text="${connect.name}"
+                                                    th:selected="${connect.id} == ${mouse.connect.id}"></option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-1">
                                             <label for="led">LED:</label>
                                             <select class="form-control" id="led" name="led" required>
-                                                <option value="" selected disabled>Chọn LED</option>
                                                 <option th:each="led : ${leds}" th:value="${led.id}"
-                                                    th:text="${led.name}"></option>
+                                                    th:text="${led.name}" th:selected="${led.id} == ${mouse.led.id}">
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-1">
                                             <label for="type">Loại:</label>
                                             <select class="form-control" id="type" name="type" required>
-                                                <option value="" selected disabled>Chọn loại</option>
                                                 <option th:each="type : ${types}" th:value="${type.id}"
-                                                    th:text="${type.name}"></option>
+                                                    th:text="${type.name}" th:selected="${type.id} == ${mouse.type.id}">
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-1">
                                             <label for="battery">PIN:</label>
                                             <select class="form-control" id="battery" name="battery" required>
-                                                <option value="" selected disabled>Chọn PIN</option>
                                                 <option th:each="battery : ${batteries}" th:value="${battery.id}"
-                                                    th:text="${battery.name}"></option>
+                                                    th:text="${battery.name}"
+                                                    th:selected="${battery.id} == ${mouse.battery.id}"></option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-1">
                                             <label for="color">Màu sắc:</label>
                                             <select class="form-control" id="color" name="color" required>
-                                                <option value="" selected disabled>Chọn màu</option>
                                                 <option th:each="color : ${colors}" th:value="${color.id}"
-                                                    th:text="${color.name}"></option>
+                                                    th:text="${color.name}"
+                                                    th:selected="${color.id} == ${mouse.color.id}"></option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success">
-                                <i class="fas fa-plus"></i> Thêm mới
+                                <i class="fas fa-plus"></i> Lưu
                             </button>
                             <button type="button" class="btn btn-primary" onclick="clearInputs()">
                                 <i class="fas fa-sync-alt fa-spin"></i> Làm mới
