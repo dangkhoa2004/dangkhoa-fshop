@@ -420,7 +420,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <i class='bx bx-receipt'></i>
                         <h3>Quản lý sản phẩm</h3>
                     </div>
-                    <form th:action="@{/shop/update/{id}}" th:object="${mouse}" method="POST" id="myForm">
+                    <form th:action="@{/shop/update/{id}(id = ${mouse.id})}" th:object="${mouse}" method="POST" id="myForm">
                         <div class="form-input mt-5">
                             <div class="row">
                                 <div class="col-8">
