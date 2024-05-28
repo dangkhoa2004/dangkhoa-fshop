@@ -108,7 +108,7 @@ public class ShopController {
         return "staff/edit.html";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/update/{id}")
     public String updateMouse(@PathVariable("id") String id, @ModelAttribute Mouse ms) {
         Mouse existMouse = mouseRepo.findById(id).orElseThrow();
         existMouse.setName(ms.getName());
