@@ -11,6 +11,7 @@ import com.webpage.fshop.model.Connect;
 import com.webpage.fshop.model.LED;
 import com.webpage.fshop.model.Mouse;
 import com.webpage.fshop.model.Type;
+import com.webpage.fshop.repository.AccountRepository;
 import com.webpage.fshop.repository.BatteryRepository;
 import com.webpage.fshop.repository.BrandRepository;
 import com.webpage.fshop.repository.ColorRepository;
@@ -42,24 +43,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FShopController {
 
     @Autowired
-    private MouseRepository mouseRepo;
+    public MouseRepository mouseRepo;
+    
     @Autowired
-    private BrandRepository brandRepo;
+    public BrandRepository brandRepo;
 
     @Autowired
-    private ConnectRepository connectionRepo;
+    public ConnectRepository connectionRepo;
 
     @Autowired
-    private LEDRepository ledRepo;
+    public LEDRepository ledRepo;
 
     @Autowired
-    private TypeRepository typeRepo;
+    public TypeRepository typeRepo;
 
     @Autowired
-    private BatteryRepository batteryRepo;
+    public BatteryRepository batteryRepo;
 
     @Autowired
-    private ColorRepository colorRepo;
+    public ColorRepository colorRepo;
+    
+    @Autowired
+    public AccountRepository accountRepo;
 
     @GetMapping("/view")
     public String main(Model model) {

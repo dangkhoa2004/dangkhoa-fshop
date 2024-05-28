@@ -26,6 +26,7 @@ public interface MouseRepository extends JpaRepository<Mouse, String> {
         Optional<Mouse> optionalMouse = findById(mouseId);
         return optionalMouse.map(Mouse::getimage_url).orElse(Collections.emptyList());
     }
+
     @Query(value = "SELECT COUNT(*) FROM Mouse")
     int getMouseCount();
 
