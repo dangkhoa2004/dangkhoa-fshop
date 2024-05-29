@@ -6,10 +6,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>STAFF | UPDATE ITEM</title>
+    <title>Staff | DashBoard</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css"
         href="https://raw.githubusercontent.com/dangkhoa2004/mystyle/main/staff.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -78,131 +78,145 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Cửa hàng</h1>
+                    <h1>Bảng điều
+                        khiển</h1>
                     <ul class="breadcrumb">
                         <li><a href="#">
-                                Cửa hàng
+                                Thống kê
                             </a></li>
                         /
-                        <li><a href="#" class="active">Quản lý sản phẩm</a></li>
-                        /
-                        <li><a href="#" class="active">Sửa sản phẩm</a></li>
+                        <li><a href="#" class="active">Cửa hàng</a></li>
                     </ul>
                 </div>
+                <a href="#" class="report">
+                    <i class='bx bx-cloud-download'></i>
+                    <span>Tải xuống CSV</span>
+                </a>
             </div>
+
+            <!-- Insights -->
+            <ul class="insights">
+                <li>
+                    <i class='bx bx-calendar-check'></i>
+                    <span class="info">
+                        <h3>
+                            1,074
+                        </h3>
+                        <p>Đơn hàng thanh toán</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-show-alt'></i>
+                    <span class="info">
+                        <h3>
+                            3,944
+                        </h3>
+                        <p>Truy cập trang web</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-line-chart'></i>
+                    <span class="info">
+                        <h3>
+                            14,721
+                        </h3>
+                        <p>Tìm kiếm</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-dollar-circle'></i>
+                    <span class="info">
+                        <h3>
+                            $6,742
+                        </h3>
+                        <p>Tổng doanh thu</p>
+                    </span>
+
+                </li>
+            </ul>
+            <!-- End of Insights -->
+
             <div class="bottom-data">
-                <div class="product">
+                <div class="orders">
                     <div class="header">
                         <i class='bx bx-receipt'></i>
-                        <h3>Quản lý sản phẩm</h3>
+                        <h3>Những đơn đặt hàng gần đây</h3>
+                        <i class='bx bx-filter'></i>
+                        <i class='bx bx-search'></i>
                     </div>
-                    <form th:action="@{/shop/update/{id}(id = ${mouse.id})}" th:object="${mouse}" method="POST"
-                        id="myForm">
-                        <div class="form-input mt-5">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="card mb-3">
-                                        <div class="card-body imgMouse">
-                                            <td th:if="${#lists.size(mouse.imageUrl) > 0}">
-                                                <p>Hình ảnh:</p>
-                                                <button class="btn btn-success">Tải lên</button>
-                                                <th:block th:each="image : ${mouse.imageUrl}">
-                                                    <img th:src="@{${image.url}}" alt="mouse image">
-                                                </th:block>
-                                            </td>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="form-floating mb-4">
-                                        <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
-                                            required>
-                                        <label for="name">Tên</label>
-                                    </div>
-                                    <div class="form-floating mb-4">
-                                        <input type="text" class="form-control" id="price" name="price"
-                                            th:field="*{price}" required>
-                                        <label for="price">Giá</label>
-                                    </div>
-                                    <div class="form-floating mb-4">
-                                        <input type="text" class="form-control" id="saleprice" name="saleprice"
-                                            th:field="*{saleprice}" required>
-                                        <label for="saleprice">Giảm giá</label>
-                                    </div>
-                                    <div class="form-floating mb-4">
-                                        <input type="text" class="form-control" id="description" name="description"
-                                            th:field="*{description}" style="height: 146px;">
-                                        <label for="description">Mô tả</label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="col-4">
-                                        <div class="form-group mb-1">
-                                            <label for="brand">Thương hiệu:</label>
-                                            <select class="form-control" id="brand" name="brand" required>
-                                                <option th:each="brand : ${brands}" th:value="${brand.id}"
-                                                    th:text="${brand.name}"
-                                                    th:selected="${brand.id} == ${mouse.brand.id}">
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-1">
-                                            <label for="connect">Kết nối:</label>
-                                            <select class="form-control" id="connect" name="connect" required>
-                                                <option th:each="connect : ${connects}" th:value="${connect.id}"
-                                                    th:text="${connect.name}"
-                                                    th:selected="${connect.id} == ${mouse.connect.id}"></option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-1">
-                                            <label for="led">LED:</label>
-                                            <select class="form-control" id="led" name="led" required>
-                                                <option th:each="led : ${leds}" th:value="${led.id}"
-                                                    th:text="${led.name}" th:selected="${led.id} == ${mouse.led.id}">
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-1">
-                                            <label for="type">Loại:</label>
-                                            <select class="form-control" id="type" name="type" required>
-                                                <option th:each="type : ${types}" th:value="${type.id}"
-                                                    th:text="${type.name}" th:selected="${type.id} == ${mouse.type.id}">
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-1">
-                                            <label for="battery">PIN:</label>
-                                            <select class="form-control" id="battery" name="battery" required>
-                                                <option th:each="battery : ${batteries}" th:value="${battery.id}"
-                                                    th:text="${battery.name}"
-                                                    th:selected="${battery.id} == ${mouse.battery.id}"></option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-1">
-                                            <label for="color">Màu sắc:</label>
-                                            <select class="form-control" id="color" name="color" required>
-                                                <option th:each="color : ${colors}" th:value="${color.id}"
-                                                    th:text="${color.name}"
-                                                    th:selected="${color.id} == ${mouse.color.id}">
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-plus"></i> Lưu
-                            </button>
-                            <button type="button" class="btn btn-primary" onclick="clearInputs()">
-                                <i class="fas fa-sync-alt fa-spin"></i> Làm mới
-                            </button>
-                        </div>
-                    </form>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Người dùng</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="images/profile-1.jpg">
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status Hoàn thành">Hoàn thành</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="images/profile-1.jpg">
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status pending">Chưa giải quyết</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="images/profile-1.jpg">
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status process">Đang xử lý</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+                <!-- Reminders -->
+                <div class="reminders">
+                    <div class="header">
+                        <i class='bx bx-note'></i>
+                        <h3>Lời nhắc</h3>
+                        <i class='bx bx-filter'></i>
+                        <i class='bx bx-plus'></i>
+                    </div>
+                    <ul class="task-list">
+                        <li class="Hoàn thành">
+                            <div class="task-title">
+                                <i class='bx bx-check-circle'></i>
+                                <p>Bắt đầu cuộc họp của chúng tôi</p>
+                            </div>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="Hoàn thành">
+                            <div class="task-title">
+                                <i class='bx bx-check-circle'></i>
+                                <p>Phân tích trang web của chúng tôi</p>
+                            </div>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                        <li class="not-Hoàn thành">
+                            <div class="task-title">
+                                <i class='bx bx-x-circle'></i>
+                                <p>Chơi bóng đá</p>
+                            </div>
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- End of Reminders-->
+
             </div>
+
         </main>
+
     </div>
     <footer>
         <h3>FSHOP | Gaming Gears</h3>
@@ -347,17 +361,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         color: var(--light);
     }
 
-    .content main .header .left {
+    .content main .header .left .breadcrumb {
         display: flex;
         align-items: center;
         grid-gap: 16px;
     }
 
-    .content main .header .left li {
+    .content main .header .left .breadcrumb li {
         color: var(--light);
     }
 
-    .content main .header .left li a {
+    .content main .header .left .breadcrumb li a {
         color: var(--light);
         pointer-events: none;
     }
@@ -403,16 +417,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         justify-content: center;
     }
 
-    .content main .header .left .breadcrumb {
-        display: flex;
-        align-items: center;
-        grid-gap: 16px;
+    .content main .insights li:nth-child(1) .bx {
+        background: var(--light-primary);
+        color: var(--primary);
     }
 
-    .content main .header .left .breadcrumb li a {
-        color: var(--light);
-        pointer-events: none;
+    .content main .insights li:nth-child(2) .bx {
+        background: var(--light-warning);
+        color: var(--warning);
+    }
 
+    .content main .insights li:nth-child(3) .bx {
+        background: var(--light-success);
+        color: var(--success);
+    }
+
+    .content main .insights li:nth-child(4) .bx {
+        background: var(--light-danger);
+        color: var(--danger);
+    }
+
+    .content main .insights li .info h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    .content main .insights li .info p {
+        color: var(--dark);
+    }
+
+    .content main .bottom-data {
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 24px;
+        margin-top: 24px;
+        width: 100%;
+        color: var(--dark);
     }
 
     .content main .bottom-data>div {
@@ -420,6 +461,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         background: var(--light);
         padding: 24px;
         overflow-x: auto;
+    }
+
+    .content main .bottom-data .header {
+        display: flex;
+        align-items: center;
+        grid-gap: 16px;
+        margin-bottom: 24px;
     }
 
     .content main .bottom-data .header h3 {
@@ -430,6 +478,116 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
     .content main .bottom-data .header .bx {
         cursor: pointer;
+    }
+
+    .content main .bottom-data .orders {
+        flex-grow: 1;
+        flex-basis: 500px;
+    }
+
+    .content main .bottom-data .orders table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .content main .bottom-data .orders table th {
+        padding-bottom: 12px;
+        font-size: 13px;
+        text-align: left;
+        border-bottom: 1px solid var(--grey);
+    }
+
+    .content main .bottom-data .orders table td {
+        padding: 16px 0;
+    }
+
+    .content main .bottom-data .orders table tr td:first-child {
+        display: flex;
+        align-items: center;
+        grid-gap: 12px;
+        padding-left: 6px;
+    }
+
+    .content main .bottom-data .orders table td img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .content main .bottom-data .orders table tbody tr {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .content main .bottom-data .orders table tbody tr:hover {
+        background: var(--grey);
+    }
+
+    .content main .bottom-data .orders table tr td .status {
+        font-size: 10px;
+        padding: 6px 16px;
+        color: var(--light);
+        background-color: var(--success);
+        border-radius: 20px;
+        font-weight: 700;
+    }
+
+    .content main .bottom-data .orders table tr td .status.Hoàn thành {
+        background: var(--success);
+    }
+
+    .content main .bottom-data .orders table tr td .status.process {
+        background: var(--primary);
+    }
+
+    .content main .bottom-data .orders table tr td .status.pending {
+        background: var(--warning);
+    }
+
+    .content main .bottom-data .reminders {
+        flex-grow: 1;
+        flex-basis: 300px;
+    }
+
+    .content main .bottom-data .reminders .task-list {
+        width: 100%;
+    }
+
+    .content main .bottom-data .reminders .task-list li {
+        width: 100%;
+        margin-bottom: 16px;
+        background: var(--grey);
+        padding: 14px 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .content main .bottom-data .reminders .task-list li .task-title {
+        display: flex;
+        align-items: center;
+    }
+
+    .content main .bottom-data .reminders .task-list li .task-title p {
+        margin-left: 6px;
+    }
+
+    .content main .bottom-data .reminders .task-list li .bx {
+        cursor: pointer;
+    }
+
+    .content main .bottom-data .reminders .task-list li.Hoàn thành {
+        border-left: 10px solid var(--success);
+    }
+
+    .content main .bottom-data .reminders .task-list li.not-Hoàn thành {
+        border-left: 10px solid var(--danger);
+    }
+
+    .content main .bottom-data .reminders .task-list li:last-child {
+        margin-bottom: 0;
     }
 
     footer {
@@ -550,28 +708,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
     }
 </style>
-<script>
-    const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
-    sideLinks.forEach(item => {
-        const li = item.parentElement;
-        item.addEventListener('click', () => {
-            sideLinks.forEach(i => {
-                i.parentElement.classList.remove('active');
-            });
-            li.classList.add('active');
-        });
-    });
-    function clearInputs() {
-        var inputs = document.querySelectorAll('input');
-        var selects = document.querySelectorAll('select');
-        inputs.forEach(function (input) {
-            input.value = '';
-        });
-        selects.forEach(function (select) {
-            select.selectedIndex = 0;
-        });
-    }
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
