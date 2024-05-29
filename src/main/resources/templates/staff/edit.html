@@ -182,6 +182,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     }
 
     .content {
+        scroll-behavior: smooth;
         position: relative;
         width: calc(100% - 230px);
         left: 230px;
@@ -253,7 +254,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     .content main {
         width: 100%;
         padding: 36px 24px;
-        max-height: calc(100vh - 56px);
+        height: 110vh;
     }
 
     .content main .header {
@@ -357,6 +358,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         }
 
     }
+
+    .imgMouse img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
 </style>
 
 <body style="background: linear-gradient(to left, #7d9eeb, #435add);">
@@ -420,8 +428,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <i class='bx bx-receipt'></i>
                         <h3>Quản lý sản phẩm</h3>
                     </div>
-                    <form th:action="@{/shop/update/{id}(id = ${mouse.id})}" th:object="${mouse}" method="POST" id="myForm">
+                    <form th:action="@{/shop/update/{id}(id = ${mouse.id})}" th:object="${mouse}" method="POST"
+                        id="myForm">
                         <div class="form-input mt-5">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="card mb-3">
+                                        <div class="card-body imgMouse">
+                                            <td th:if="${#lists.size(mouse.imageUrl) > 0}">
+                                                <p>Hình ảnh:</p>
+                                                <button class="btn btn-success">Tải lên</button>
+                                                <th:block th:each="image : ${mouse.imageUrl}">
+                                                    <img th:src="@{${image.url}}" alt="mouse image">
+                                                </th:block>
+                                            </td>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-8">
                                     <div class="form-floating mb-4">
@@ -452,7 +476,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             <select class="form-control" id="brand" name="brand" required>
                                                 <option th:each="brand : ${brands}" th:value="${brand.id}"
                                                     th:text="${brand.name}"
-                                                    th:selected="${brand.id} == ${mouse.brand.id}"></option>
+                                                    th:selected="${brand.id} == ${mouse.brand.id}">
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-1">
@@ -492,7 +517,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             <select class="form-control" id="color" name="color" required>
                                                 <option th:each="color : ${colors}" th:value="${color.id}"
                                                     th:text="${color.name}"
-                                                    th:selected="${color.id} == ${mouse.color.id}"></option>
+                                                    th:selected="${color.id} == ${mouse.color.id}">
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
