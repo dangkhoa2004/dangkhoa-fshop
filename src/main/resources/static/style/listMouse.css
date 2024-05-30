@@ -1,0 +1,295 @@
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+    background: linear-gradient(to right, #6382ca, #435add);
+    overflow-x: hidden;
+}
+
+
+.content {
+    position: relative;
+    width: calc(100% - 230px);
+    left: 230px;
+    transition: all 0.3s ease;
+}
+
+.content nav {
+    height: 56px;
+    padding: 0 24px 0 0;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.content nav::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -40px;
+    left: 0;
+    border-radius: 50%;
+    box-shadow: -20px -20px 0 white;
+}
+
+.content nav a {
+    color: black;
+}
+
+.content nav .bx.bx-menu {
+    cursor: pointer;
+    color: black;
+}
+
+.content nav form {
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+}
+
+.content nav form .form-input {
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+.content nav form .form-input input {
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: grey;
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: black;
+}
+
+.content nav form .form-input button {
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+}
+
+.content nav .notif {
+    font-size: 20px;
+    position: relative;
+}
+
+.content nav .notif .count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+    color: white;
+    border: 2px solid white;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content nav .profile img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.content .maintain {
+    width: 100%;
+    padding: 36px 24px;
+    max-height: calc(100vh - 56px);
+}
+
+.content .maintain .bigTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+}
+
+.content .maintain .bigTitle .left h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.content .maintain .bigTitle .left .breadcrumb {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+}
+
+.content .maintain .bigTitle .left .breadcrumb li {
+    color: white;
+}
+
+.content .maintain .bigTitle .left .breadcrumb li a {
+    color: white;
+    pointer-events: none;
+}
+
+.content .maintain .bigTitle .left .breadcrumb li a.active {
+    color: white;
+    pointer-events: none;
+}
+
+.content .maintain .bottom-data {
+    flex-wrap: wrap;
+    width: 100%;
+    color: black;
+}
+
+.content .maintain .bottom-data .product {
+    border-radius: 15px;
+    background: white;
+    height: 50vh;
+    padding: 24px;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.content .maintain .bottom-data .nav-product {
+    display: flex;
+    border-radius: 15px;
+    background: white;
+    padding: 24px;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.nav-product .btn {
+    align-items: center;
+    height: 50px;
+    width: 100px;
+    margin-right: 20px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+}
+
+.filter .form-group {
+    margin-right: 20px;
+}
+
+.form-group {
+    margin: 20px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 200px;
+    background-color: white;
+    background-size: 10px;
+}
+
+.content .maintain .bottom-data .bigTitle {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    margin-bottom: 24px;
+}
+
+.content .maintain .bottom-data .bigTitle h3 {
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.content .maintain .bottom-data .bigTitle .bx {
+    cursor: pointer;
+}
+
+.content .maintain .bottom-data .product {
+    flex-grow: 1;
+    flex-basis: 500px;
+}
+
+.content .maintain .bottom-data .product table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content .maintain .bottom-data .product table th {
+    padding-bottom: 12px;
+    font-size: 13px;
+    text-align: left;
+    border-bottom: 1px solid grey;
+}
+
+.content .maintain .bottom-data .product table td {
+    padding: 16px 0;
+}
+
+.content .maintain .bottom-data .product table tr td:first-child {
+    display: flex;
+    align-items: center;
+    grid-gap: 12px;
+    padding-left: 6px;
+}
+
+.content .maintain .bottom-data .product table td img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.content .maintain .bottom-data .product table tbody tr {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.content .maintain .bottom-data .product table tbody tr:hover {
+    background: rgb(230, 221, 221);
+}
+
+.content .maintain .bottom-data .product table tr td .status {
+    font-size: 10px;
+    padding: 6px 16px;
+    color: white;
+    background-color: lime;
+    border-radius: 15px;
+    font-weight: 700;
+}
+
+.content .maintain .bottom-data {
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+.content .maintain .bottom-data {
+    width: 100%;
+}

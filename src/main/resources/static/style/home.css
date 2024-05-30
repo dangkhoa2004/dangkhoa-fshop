@@ -116,7 +116,7 @@ img {
     object-fit: cover;
 }
 
-header {
+.header_txt {
     margin-top: 80px;
     padding: 0 80px;
     height: calc(100vh - 80px);
@@ -125,24 +125,24 @@ header {
     justify-content: space-between;
 }
 
-header .left {
+.header_txt .left {
     width: 700px;
 }
 
-header .left h1 {
+.header_txt .left h1 {
     font-size: 80px;
 }
 
-header .left h1 span {
+.header_txt .left h1 span {
     color: #fff;
 }
 
-header .left p {
+.header_txt .left p {
     margin: 40px 0;
     color: #fff;
 }
 
-header .left a {
+.header_txt .left a {
     display: flex;
     align-items: center;
     background: #000;
@@ -151,7 +151,7 @@ header .left a {
     border-radius: 60px;
 }
 
-header .left a:hover {
+.header_txt .left a:hover {
     transform: scale(1.1);
     transition: transform 0.2s ease-in-out;
     display: flex;
@@ -161,19 +161,19 @@ header .left a:hover {
     border-radius: 60px;
 }
 
-header .left a i {
+.header_txt .left a i {
     background-color: #fff;
     font-size: 24px;
     border-radius: 50%;
     padding: 8px;
 }
 
-header .left a span {
+.header_txt .left a span {
     color: #fff;
     margin-left: 10px;
 }
 
-header img {
+.header_txt img {
     width: 600px;
 }
 
@@ -212,17 +212,17 @@ h2.separator {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.sell-mouse .item .header {
+.sell-mouse .item .header_txt {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.sell-mouse .item .header i {
+.sell-mouse .item .header_txt i {
     font-size: 40px;
 }
 
-.sell-mouse .item .header h5 {
+.sell-mouse .item .header_txt h5 {
     font-size: 17px;
 }
 
@@ -419,7 +419,7 @@ footer .right p {
 @media screen and (max-width: 1400px) {
 
     nav,
-    header,
+    .header_txt,
     h2.separator,
     .sell-mouse,
     .mouse-shop,
@@ -427,11 +427,11 @@ footer .right p {
         padding: 0 40px;
     }
 
-    header .left h1 {
+    .header_txt .left h1 {
         font-size: 60px;
     }
 
-    header img {
+    .header_txt img {
         width: 540px;
     }
 
@@ -452,11 +452,11 @@ footer .right p {
 
 @media screen and (max-width: 1200px) {
 
-    header .left h1 {
+    .header_txt .left h1 {
         font-size: 48px;
     }
 
-    header img {
+    .header_txt img {
         width: 480px;
     }
 
@@ -464,11 +464,11 @@ footer .right p {
         font-size: 34px;
     }
 
-    .sell-mouse .item .header i {
+    .sell-mouse .item .header_txt i {
         font-size: 36px;
     }
 
-    .sell-mouse .item .header h5 {
+    .sell-mouse .item s.header_txt h5 {
         font-size: 15px;
     }
 
@@ -514,17 +514,17 @@ footer .right p {
         font-size: 14px;
     }
 
-    header {
+    .header_txt {
         flex-direction: column-reverse;
         height: auto;
         margin-bottom: 60px;
     }
 
-    header .left {
+    .header_txt .left {
         width: 100%;
     }
 
-    header img {
+    .header_txt img {
         width: 100%;
     }
 
@@ -561,7 +561,7 @@ footer .right p {
 @media screen and (max-width: 768px) {
 
     nav,
-    header,
+    .header_txt,
     h2.separator,
     .sell-mouse,
     .mouse-shop,
@@ -582,21 +582,21 @@ footer .right p {
         padding: 6px 10px;
     }
 
-    header .left h1 {
+    .header_txt .left h1 {
         font-size: 36px;
     }
 
-    header .left p {
+    .header_txt .left p {
         font-size: 14px;
     }
 
-    header .left a {
+    .header_txt .left a {
         padding: 6px;
         width: 160px;
         font-size: 14px;
     }
 
-    header .left a i {
+    .header_txt .left a i {
         padding: 6px;
     }
 
@@ -612,7 +612,7 @@ footer .right p {
 
 @media screen and (max-width: 576px) {
 
-    header .left h1 {
+    .header_txt .left h1 {
         font-size: 30px;
     }
 

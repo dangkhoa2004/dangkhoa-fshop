@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar {
+    background-color: #222222;
+    height: 10vh;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand img {
+    width: 100%;
+}
+
+.form-inline input {
+    width: 300px;
+}
+
+.search-container {
+    position: relative;
+    width: 300px;
+    margin: auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+    cursor: pointer;
+}
+
+.navbar-nav .nav-item {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 120%;
+    color: #989898;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.navTop {
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 8px 8px 8px 8px;
+    margin-top: 2%;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.navTopflex {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.navTop a {
+    float: left;
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #000000;
+    margin: 0 10px;
+}
+
+.navTop a:hover {
+    border-radius: 8px;
+    background-color: #ddd;
+    color: black;
+}
+
+.navTop a.active {
+    border-radius: 8px;
+    font-weight: bold;
+    background-color: #435add;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+img {
+    object-fit: cover;
+}
+/* ===FOOTER=== */
+footer {
+    background-color: #222222;
+    color: #fff;
+    padding: 100px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer h3 {
+    font-size: 48px;
+}
+
+footer .right {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 26px;
+}
+
+footer .right .links {
+    display: flex;
+    gap: 30px;
+}
+
+footer .right .links a {
+    color: #989898;
+    transition: color 0.3s ease;
+}
+
+footer .right .links a:hover {
+    color: #fff;
+}
+
+footer .right .social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+footer .right .social i {
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+footer .right .social i:hover {
+    color: #304ffe;
+}
+
+footer .right p {
+    font-size: 13px;
+    color: #777;
+}

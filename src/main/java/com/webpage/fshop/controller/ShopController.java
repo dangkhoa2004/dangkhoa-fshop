@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author 04dkh
  */
-@Controller
+//@Controller
 @RequestMapping(value = "/shop")
 public class ShopController {
 
@@ -57,12 +57,12 @@ public class ShopController {
     @Autowired
     public ColorRepository colorRepo;
 
-    @GetMapping("/list")
-    public String staffShop(Model model) {
-        List<Mouse> lstMouse = mouseRepo.findAll();
-        model.addAttribute("lstMouse", lstMouse);
-        return "staff/shop.html";
-    }
+//    @GetMapping("/list")
+//    public String staffShop(Model model) {
+//        List<Mouse> lstMouse = mouseRepo.findAll();
+//        model.addAttribute("lstMouse", lstMouse);
+//        return "staff/shop.html";
+//    }
 
     @GetMapping("/add")
     public String addMouse(Model model) {
@@ -89,41 +89,41 @@ public class ShopController {
         return "redirect:/shop/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String editMouse(@PathVariable("id") int id, Model model) {
-        Mouse ms = mouseRepo.findById(id).orElseThrow();
-        List<Brand> brands = brandRepo.findAll();
-        List<Connect> connects = connectionRepo.findAll();
-        List<LED> leds = ledRepo.findAll();
-        List<Type> types = typeRepo.findAll();
-        List<Battery> batteries = batteryRepo.findAll();
-        List<Color> colors = colorRepo.findAll();
-        model.addAttribute("brands", brands);
-        model.addAttribute("connects", connects);
-        model.addAttribute("leds", leds);
-        model.addAttribute("types", types);
-        model.addAttribute("batteries", batteries);
-        model.addAttribute("colors", colors);
-        model.addAttribute("mouse", ms);
-        return "staff/edit.html";
-    }
-
-    @PostMapping("/update/{id}")
-    public String updateMouse(@PathVariable("id") int id, @ModelAttribute Mouse ms) {
-        Mouse existMouse = mouseRepo.findById(id).orElseThrow();
-        existMouse.setName(ms.getName());
-        existMouse.setDescription(ms.getDescription());
-        existMouse.setPrice(ms.getPrice());
-        existMouse.setSaleprice(ms.getSaleprice());
-        existMouse.setBrand(ms.getBrand());
-        existMouse.setConnect(ms.getConnect());
-        existMouse.setLed(ms.getLed());
-        existMouse.setType(ms.getType());
-        existMouse.setBattery(ms.getBattery());
-        existMouse.setColor(ms.getColor());
-        mouseRepo.save(existMouse);
-        return "redirect:/shop/list";
-    }
+//    @GetMapping("/edit/{id}")
+//    public String editMouse(@PathVariable("id") int id, Model model) {
+//        Mouse ms = mouseRepo.findById(id).orElseThrow();
+//        List<Brand> brands = brandRepo.findAll();
+//        List<Connect> connects = connectionRepo.findAll();
+//        List<LED> leds = ledRepo.findAll();
+//        List<Type> types = typeRepo.findAll();
+//        List<Battery> batteries = batteryRepo.findAll();
+//        List<Color> colors = colorRepo.findAll();
+//        model.addAttribute("brands", brands);
+//        model.addAttribute("connects", connects);
+//        model.addAttribute("leds", leds);
+//        model.addAttribute("types", types);
+//        model.addAttribute("batteries", batteries);
+//        model.addAttribute("colors", colors);
+//        model.addAttribute("mouse", ms);
+//        return "staff/edit.html";
+//    }
+//
+//    @PostMapping("/update/{id}")
+//    public String updateMouse(@PathVariable("id") int id, @ModelAttribute Mouse ms) {
+//        Mouse existMouse = mouseRepo.findById(id).orElseThrow();
+//        existMouse.setName(ms.getName());
+//        existMouse.setDescription(ms.getDescription());
+//        existMouse.setPrice(ms.getPrice());
+//        existMouse.setSaleprice(ms.getSaleprice());
+//        existMouse.setBrand(ms.getBrand());
+//        existMouse.setConnect(ms.getConnect());
+//        existMouse.setLed(ms.getLed());
+//        existMouse.setType(ms.getType());
+//        existMouse.setBattery(ms.getBattery());
+//        existMouse.setColor(ms.getColor());
+//        mouseRepo.save(existMouse);
+//        return "redirect:/shop/list";
+//    }
 
     @GetMapping("delete/{id}")
     public String deleteMouse(@PathVariable("id") int id) {

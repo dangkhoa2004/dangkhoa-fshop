@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author 04dkh
  */
-@Controller
-@RequestMapping(value = "/fshop")
+//@Controller
+//@RequestMapping(value = "/fshop")
 public class FShopController {
 
     @Autowired
     public MouseRepository mouseRepo;
 
-    @GetMapping("/view")
+//    @GetMapping("/view")
     public String main(Model model) {
         List<Mouse> lstMouse = mouseRepo.findAll();
         model.addAttribute("lstMouse", lstMouse);
@@ -50,11 +50,6 @@ public class FShopController {
         }
     }
 
-    @GetMapping("/category")
-    public String category(Model model) {
-        List<Mouse> lstMouse = this.mouseRepo.findAll();
-        model.addAttribute("lstMouse", lstMouse);
-        return "home/category";
-    }
+    
 
 }

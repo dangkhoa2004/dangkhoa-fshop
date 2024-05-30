@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author 04dkh
  */
-@Controller
+//@Controller
 @RequestMapping(value = "/staff")
 public class StaffController {
 

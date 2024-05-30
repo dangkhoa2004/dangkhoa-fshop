@@ -1,0 +1,190 @@
+html {
+    overflow-x: hidden;
+}
+
+body {
+    scroll-behavior: smooth;
+    background: linear-gradient(to right, #6382ca, #435add);
+    overflow-x: hidden;
+}
+
+.bx {
+    font-size: 1.7rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.content {
+    position: relative;
+    width: calc(100% - 230px);
+    left: 230px;
+    transition: all 0.3s ease;
+}
+
+.content .maintain {
+    width: 100%;
+    padding: 36px 24px;
+    max-height: calc(120vh - 56px);
+}
+
+.content .maintain .bigTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+}
+
+.content .maintain .bigTitle .left h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.content .maintain .bigTitle .left {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+}
+
+.content .maintain .bigTitle .left li {
+    color: white;
+}
+
+.content .maintain .bigTitle .left li a {
+    color: white;
+    pointer-events: none;
+}
+
+
+.content .maintain .bigTitle .report {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 36px;
+    background: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+    font-weight: 500;
+}
+
+.content .maintain .insights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
+}
+
+.content .maintain .insights li {
+    padding: 24px;
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    cursor: pointer;
+}
+
+.content .maintain .insights li .bx {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content .maintain .bigTitle .left .breadcrumb {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+}
+
+.content .maintain .bigTitle .left .breadcrumb li a {
+    color: white;
+    pointer-events: none;
+
+}
+
+.content .maintain .bottom-data>div {
+    border-radius: 20px;
+    background: white;
+    padding: 24px;
+    overflow-x: auto;
+}
+
+.content .maintain .bottom-data .bigTitle h3 {
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.content .maintain .bottom-data .bigTitle .bx {
+    cursor: pointer;
+}
+
+footer {
+    background-color: #222222;
+    color: #fff;
+    padding: 100px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer h3 {
+    font-size: 48px;
+}
+
+footer .right {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 26px;
+}
+
+footer .right .links {
+    display: flex;
+    gap: 30px;
+}
+
+footer .right .links a {
+    color: #989898;
+    transition: color 0.3s ease;
+}
+
+footer .right .links a:hover {
+    color: #fff;
+}
+
+footer .right .social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+footer .right .social i {
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+footer .right .social i:hover {
+    color: #304ffe;
+}
+
+footer .right p {
+    font-size: 13px;
+    color: #777;
+}
