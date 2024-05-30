@@ -90,7 +90,7 @@ public class ShopController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editMouse(@PathVariable("id") String id, Model model) {
+    public String editMouse(@PathVariable("id") int id, Model model) {
         Mouse ms = mouseRepo.findById(id).orElseThrow();
         List<Brand> brands = brandRepo.findAll();
         List<Connect> connects = connectionRepo.findAll();
@@ -109,7 +109,7 @@ public class ShopController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateMouse(@PathVariable("id") String id, @ModelAttribute Mouse ms) {
+    public String updateMouse(@PathVariable("id") int id, @ModelAttribute Mouse ms) {
         Mouse existMouse = mouseRepo.findById(id).orElseThrow();
         existMouse.setName(ms.getName());
         existMouse.setDescription(ms.getDescription());
@@ -126,7 +126,7 @@ public class ShopController {
     }
 
     @GetMapping("delete/{id}")
-    public String deleteMouse(@PathVariable("id") String id) {
+    public String deleteMouse(@PathVariable("id") int id) {
         this.mouseRepo.deleteById(id);
         return "redirect:/teacher/list";
     }

@@ -17,11 +17,12 @@ import org.springframework.stereotype.Repository;
  * @author 04dkh
  */
 @Repository
-public interface MouseRepository extends JpaRepository<Mouse, String> {
+public interface MouseRepository extends JpaRepository<Mouse, Integer> {
 
     // Không cần khai báo ImageUrlRepository ở đây
     // Xóa phương thức không cần thiết getMouseById
-    default List<Imageurl> getImageUrlsByMouseId(String mouseId) {
+    
+    default List<Imageurl> getImageUrlsByMouseId(int mouseId) {
         Optional<Mouse> optionalMouse = findById(mouseId);
         return optionalMouse.map(Mouse::getimage_url).orElse(Collections.emptyList());
     }

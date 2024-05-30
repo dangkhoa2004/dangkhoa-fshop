@@ -22,14 +22,15 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Battery")
-public class Battery implements Serializable{
+public class Battery implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     @Column(name = "name", length = 255)
     public String name;
-    
+
     @OneToMany(mappedBy = "battery", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Mouse> mice;
 
@@ -65,5 +66,5 @@ public class Battery implements Serializable{
     public void setMice(List<Mouse> mice) {
         this.mice = mice;
     }
-    
+
 }

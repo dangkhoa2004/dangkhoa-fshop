@@ -26,13 +26,13 @@ public class Type implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public int id;
 
     @Column(name = "name", length = 255)
-    private String name;
+    public String name;
 
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Mouse> mice;
+    public List<Mouse> mice;
 
     public Type() {
     }

@@ -39,7 +39,7 @@ public class FShopController {
     }
 
     @GetMapping("/mouse/buy/{idMouse}")
-    public String buyMouse(@PathVariable("idMouse") String idMouse, Model model) {
+    public String buyMouse(@PathVariable("idMouse") int idMouse, Model model) {
         Optional<Mouse> optionalMouse = this.mouseRepo.findById(idMouse);
         if (optionalMouse.isPresent()) {
             Mouse mouse = optionalMouse.get();

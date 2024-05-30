@@ -21,7 +21,7 @@ public class Mouse implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, length = 50)
-    public String id;
+    public int id;
 
     @Column(name = "name", length = 255)
     public String name;
@@ -65,7 +65,7 @@ public class Mouse implements Serializable {
     public Mouse() {
     }
 
-    public Mouse(String id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl, Brand brand, Connect connect, LED led, Type type, Battery battery, Color color) {
+    public Mouse(int id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl, Brand brand, Connect connect, LED led, Type type, Battery battery, Color color) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -80,11 +80,11 @@ public class Mouse implements Serializable {
         this.color = color;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
