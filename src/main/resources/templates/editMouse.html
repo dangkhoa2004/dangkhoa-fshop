@@ -32,7 +32,7 @@
                             <i class='bx bx-receipt'></i>
                             <h3>Quản lý sản phẩm</h3>
                         </div>
-                        <form th:action="@{/shop/mouse_update/{id}(id = ${mouse.id})}" th:object="${mouse}" method="POST"
+                        <form th:action="@{/update/{id}(id = ${mouse.id})}" th:object="${mouse}" method="POST"
                             id="myForm">
                             <div class="form-input mt-5">
                                 <div class="row">
@@ -137,7 +137,7 @@
                                 <button type="button" class="btn btn-primary" onclick="clearInputs()">
                                     <i class="fas fa-sync-alt fa-spin"></i> Làm mới
                                 </button>
-                                <a class="btn btn-danger" href="http://localhost:8080/mouse_list">
+                                <a class="btn btn-danger" href="http://localhost:8080/mouses">
                                     <i class="fas fa-ban"></i> Hủy
                                 </a>
                             </div>

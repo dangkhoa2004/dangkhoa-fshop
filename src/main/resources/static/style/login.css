@@ -11,7 +11,7 @@
 body {
     scroll-behavior: smooth;
     background-color: #c9d6ff;
-    background: linear-gradient(to right, #7d9eeb, #435add);
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;

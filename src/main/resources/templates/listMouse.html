@@ -30,62 +30,53 @@
                 <div class="bottom-data">
                     <div class="nav-product">
                         <div class="filter">
-                            <a href="http://localhost:8080/mouse_add"
+                            <a href="http://localhost:8080/mouses/add"
                                 class="btn btn-success d-flex justify-content-center align-items-center"
                                 id="backButton">
                                 <i class="fas fa-plus"></i>Thêm mới
                             </a>
                             <div class="form-group">
-                                <label for="category">Hãng:</label>
-                                <select class="form-control" id="category" name="category">
-                                    <option value="all">Tất cả</option>
-                                    <option value="category1">Danh mục 1</option>
-                                    <option value="category2">Danh mục 2</option>
-                                    <option value="category3">Danh mục 3</option>
+                                <label for="brand">Thương hiệu:</label>
+                                <select class="form-control" id="brand" name="brand" required>
+                                    <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.name}">
+                                    </option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="connection">Kết nối:</label>
-                                <select class="form-control" id="connection" name="connection">
-                                    <option value="all">Tất cả</option>
-                                    <option value="wired">Có dây</option>
-                                    <option value="wireless">Không dây</option>
+                                <label for="brand">Kết nối:</label>
+                                <select class="form-control" id="connect" name="connect" required>
+                                    <option th:each="connect : ${connects}" th:value="${connect.id}"
+                                        th:text="${connect.name}">
+                                    </option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="category">Led:</label>
-                                <select class="form-control" id="category" name="category">
-                                    <option value="all">Tất cả</option>
-                                    <option value="category1">Danh mục 1</option>
-                                    <option value="category2">Danh mục 2</option>
-                                    <option value="category3">Danh mục 3</option>
+                                <label for="brand">LED:</label>
+                                <select class="form-control" id="led" name="led" required>
+                                    <option th:each="led : ${leds}" th:value="${led.id}" th:text="${led.name}">
+                                    </option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="category">Loại sản phẩm:</label>
-                                <select class="form-control" id="category" name="category">
-                                    <option value="all">Tất cả</option>
-                                    <option value="category1">Danh mục 1</option>
-                                    <option value="category2">Danh mục 2</option>
-                                    <option value="category3">Danh mục 3</option>
+                                <label for="brand">Loại:</label>
+                                <select class="form-control" id="type" name="type" required>
+                                    <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}">
+                                    </option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="category">Pin:</label>
-                                <select class="form-control" id="category" name="category">
-                                    <option value="all">Tất cả</option>
-                                    <option value="category1">Danh mục 1</option>
-                                    <option value="category2">Danh mục 2</option>
-                                    <option value="category3">Danh mục 3</option>
+                                <label for="brand">Pin:</label>
+                                <select class="form-control" id="batterie" name="batterie" required>
+                                    <option th:each="batterie : ${batteries}" th:value="${batterie.id}"
+                                        th:text="${batterie.name}">
+                                    </option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="color">Màu Sắc:</label>
-                                <select class="form-control" id="color" name="color">
-                                    <option value="all">Tất cả</option>
-                                    <option value="red">Đỏ</option>
-                                    <option value="linear-gradient(to right, #7d9eeb, #435add)">Xanh dương</option>
-                                    <option value="green">Xanh lá</option>
+                                <label for="brand">Màu sắc:</label>
+                                <select class="form-control" id="color" name="color" required>
+                                    <option th:each="color : ${colors}" th:value="${color.id}" th:text="${color.name}">
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -125,10 +116,10 @@
                                     <td th:text="${mouse.color.name}"></td>
                                     <td>
                                         <button type="button" class="btn btn-rounded bg-warning">
-                                            <a th:href="@{/mouse_edit/{id}(id=${mouse.id})}">SỬA</a>
+                                            <a th:href="@{/mouses/{id}(id=${mouse.id})}">SỬA</a>
                                         </button>
                                         <button type="button" class="btn btn-rounded bg-danger">
-                                            <a th:href="@{/mouse_delete/{id}(id=${mouse.id})}">XÓA</a>
+                                            <a th:href="@{/delete/{id}(id=${mouse.id})}">XÓA</a>
                                         </button>
                                     </td>
                                 </tr>
@@ -144,4 +135,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
 </html>

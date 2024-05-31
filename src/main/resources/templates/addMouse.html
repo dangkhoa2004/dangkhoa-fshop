@@ -33,7 +33,8 @@
                             <i class='bx bx-receipt'></i>
                             <h3>Quản lý sản phẩm</h3>
                         </div>
-                        <form th:action="@{/shop/store}" th:object="${mouse}" method="POST" id="myForm">
+                        <form th:action="@{/store}" th:object="${mouse}" method="POST" id="myForm"
+                            enctype="multipart/form-data">
                             <div class="form-input mt-5">
                                 <div class="row">
                                     <div class="col-8">
@@ -56,59 +57,60 @@
                                             <input type="text" class="form-control" id="description" name="description"
                                                 th:field="*{description}" style="height: 146px;">
                                             <label for="description">Mô tả</label>
-
+                                        </div>
+                                        <div class="form-floating mb-4">
+                                            <input type="file" class="form-control" id="images" name="images" multiple>
+                                            <label for="images">Tải lên hình ảnh</label>
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="col-4">
-                                            <div class="form-group mb-1">
-                                                <label for="brand">Thương hiệu:</label>
-                                                <select class="form-control" id="brand" name="brand" required>
-                                                    <option value="" selected disabled>Chọn thương hiệu</option>
-                                                    <option th:each="brand : ${brands}" th:value="${brand.id}"
-                                                        th:text="${brand.name}"></option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group mb-1">
-                                                <label for="connect">Kết nối:</label>
-                                                <select class="form-control" id="connect" name="connect" required>
-                                                    <option value="" selected disabled>Chọn kết nối</option>
-                                                    <option th:each="connect : ${connects}" th:value="${connect.id}"
-                                                        th:text="${connect.name}"></option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group mb-1">
-                                                <label for="led">LED:</label>
-                                                <select class="form-control" id="led" name="led" required>
-                                                    <option value="" selected disabled>Chọn LED</option>
-                                                    <option th:each="led : ${leds}" th:value="${led.id}"
-                                                        th:text="${led.name}"></option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group mb-1">
-                                                <label for="type">Loại:</label>
-                                                <select class="form-control" id="type" name="type" required>
-                                                    <option value="" selected disabled>Chọn loại</option>
-                                                    <option th:each="type : ${types}" th:value="${type.id}"
-                                                        th:text="${type.name}"></option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group mb-1">
-                                                <label for="battery">PIN:</label>
-                                                <select class="form-control" id="battery" name="battery" required>
-                                                    <option value="" selected disabled>Chọn PIN</option>
-                                                    <option th:each="battery : ${batteries}" th:value="${battery.id}"
-                                                        th:text="${battery.name}"></option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group mb-1">
-                                                <label for="color">Màu sắc:</label>
-                                                <select class="form-control" id="color" name="color" required>
-                                                    <option value="" selected disabled>Chọn màu</option>
-                                                    <option th:each="color : ${colors}" th:value="${color.id}"
-                                                        th:text="${color.name}"></option>
-                                                </select>
-                                            </div>
+                                        <div class="form-group mb-1">
+                                            <label for="brand">Thương hiệu:</label>
+                                            <select class="form-control" id="brand" name="brand" required>
+                                                <option value="" selected disabled>Chọn thương hiệu</option>
+                                                <option th:each="brand : ${brands}" th:value="${brand.id}"
+                                                    th:text="${brand.name}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <label for="connect">Kết nối:</label>
+                                            <select class="form-control" id="connect" name="connect" required>
+                                                <option value="" selected disabled>Chọn kết nối</option>
+                                                <option th:each="connect : ${connects}" th:value="${connect.id}"
+                                                    th:text="${connect.name}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <label for="led">LED:</label>
+                                            <select class="form-control" id="led" name="led" required>
+                                                <option value="" selected disabled>Chọn LED</option>
+                                                <option th:each="led : ${leds}" th:value="${led.id}"
+                                                    th:text="${led.name}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <label for="type">Loại:</label>
+                                            <select class="form-control" id="type" name="type" required>
+                                                <option value="" selected disabled>Chọn loại</option>
+                                                <option th:each="type : ${types}" th:value="${type.id}"
+                                                    th:text="${type.name}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <label for="battery">PIN:</label>
+                                            <select class="form-control" id="battery" name="battery" required>
+                                                <option value="" selected disabled>Chọn PIN</option>
+                                                <option th:each="battery : ${batteries}" th:value="${battery.id}"
+                                                    th:text="${battery.name}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <label for="color">Màu sắc:</label>
+                                            <select class="form-control" id="color" name="color" required>
+                                                <option value="" selected disabled>Chọn màu</option>
+                                                <option th:each="color : ${colors}" th:value="${color.id}"
+                                                    th:text="${color.name}"></option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +120,7 @@
                                 <button type="button" class="btn btn-primary" onclick="clearInputs()">
                                     <i class="fas fa-sync-alt fa-spin"></i> Làm mới
                                 </button>
-                                <a class="btn btn-danger" href="http://localhost:8080/mouse_list">
+                                <a class="btn btn-danger" href="http://localhost:8080/mouses">
                                     <i class="fas fa-ban"></i> Hủy
                                 </a>
                             </div>
@@ -131,7 +133,7 @@
     <div th:replace="layout/layout :: footer"></div>
 </body>
 <script>
-        function clearInputs() {
+    function clearInputs() {
         var inputs = document.querySelectorAll('input');
         var selects = document.querySelectorAll('select');
         inputs.forEach(function (input) {
@@ -142,4 +144,5 @@
         });
     }
 </script>
+
 </html>

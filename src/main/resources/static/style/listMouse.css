@@ -8,7 +8,7 @@ body {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
-    background: linear-gradient(to right, #6382ca, #435add);
+    background: white;
     overflow-x: hidden;
 }
 
