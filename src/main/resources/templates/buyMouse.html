@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>FSHOP | Buy Mouse</title>
+    <link rel="stylesheet" href="/style/buyMouse.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body>
+    <div th:replace="layout/layout :: header"></div>
+    <section>
+        <div class="banner-ad left">
+            <a href="#">
+                <img src="https://file.hstatic.net/200000722513/file/side_web_nang_cap_ram_5afa05113d6349d4ad19c415ee1637d6.png"
+                    alt="Quảng cáo">
+            </a>
+        </div>
+        <div class="banner-ad right">
+            <a href="#">
+                <img src="https://file.hstatic.net/200000722513/file/side_web_73a4a844b4d34193882241967fe93991.png"
+                    alt="Quảng cáo">
+            </a>
+        </div>
+        <div class="bigTitle">
+            <div class="left">
+                <ul class="breadcrumb">
+                    <li>
+                        <a>Chuột <span th:text="${mouse.type.name}"></span></a>
+                    </li>
+                    /
+                    <li>
+                        <a>Chuột <span th:text="${mouse.name}"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-mouse">
+            <div class="card-mouse-left">
+                <div class="image-wrapper">
+                    <div th:if="${#lists.size(mouse.imageUrl) > 0}">
+                        <img th:src="@{${mouse.imageUrl[0].url}}" alt="mouse-image">
+                    </div>
+                </div>
+            </div>
+            <div class="card-mouse-right">
+                <h2 class="product-title" th:text="${mouse.name}"></h2>
+                <div class="col-1">
+                    <div class="price-wrapper">
+                        <span class="price" th:text="${mouse.formattedSalePrice}"></span>
+                        <span class="old-price" th:text="${mouse.formattedPrice}">3.590.000đ</span>
+                        <span class="discount">-22%</span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <a href="#" class="buy-now">MUA NGAY</a>
+                </div>
+                <div class="details">
+                    <p><strong>Hãng sản xuất:</strong> <span th:text="${mouse.brand.name}"></span></p>
+                    <p><strong>Tình trạng:</strong> Mới</p>
+                    <p><strong>Bảo hành:</strong> 24 tháng</p>
+                </div>
+                <div class="promotions">
+                    <p>✅ Ưu đãi 300.000đ khi mua kèm Chuột dành cho Laptop Gaming.</p>
+                    <p>✅ Ưu đãi 200.000đ khi mua kèm Chuột dành cho Laptop Văn Phòng.</p>
+                    <p>✅ Ưu đãi 100.000đ khi mua thêm chuột cùng PC Gaming.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="main-content">
+                <h1>Thông tin sản phẩm</h1>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/your-video-id"
+                        title="Mouse Video: th:text=${mouse.name}"></iframe>
+                </div>
+                <div class="product-info">
+                    <h2 th:text="${mouse.name}"></h2>
+                    <p class="price" th:text="${mouse.formattedSalePrice}"></p>
+                </div>
+                <div class="tech-info">
+                    <h3>Thông số kỹ thuật:</h3>
+                    <table>
+                        <tr>
+                            <th>Hãng sản xuất</th>
+                            <td th:text="${mouse.brand.name}"></td>
+                        </tr>
+                        <tr>
+                            <th>Model</th>
+                            <td th:text="${mouse.name}"></td>
+                        </tr>
+                        <tr>
+                            <th>Màu</th>
+                            <td th:text="${mouse.color.name}"></td>
+                        </tr>
+                        <tr>
+                            <th>LED</th>
+                            <td th:text="${mouse.led.name}"></td>
+                        </tr>
+                        <tr>
+                            <th>Kết nối</th>
+                            <td th:text="${mouse.connect.name}"></td>
+                        </tr>
+                        <tr>
+                            <th>Tần suất gửi tín hiệu USB</th>
+                            <td>1000 Hz (1ms)</td>
+                        </tr>
+                        <tr>
+                            <th>Trọng lượng</th>
+                            <td>63g</td>
+                        </tr>
+                        <tr>
+                            <th>Thời lượng pin</th>
+                            <td>70 giờ (không đèn)</td>
+                        </tr>
+                        <tr>
+                            <th>Phạm vi kết nối</th>
+                            <td>10m</td>
+                        </tr>
+                        <tr>
+                            <th>Phân loại</th>
+                            <td th:text="${mouse.type.name}">10m</td>
+                        </tr>
+                        <tr>
+                            <th>Phần mềm hỗ trợ</th>
+                            <td>Logitech G HUB</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="sidebar-section similar-products">
+                    <h3>Sản phẩm tương tự</h3>
+                    <ul>
+                        <li>
+                            <img src="https://via.placeholder.com/50" alt="Chuột E-DRA" class="product-image">
+                            <div>
+                                <span>Chuột E-DRA Không dây EM625X Superlight White</span>
+                                <span class="price">490.000đ</span>
+                                <span class="old-price">790.000đ</span>
+                                <span class="discount">-38%</span>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="https://via.placeholder.com/50" alt="Chuột E-DRA" class="product-image">
+                            <div>
+                                <span>Chuột E-DRA Không dây EM625X Superlight Black</span>
+                                <span class="price">490.000đ</span>
+                                <span class="old-price">990.000đ</span>
+                                <span class="discount">-51%</span>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="https://via.placeholder.com/50" alt="Chuột Razer" class="product-image">
+                            <div>
+                                <span>Chuột Razer Không dây Viper V3 Pro Đen</span>
+                                <span class="price">4.490.000đ</span>
+                                <span class="old-price">4.990.000đ</span>
+                                <span class="discount">-10%</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-section news">
+                    <h3>Tin tức về công nghệ</h3>
+                    <ul>
+                        <li>
+                            <a href="#">Tổng hợp code game Hơi Thở Mặt Trời mới, đầy đủ nhất 2024</a>
+                        </li>
+                        <li>
+                            <a href="#">Hướng dẫn chi tiết nạp xu TikTok từ A đến Z</a>
+                        </li>
+                        <li>
+                            <a href="#">Hướng dẫn giảm dung lượng file Excel để tăng tốc độ xử lý công việc</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="layout/layout :: footer"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>

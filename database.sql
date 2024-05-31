@@ -47,6 +47,7 @@ INSERT INTO Brand (id, name) VALUES (2, 'Razer');
 INSERT INTO Brand (id, name) VALUES (3, 'Microsoft');
 INSERT INTO Brand (id, name) VALUES (4, 'Corsair');
 INSERT INTO Brand (id, name) VALUES (5, 'SteelSeries');
+INSERT INTO Brand (id, name) VALUES (6, 'Asus');
 
 -- Insert data into Connect table
 INSERT INTO Connect (id, name) VALUES (1, 'USB');
@@ -82,6 +83,7 @@ INSERT INTO Color (id, name) VALUES (2, 'White');
 INSERT INTO Color (id, name) VALUES (3, 'Red');
 INSERT INTO Color (id, name) VALUES (4, 'Blue');
 INSERT INTO Color (id, name) VALUES (5, 'Gray');
+INSERT INTO Color (id, name) VALUES (6, 'Magenta');
 
 -- Create the Mouse table
 CREATE TABLE Mouse

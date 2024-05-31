@@ -1,0 +1,262 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+li {
+    list-style: none;
+}
+
+.bigTitle {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 16px;
+    flex-wrap: wrap;
+}
+
+.bigTitle .left {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+}
+
+.breadcrumb li a {
+    color: black;
+    pointer-events: none;
+
+}
+
+.card-mouse {
+    max-width: 1900px;
+    margin: 20px auto;
+    /* Đặt margin auto để căn giữa card-mouse */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0.2, 0.2, 0.2, 0.2);
+    overflow: hidden;
+    padding: 20px;
+    vertical-align: top;
+    /* Đảm bảo card-mouse và các banner nằm trên cùng một hàng */
+}
+
+.banner-ad.left {
+    float: left;
+    /* Đặt banner đầu tiên bên trái */
+}
+
+.banner-ad.right {
+    float: right;
+    /* Đặt banner thứ hai bên phải */
+}
+
+.card-mouse img {
+    width: 100%;
+}
+
+.card-mouse-left {
+    float: left;
+}
+
+.card-mouse-right {
+    float: right;
+}
+
+.card-mouse .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-mouse .image-wrapper img {
+    max-width: 200px;
+}
+
+.card-mouse h1 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.card-mouse .price {
+    color: red;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.card-mouse .old-price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.card-mouse .discount {
+    color: #fff;
+    background-color: #ff0000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.card-mouse .buy-now {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.card-mouse .details {
+    margin: 20px 0;
+}
+
+.card-mouse .details p {
+    margin: 5px 0;
+}
+
+.card-mouse .promotions {
+    background-color: #e7f7e7;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.card-mouse .promotions p {
+    margin: 5px 0;
+}
+
+.banner-ad {
+    width: 300px;
+    /* Đặt chiều rộng cho banner */
+    margin: 20px;
+    /* Thêm khoảng cách xung quanh banner */
+    display: inline-block;
+    /* Hiển thị banner dưới dạng inline-block */
+    vertical-align: top;
+    /* Đảm bảo banner và card-mouse nằm trên cùng một hàng */
+}
+
+.banner-ad img {
+    width: 70%;
+    margin-left: 35px;
+    /* Đảm bảo hình ảnh banner chiếm toàn bộ chiều rộng của container */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0.2, 0.2, 0.2, 0.2);
+}
+
+/* === CONTAINER === */
+.container {
+
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+}
+
+.main-content {
+    flex: 3;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0.2, 0.2, 0.2, 0.2);
+}
+
+.sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0.2, 0.2, 0.2, 0.2);
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+}
+
+.product-info,
+.tech-info {
+    margin: 20px 0;
+}
+
+.tech-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tech-info th,
+.tech-info td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.tech-info th {
+    background-color: #f2f2f2;
+}
+
+.similar-products ul,
+.news ul {
+    list-style: none;
+    padding: 0;
+}
+
+.similar-products li,
+.news li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.similar-products li:last-child,
+.news li:last-child {
+    border-bottom: none;
+}
+
+.product-image {
+    max-width: 50px;
+    margin-right: 10px;
+}
+
+.price,
+.old-price,
+.discount {
+    display: flex;
+}
+
+.price {
+    color: red;
+    font-weight: bold;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.discount {
+    color: #fff;
+    background-color: #ff0000;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+}

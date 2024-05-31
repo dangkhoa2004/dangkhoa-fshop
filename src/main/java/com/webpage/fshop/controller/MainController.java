@@ -15,6 +15,7 @@ import com.webpage.fshop.repository.LEDRepository;
 import com.webpage.fshop.repository.MouseRepository;
 import com.webpage.fshop.repository.TypeRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,7 +72,26 @@ public class MainController {
         model.addAttribute("lstMouse", lstMouse);
         return "category";
     }
-    
+
+    @GetMapping("/buyMouse/buy/{id}")
+    public String buyMouse(@PathVariable("id") int id, Model model) {
+        Mouse ms = mouseRepo.findById(id).orElseThrow();
+        List<Brand> brands = brandRepo.findAll();
+        List<Connect> connects = connectionRepo.findAll();
+        List<LED> leds = ledRepo.findAll();
+        List<Type> types = typeRepo.findAll();
+        List<Battery> batteries = batteryRepo.findAll();
+        List<Color> colors = colorRepo.findAll();
+        model.addAttribute("brands", brands);
+        model.addAttribute("connects", connects);
+        model.addAttribute("leds", leds);
+        model.addAttribute("types", types);
+        model.addAttribute("batteries", batteries);
+        model.addAttribute("colors", colors);
+        model.addAttribute("mouse", ms);
+        return "buyMouse";
+    }
+
     // Cần isLogin
     @GetMapping("/mouse_list")
     public String listMouse(Model model) {
