@@ -149,3 +149,5 @@ INSERT INTO ImageUrl (mouse_id, url) VALUES (5, 'https://product.hstatic.net/200
 INSERT INTO ImageUrl (mouse_id, url) VALUES (5, 'https://product.hstatic.net/200000722513/product/sfnvk9vc_8a38e9948c8147e59cb59a4b08ff7757_1024x1024.png');
 INSERT INTO ImageUrl (mouse_id, url) VALUES (5, 'https://product.hstatic.net/200000722513/product/riup6haq_b412064379c04dcd8ea29a7042fdbb6b_1024x1024.png');
 INSERT INTO ImageUrl (mouse_id, url) VALUES (5, 'https://product.hstatic.net/200000722513/product/0o6qlqve_83e210487fb64775a16dd18acc5b5bce_1024x1024.png');
+
+

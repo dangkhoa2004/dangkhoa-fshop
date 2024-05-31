@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>MN | Edit Mouse</title>
+    <title>MN | Add Mouse</title>
     <link rel="stylesheet" href="/style/layout.css">
-    <link rel="stylesheet" href="/style/editMouse.css">
+    <link rel="stylesheet" href="/style/addMouse.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+
 <body>
     <div th:replace="layout/layout :: header"></div>
     <section>
@@ -22,35 +23,18 @@
                             /
                             <li><a>Quản lý sản phẩm</a></li>
                             /
-                            <li><a>Sửa sản phẩm</a></li>
+                            <li><a>Thêm mới sản phẩm</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="bottom-data">
                     <div class="product">
-                        <div class="bigTitle">
+                        <div class="header">
                             <i class='bx bx-receipt'></i>
                             <h3>Quản lý sản phẩm</h3>
                         </div>
-                        <form th:action="@{/shop/mouse_update/{id}(id = ${mouse.id})}" th:object="${mouse}" method="POST"
-                            id="myForm">
+                        <form th:action="@{/shop/store}" th:object="${mouse}" method="POST" id="myForm">
                             <div class="form-input mt-5">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="card mb-3">
-                                            <div class="card-body">
-                                                <td th:if="${#lists.size(mouse.imageUrl) > 0}">
-                                                    <p>Hình ảnh:</p>
-                                                    <button class="btn btn-success">Tải lên</button>
-                                                    <th:block th:each="image : ${mouse.imageUrl}">
-                                                        <img th:src="@{${image.url}}" alt="mouse image"
-                                                            style="width: 90px; height: 90px;">
-                                                    </th:block>
-                                                </td>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="form-floating mb-4">
@@ -72,6 +56,7 @@
                                             <input type="text" class="form-control" id="description" name="description"
                                                 th:field="*{description}" style="height: 146px;">
                                             <label for="description">Mô tả</label>
+
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -79,60 +64,56 @@
                                             <div class="form-group mb-1">
                                                 <label for="brand">Thương hiệu:</label>
                                                 <select class="form-control" id="brand" name="brand" required>
+                                                    <option value="" selected disabled>Chọn thương hiệu</option>
                                                     <option th:each="brand : ${brands}" th:value="${brand.id}"
-                                                        th:text="${brand.name}"
-                                                        th:selected="${brand.id} == ${mouse.brand.id}">
-                                                    </option>
+                                                        th:text="${brand.name}"></option>
                                                 </select>
                                             </div>
                                             <div class="form-group mb-1">
                                                 <label for="connect">Kết nối:</label>
                                                 <select class="form-control" id="connect" name="connect" required>
+                                                    <option value="" selected disabled>Chọn kết nối</option>
                                                     <option th:each="connect : ${connects}" th:value="${connect.id}"
-                                                        th:text="${connect.name}"
-                                                        th:selected="${connect.id} == ${mouse.connect.id}"></option>
+                                                        th:text="${connect.name}"></option>
                                                 </select>
                                             </div>
                                             <div class="form-group mb-1">
                                                 <label for="led">LED:</label>
                                                 <select class="form-control" id="led" name="led" required>
+                                                    <option value="" selected disabled>Chọn LED</option>
                                                     <option th:each="led : ${leds}" th:value="${led.id}"
-                                                        th:text="${led.name}"
-                                                        th:selected="${led.id} == ${mouse.led.id}">
-                                                    </option>
+                                                        th:text="${led.name}"></option>
                                                 </select>
                                             </div>
                                             <div class="form-group mb-1">
                                                 <label for="type">Loại:</label>
                                                 <select class="form-control" id="type" name="type" required>
+                                                    <option value="" selected disabled>Chọn loại</option>
                                                     <option th:each="type : ${types}" th:value="${type.id}"
-                                                        th:text="${type.name}"
-                                                        th:selected="${type.id} == ${mouse.type.id}">
-                                                    </option>
+                                                        th:text="${type.name}"></option>
                                                 </select>
                                             </div>
                                             <div class="form-group mb-1">
                                                 <label for="battery">PIN:</label>
                                                 <select class="form-control" id="battery" name="battery" required>
+                                                    <option value="" selected disabled>Chọn PIN</option>
                                                     <option th:each="battery : ${batteries}" th:value="${battery.id}"
-                                                        th:text="${battery.name}"
-                                                        th:selected="${battery.id} == ${mouse.battery.id}"></option>
+                                                        th:text="${battery.name}"></option>
                                                 </select>
                                             </div>
                                             <div class="form-group mb-1">
                                                 <label for="color">Màu sắc:</label>
                                                 <select class="form-control" id="color" name="color" required>
+                                                    <option value="" selected disabled>Chọn màu</option>
                                                     <option th:each="color : ${colors}" th:value="${color.id}"
-                                                        th:text="${color.name}"
-                                                        th:selected="${color.id} == ${mouse.color.id}">
-                                                    </option>
+                                                        th:text="${color.name}"></option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-plus"></i> Lưu
+                                    <i class="fas fa-plus"></i> Thêm mới
                                 </button>
                                 <button type="button" class="btn btn-primary" onclick="clearInputs()">
                                     <i class="fas fa-sync-alt fa-spin"></i> Làm mới
@@ -149,5 +130,16 @@
     </section>
     <div th:replace="layout/layout :: footer"></div>
 </body>
-
+<script>
+        function clearInputs() {
+        var inputs = document.querySelectorAll('input');
+        var selects = document.querySelectorAll('select');
+        inputs.forEach(function (input) {
+            input.value = '';
+        });
+        selects.forEach(function (select) {
+            select.selectedIndex = 0;
+        });
+    }
+</script>
 </html>

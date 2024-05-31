@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MainController {
-    
+
     @Autowired
     public MouseRepository mouseRepo;
 
@@ -47,6 +47,7 @@ public class MainController {
     @Autowired
     public ColorRepository colorRepo;
 
+    // Không cần isLogin
     @GetMapping("/home")
     public String home() {
         return "home";
@@ -58,25 +59,27 @@ public class MainController {
     }
 
     @GetMapping("/fshop")
-    public String shop(Model model) {
+    public String fshop(Model model) {
         List<Mouse> lstMouse = mouseRepo.findAll();
         model.addAttribute("lstMouse", lstMouse);
         return "fshop";
     }
-    
+
     @GetMapping("/category")
     public String category(Model model) {
         List<Mouse> lstMouse = this.mouseRepo.findAll();
         model.addAttribute("lstMouse", lstMouse);
         return "category";
     }
-
+    
+    // Cần isLogin
     @GetMapping("/mouse_list")
-    public String staff(Model model) {
+    public String listMouse(Model model) {
         List<Mouse> lstMouse = mouseRepo.findAll();
         model.addAttribute("lstMouse", lstMouse);
         return "listMouse";
     }
+
     @GetMapping("/mouse_edit/{id}")
     public String editMouse(@PathVariable("id") int id, Model model) {
         Mouse ms = mouseRepo.findById(id).orElseThrow();
@@ -110,6 +113,37 @@ public class MainController {
         existMouse.setBattery(ms.getBattery());
         existMouse.setColor(ms.getColor());
         mouseRepo.save(existMouse);
+        return "redirect:/mouse_list";
+    }
+
+    @GetMapping("/mouse_add")
+    public String addMouse(Model model) {
+        Mouse mouse = new Mouse();
+        model.addAttribute("mouse", mouse);
+        List<Brand> brands = brandRepo.findAll();
+        List<Connect> connects = connectionRepo.findAll();
+        List<LED> leds = ledRepo.findAll();
+        List<Type> types = typeRepo.findAll();
+        List<Battery> batteries = batteryRepo.findAll();
+        List<Color> colors = colorRepo.findAll();
+        model.addAttribute("brands", brands);
+        model.addAttribute("connects", connects);
+        model.addAttribute("leds", leds);
+        model.addAttribute("types", types);
+        model.addAttribute("batteries", batteries);
+        model.addAttribute("colors", colors);
+        return "addMouse";
+    }
+
+    @PostMapping("/mouse_store")
+    public String storeMouse(Mouse ms) {
+        this.mouseRepo.save(ms);
+        return "redirect:/mouse_list";
+    }
+
+    @GetMapping("mouse_delete/{id}")
+    public String deleteMouse(@PathVariable("id") int id) {
+        this.mouseRepo.deleteById(id);
         return "redirect:/mouse_list";
     }
 }
