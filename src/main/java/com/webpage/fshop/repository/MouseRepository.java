@@ -23,6 +23,6 @@ public interface MouseRepository extends JpaRepository<Mouse, Integer> {
     // Xóa phương thức không cần thiết getMouseById
     default List<Imageurl> getImageUrlsByMouseId(int mouseId) {
         Optional<Mouse> optionalMouse = findById(mouseId);
-        return optionalMouse.map(Mouse::getimage_url).orElse(Collections.emptyList());
+        return optionalMouse.map(Mouse::getImageUrl).orElse(Collections.emptyList());
     }
 }

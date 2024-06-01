@@ -1,33 +1,15 @@
 package com.webpage.fshop.controller;
 
-import com.webpage.fshop.model.Battery;
-import com.webpage.fshop.model.Brand;
-import com.webpage.fshop.model.Color;
-import com.webpage.fshop.model.Connect;
-import com.webpage.fshop.model.Imageurl;
-import com.webpage.fshop.model.LED;
-import com.webpage.fshop.model.Mouse;
-import com.webpage.fshop.model.Type;
-import com.webpage.fshop.repository.BatteryRepository;
-import com.webpage.fshop.repository.BrandRepository;
-import com.webpage.fshop.repository.ColorRepository;
-import com.webpage.fshop.repository.ConnectRepository;
-import com.webpage.fshop.repository.FileStorageService;
-import com.webpage.fshop.repository.LEDRepository;
-import com.webpage.fshop.repository.MouseRepository;
-import com.webpage.fshop.repository.TypeRepository;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import com.webpage.fshop.model.*;
+import com.webpage.fshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -54,7 +36,10 @@ public class MainController {
     public ColorRepository colorRepo;
 
     @Autowired
-    private FileStorageService fileStorageService;
+    public FileStorageService fileStorageService;
+    
+    @Autowired
+    public InvoiceRepository invoiceRepo;
 
     // Không cần isLogin
     @GetMapping("/home")
@@ -118,6 +103,13 @@ public class MainController {
         model.addAttribute("colors", colors);
         model.addAttribute("lstMouse", lstMouse);
         return "listMouse";
+    }
+
+    @GetMapping("/invoices")
+    public String listInvoice(Model model) {
+        List<Invoice> lstInvoice = invoiceRepo.findAll();
+        model.addAttribute("lstInvoice", lstInvoice);
+        return "listInvoice";
     }
 
     @GetMapping("/mouses/{id}")
@@ -192,7 +184,7 @@ public class MainController {
                     e.printStackTrace();
                 }
             }
-            savedMouse.setimage_url(imageUrls);
+            savedMouse.setImageUrl(imageUrls);
             this.mouseRepo.save(savedMouse);
 
         } catch (Exception e) {

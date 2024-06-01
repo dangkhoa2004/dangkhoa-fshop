@@ -61,11 +61,15 @@ public class Mouse implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "color_id")
     public Color color;
+    
+    @OneToMany(mappedBy = "mouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<MouseStorage> mouseStorages;
+    
 
     public Mouse() {
     }
 
-    public Mouse(int id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl, Brand brand, Connect connect, LED led, Type type, Battery battery, Color color) {
+    public Mouse(int id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl, Brand brand, Connect connect, LED led, Type type, Battery battery, Color color, List<MouseStorage> mouseStorages) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -78,6 +82,7 @@ public class Mouse implements Serializable {
         this.type = type;
         this.battery = battery;
         this.color = color;
+        this.mouseStorages = mouseStorages;
     }
 
     public int getId() {
@@ -120,11 +125,11 @@ public class Mouse implements Serializable {
         this.saleprice = saleprice;
     }
 
-    public List<Imageurl> getimage_url() {
+    public List<Imageurl> getImageUrl() {
         return imageUrl;
     }
 
-    public void setimage_url(List<Imageurl> imageUrl) {
+    public void setImageUrl(List<Imageurl> imageUrl) {
         this.imageUrl = imageUrl;
     }
 
@@ -175,6 +180,16 @@ public class Mouse implements Serializable {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public List<MouseStorage> getMouseStorages() {
+        return mouseStorages;
+    }
+
+    public void setMouseStorages(List<MouseStorage> mouseStorages) {
+        this.mouseStorages = mouseStorages;
+    }
+
+    
 
     public String getFormattedPrice() {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
