@@ -25,10 +25,10 @@ public class Mouse implements Serializable {
 
     @Column(name = "name", length = 255)
     public String name;
-    
+
     @Column(name = "description", length = 255)
     public String description;
-    
+
     @Column(name = "price")
     public double price;
 
@@ -61,15 +61,16 @@ public class Mouse implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "color_id")
     public Color color;
-    
+
     @OneToMany(mappedBy = "mouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<MouseStorage> mouseStorages;
-    
 
     public Mouse() {
     }
 
-    public Mouse(int id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl, Brand brand, Connect connect, LED led, Type type, Battery battery, Color color, List<MouseStorage> mouseStorages) {
+    public Mouse(int id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl,
+            Brand brand, Connect connect, LED led, Type type, Battery battery, Color color,
+            List<MouseStorage> mouseStorages) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -189,16 +190,17 @@ public class Mouse implements Serializable {
         this.mouseStorages = mouseStorages;
     }
 
-    
-
-    public String getFormattedPrice() {
+    private String formatPrice(double price) {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
         return formatter.format(price) + "₫";
     }
 
+    public String getFormattedPrice() {
+        return formatPrice(price);
+    }
+
     public String getFormattedSalePrice() {
-        NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
-        return formatter.format(saleprice) + "₫";
+        return formatPrice(saleprice);
     }
 
 }

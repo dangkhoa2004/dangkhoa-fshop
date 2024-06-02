@@ -37,6 +37,7 @@ li {
 }
 
 .card-mouse {
+    display: flex;
     max-width: 1900px;
     margin: 20px auto;
     /* Đặt margin auto để căn giữa card-mouse */
@@ -78,7 +79,8 @@ li {
 }
 
 .card-mouse .image-wrapper img {
-    max-width: 200px;
+    height: 100%;
+    width: 100%;
 }
 
 .card-mouse h1 {
@@ -99,23 +101,37 @@ li {
     margin-left: 10px;
 }
 
-.card-mouse .discount {
+.discount {
     color: #fff;
-    background-color: #ff0000;
-    padding: 5px 10px;
-    border-radius: 5px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 4px;
+    justify-content: center;
+    align-items: center;
     font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+discount-container {
+    display: flex;
 }
 
 .card-mouse .buy-now {
-    background-color: red;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 10px;
     text-align: center;
     text-decoration: none;
     display: block;
     border-radius: 5px;
     margin: 20px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-mouse .buy-now:hover {
+    background-color: black;
+    color: white;
 }
 
 .card-mouse .details {
@@ -237,12 +253,6 @@ li {
     margin-right: 10px;
 }
 
-.price,
-.old-price,
-.discount {
-    display: flex;
-}
-
 .price {
     color: red;
     font-weight: bold;
@@ -251,12 +261,4 @@ li {
 .old-price {
     text-decoration: line-through;
     color: #888;
-}
-
-.discount {
-    color: #fff;
-    background-color: #ff0000;
-    padding: 2px 5px;
-    border-radius: 3px;
-    font-size: 12px;
 }

@@ -6,11 +6,6 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-a {
-    text-decoration: none;
-    color: #000;
-}
-
 img {
     object-fit: cover;
 }
@@ -48,16 +43,19 @@ h2.separator {
 }
 
 .mouse-shop .category a {
-    background-color: #dfdcdc;
+    background-color: #fff;
+    color: black;
     padding: 8px 14px;
     font-size: 15px;
     border-radius: 14px;
     transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .mouse-shop .category a:hover {
     color: #fff;
-    background-color: #0f2182;
+    background-color: black;
 }
 
 .mouse-shop .mouse-list {
@@ -91,7 +89,6 @@ h2.separator {
 }
 
 .mouse-shop .mouse-list .item .bid {
-    padding: 6% 0 4px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -102,10 +99,11 @@ h2.separator {
     padding: 6px 10px;
     font-size: 13px;
     border-radius: 10px;
+    text-decoration: none;
 }
 
 .mouse-shop .mouse-list .item .bid a {
-    color: #304ffe;
+    color: #000;
     background: transparent;
     font-weight: bold;
     transition: all 0.3s ease;

@@ -12,7 +12,6 @@ body {
     overflow-x: hidden;
 }
 
-
 .content {
     position: relative;
     width: calc(100% - 230px);
@@ -104,7 +103,7 @@ body {
     background: red;
     border-radius: 50%;
     color: white;
-    border: 2px solid white;
+    border: 2px solid black;
     font-weight: 700;
     font-size: 12px;
     display: flex;
@@ -137,7 +136,7 @@ body {
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: white;
+    color: black;
 }
 
 .content .maintain .bigTitle .left .breadcrumb {
@@ -147,17 +146,17 @@ body {
 }
 
 .content .maintain .bigTitle .left .breadcrumb li {
-    color: white;
+    color: black;
 }
 
 .content .maintain .bigTitle .left .breadcrumb li a {
-    color: white;
-    pointer-events: none;
+    color: black;
+    cursor: pointer;
 }
 
 .content .maintain .bigTitle .left .breadcrumb li a.active {
-    color: white;
-    pointer-events: none;
+    color: black;
+    cursor: pointer;
 }
 
 .content .maintain .bottom-data {
@@ -167,6 +166,7 @@ body {
 }
 
 .content .maintain .bottom-data .product {
+    border: 1px solid black;
     border-radius: 15px;
     background: white;
     height: 50vh;
@@ -182,6 +182,7 @@ body {
     padding: 24px;
     margin-top: 20px;
     overflow-x: auto;
+    border: 1px solid black;
 }
 
 .nav-product .btn {
@@ -189,6 +190,11 @@ body {
     height: 50px;
     width: 100px;
     margin-right: 20px;
+}
+
+.item .btn a {
+    color: black;
+    text-decoration: none;
 }
 
 .filter {
@@ -292,4 +298,29 @@ label {
 
 .content .maintain .bottom-data {
     width: 100%;
+}
+
+.add-button {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#addButton {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Xóa bỏ gạch chân mặc định của liên kết */
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+.icon-text i {
+    margin-right: 8px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+.icon-text h4 {
+    margin: 0; /* Loại bỏ khoảng cách mặc định của thẻ h4 */
 }
