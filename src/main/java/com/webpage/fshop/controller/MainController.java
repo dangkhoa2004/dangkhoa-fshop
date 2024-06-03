@@ -43,7 +43,13 @@ public class MainController {
     public InvoiceRepository invoiceRepo;
 
     @Autowired
+    public CouponRepository couponRepo;
+
+    @Autowired
     public AccountRepository accountRepo;
+
+    @Autowired
+    public InvoiceMouseRepository invoicemouseRepo;
 
     Account account = null;
 
@@ -104,6 +110,22 @@ public class MainController {
         model.addAttribute("colors", colors);
         model.addAttribute("mouse", ms);
         return "buyMouse";
+    }
+
+    @GetMapping("/trackings")
+    public String trackings(Model model) {
+        return "trackings";
+    }
+
+    @GetMapping("/trackings/{id}")
+    public String tracking(@PathVariable("id") int id, Model model) {
+        Mouse ms = mouseRepo.findById(id).orElseThrow();
+        Invoice in = invoiceRepo.findById(id).orElseThrow();
+        List<Coupon> cps = couponRepo.findAll();
+        model.addAttribute("mouse", ms);
+        model.addAttribute("in", in);
+        model.addAttribute("cps", cps);
+        return "tracking";
     }
 
     @GetMapping("/carts")

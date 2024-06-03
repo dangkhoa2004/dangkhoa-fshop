@@ -103,16 +103,16 @@ CREATE TABLE Invoice
 );
 
 -- Tạo bảng trung gian InvoiceMouse
-CREATE TABLE InvoiceMouse
+CREATE TABLE invoiceMouse
 (
-    invoice_id INT,
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    invoice_id int, 
     mouse_id INT,
     quantity INT,
     money DECIMAL,
     total DECIMAL,
     FOREIGN KEY (invoice_id) REFERENCES Invoice(id),
     FOREIGN KEY (mouse_id) REFERENCES Mouse(id),
-    PRIMARY KEY (invoice_id, mouse_id)
 );
 
 -- Create the ImageUrl table
@@ -276,7 +276,6 @@ INSERT INTO MouseStorage
 VALUES
     (1, 1, 100),
     (1, 2, 50);
-
 
 -- Insert data into Mouse table
 INSERT INTO Mouse

@@ -15,6 +15,8 @@ import java.util.*;
  */
 @Entity
 @Table(name = "Invoice")
+@NamedEntityGraph(name = "Invoice.invoiceMice",
+        attributeNodes = @NamedAttributeNode("invoiceMice"))
 public class Invoice {
 
     @Id

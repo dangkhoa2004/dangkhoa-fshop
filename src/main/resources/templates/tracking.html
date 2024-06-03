@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tra cứu hóa đơn</title>
+    <link rel="stylesheet" href="/style/tracking.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body style="background-color: rgb(222, 213, 213);">
+    <div th:replace="layout/layout :: header"></div>
+    <section>
+        <div class="tracking-item">
+            <h1 th:text="${mouse.name}"></h1>
+            <div th:if="${#lists.size(mouse.imageUrl) > 0}">
+                <img th:src="@{${mouse.imageUrl[0].url}}" alt="mouse-image">
+            </div>
+            <div>
+                <span class="return-policy">Trả hàng miễn phí 15 ngày</span>
+            </div>
+            <table>
+                <tr>
+                    <td>Tổng tiền hàng</td>
+                    <td th:text="${in.total}">₫</td>
+                </tr>
+                <tr>
+                    <td>Phí vận chuyển</td>
+                    <td>₫28.700</td>
+                </tr>
+                <tr>
+                    <td>Giảm giá phí vận chuyển</td>
+                    <td>-₫28.700</td>
+                </tr>
+                <tr>
+                    <td>Voucher từ Shop(%):</td>
+                    <td th:text="${cps[0].discount}"></td>
+                </tr>
+                <tr>
+                    <td>Thành tiền</td>
+                    <td th:text="${in.total} * (1 - ${cps[0].discount} / 100)">₫</td>
+                </tr>
+            </table>
+            <div>
+                <strong>Phương thức Thanh toán:</strong> Thanh Toán QR
+                <button>Bấm vô đây để mở mã QR</button>
+            </div>
+        </div>
+    </section>
+    <div th:replace="layout/layout :: footer"></div>
+</body>
+<script>
+</script>
+
+</html>

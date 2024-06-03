@@ -1,0 +1,46 @@
+.tracking-item {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgb(222, 213, 213);
+}
+
+.tracking-item img {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.tracking-item h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.tracking-item table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tracking-item table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tracking-item table td:nth-child(2) {
+    text-align: right;
+}
+
+.tracking-item .total {
+    font-weight: bold;
+    color: red;
+}
+
+.tracking-item .return-policy {
+    color: green;
+    font-size: 12px;
+}

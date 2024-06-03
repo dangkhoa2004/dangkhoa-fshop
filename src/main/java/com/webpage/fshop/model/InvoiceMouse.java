@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * @author 04dkh
  */
 @Entity
-@Table(name = "InvoiceMouse")
+@Table(name = "invoiceMouse")
 public class InvoiceMouse {
 
     @Id
@@ -95,6 +95,5 @@ public class InvoiceMouse {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
-    
-    
+
 }

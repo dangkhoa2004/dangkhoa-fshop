@@ -1,0 +1,41 @@
+.tracking-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    margin: 0;
+    background-color: rgb(222, 213, 213);
+}
+
+.tracking-container {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tracking-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+}
+
+.tracking-subtitle {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.tracking-search-box {
+    position: relative;
+    width: 100%;
+}
+
+.tracking-search-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}

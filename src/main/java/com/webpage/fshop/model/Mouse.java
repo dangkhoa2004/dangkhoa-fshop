@@ -65,12 +65,13 @@ public class Mouse implements Serializable {
     @OneToMany(mappedBy = "mouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<MouseStorage> mouseStorages;
 
+    @OneToMany(mappedBy = "mouse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<InvoiceMouse> invoiceMice;
+
     public Mouse() {
     }
 
-    public Mouse(int id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl,
-            Brand brand, Connect connect, LED led, Type type, Battery battery, Color color,
-            List<MouseStorage> mouseStorages) {
+    public Mouse(int id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl, Brand brand, Connect connect, LED led, Type type, Battery battery, Color color, List<MouseStorage> mouseStorages, List<InvoiceMouse> invoiceMice) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -84,6 +85,7 @@ public class Mouse implements Serializable {
         this.battery = battery;
         this.color = color;
         this.mouseStorages = mouseStorages;
+        this.invoiceMice = invoiceMice;
     }
 
     public int getId() {
@@ -188,6 +190,14 @@ public class Mouse implements Serializable {
 
     public void setMouseStorages(List<MouseStorage> mouseStorages) {
         this.mouseStorages = mouseStorages;
+    }
+
+    public List<InvoiceMouse> getInvoiceMice() {
+        return invoiceMice;
+    }
+
+    public void setInvoiceMice(List<InvoiceMouse> invoiceMice) {
+        this.invoiceMice = invoiceMice;
     }
 
     private String formatPrice(double price) {

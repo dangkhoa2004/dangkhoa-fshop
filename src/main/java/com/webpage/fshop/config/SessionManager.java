@@ -5,19 +5,24 @@
 package com.webpage.fshop.config;
 
 import com.webpage.fshop.model.Account;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author 04dkh
  */
+
 public class SessionManager {
 
     public static boolean isLogin = false;
     public static Account account = null;
+    public static LocalDateTime sessionStartTime;
 
     public static void login(Account account) {
         isLogin = true;
         SessionManager.account = account;
+        SessionManager.sessionStartTime = LocalDateTime.now();
     }
 
     public static boolean isLogin() {
@@ -31,5 +36,14 @@ public class SessionManager {
     public static void logout() {
         isLogin = false;
         SessionManager.account = null;
+        SessionManager.sessionStartTime = null;
+    }
+
+    public static long getSessionDuration() {
+        if (sessionStartTime == null) {
+            return 0;
+        }
+        Duration duration = Duration.between(sessionStartTime, LocalDateTime.now());
+        return duration.getSeconds();
     }
 }
