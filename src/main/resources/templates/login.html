@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="/style/login.css">
 </head>
 
-<body>
+<body style="background-color: rgb(222, 213, 213);">
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form action="/sign_up" method="post">
+            <form action="/signup" method="post">
                 <h1>Tạo tài khoản</h1>
                 <div class="social-icons">
                     <a href="https://accounts.google.com/signup" class="icon"><i
@@ -24,9 +24,9 @@
                     <a href="https://www.linkedin.com/signup" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>hoặc sử dụng tài khoản mật khẩu để đăng ký</span>
-                <input type="text" placeholder="Name" />
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="Name"/>
+                <input type="text" placeholder="Tài Khoản" name="username" />
+                <input type="password" placeholder="Mật Khẩu" name="password" />
                 <button>Đăng Ký</button>
             </form>
         </div>
@@ -41,12 +41,15 @@
                     <a href="https://www.linkedin.com/signup" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>hoặc sử dụng tài khoản mật khẩu của bạn</span>
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="Tài khoản" name="username" />
+                <input type="password" placeholder="Mật khẩu" name="password" />
                 <a href="#">Quên mật khẩu của bạn?</a>
-                <button id="loginButton" type="submit">
+                <button type="submit">
                     Đăng Nhập
                 </button>
+                <div th:if="${textFail != null}">
+                    <span th:text="${textFail}"></span>
+                </div>
             </form>
         </div>
         <div class="toggle-container">
@@ -77,12 +80,29 @@
     loginBtn.addEventListener('click', () => {
         container.classList.remove("active");
     });
-    document.getElementById("loginButton").addEventListener("click", function (event) {
-        event.preventDefault();
-        window.location.href = "/fshop";
-    });
+    
+    //set default ??ng nh?p
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('http://localhost:8080/session-info')
+            .then(response => response.json())
+            .then(data => {
+                const isLogin = data.login;
+                const username = data.username;
+                const idcv = data.idcv;
+                console.log(data.idcv)
+                const userLinkElement = document.getElementById('user-link');
+
+                if (!isLogin) {
+                    userLinkElement.innerHTML = '<a class="nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>';
+                } else {
+                    userLinkElement.innerHTML = `<a class="nav-link" href="/user/detail"><i class="fa-solid fa-circle-user"></i>${username}</a>`;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+
 </html>

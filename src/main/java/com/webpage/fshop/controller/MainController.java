@@ -1,5 +1,6 @@
 package com.webpage.fshop.controller;
 
+import com.webpage.fshop.config.SessionManager;
 import com.webpage.fshop.model.*;
 import com.webpage.fshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,14 @@ public class MainController {
 
     @Autowired
     public FileStorageService fileStorageService;
-    
+
     @Autowired
     public InvoiceRepository invoiceRepo;
+
+    @Autowired
+    public AccountRepository accountRepo;
+
+    Account account = null;
 
     // Không cần isLogin
     @GetMapping("/home")
@@ -50,6 +56,21 @@ public class MainController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password,
+            Model model) {
+        String textFail = null;
+        this.account = accountRepo.findByUandP(username, password);
+        if (this.account == null) {
+            textFail = "Đăng nhập thất bại !";
+            model.addAttribute("textFail", textFail);
+            return "login";
+        }
+        SessionManager.login(account);
+        // return "fshop";
+        return "redirect:/fshop";
     }
 
     @GetMapping("/fshop")
@@ -83,6 +104,14 @@ public class MainController {
         model.addAttribute("colors", colors);
         model.addAttribute("mouse", ms);
         return "buyMouse";
+    }
+
+    @GetMapping("/carts")
+    public String cartMouse(Model model) {
+        // sẽ làm cart theo sessionLogin
+        // List<Cart> lstCart = this.mouseRepo.findAll();
+        // model.addAttribute("lstMouse", lstCart);
+        return "cartMouse";
     }
 
     // Cần isLogin

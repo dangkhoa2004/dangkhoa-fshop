@@ -265,11 +265,17 @@ VALUES
     (6, 'Magenta');
 
 -- insert bảng kho
-INSERT INTO Storage (name)
-VALUES ('Kho chính'), ('Kho phụ');
- -- insert bảng kho chuột
-INSERT INTO MouseStorage (mouse_id, storage_id, quantity)
-VALUES (1, 1, 100), (1, 2, 50);
+INSERT INTO Storage
+    (name)
+VALUES
+    ('Kho chính'),
+    ('Kho phụ');
+-- insert bảng kho chuột
+INSERT INTO MouseStorage
+    (mouse_id, storage_id, quantity)
+VALUES
+    (1, 1, 100),
+    (1, 2, 50);
 
 
 -- Insert data into Mouse table
@@ -283,23 +289,29 @@ VALUES
     ('Corsair Darkstar RGB', '', 3990000, 3590000, 4, 3, 1, 1, 4, 1);
 
 -- Thêm dữ liệu mẫu vào bảng Coupon (giả định bảng này đã tồn tại)
-INSERT INTO Coupon (code, discount, expirydate)
-VALUES ('DISCOUNT10', 10.00, '2024-12-31');
+INSERT INTO Coupon
+    (code, discount, expirydate)
+VALUES
+    ('DISCOUNT10', 10.00, '2024-12-31');
 
-INSERT INTO Coupon (code, discount, expirydate)
-VALUES ('SUMMER20', 20.00, '2024-06-30');
+INSERT INTO Coupon
+    (code, discount, expirydate)
+VALUES
+    ('SUMMER20', 20.00, '2024-06-30');
 
 -- Thêm dữ liệu mẫu vào bảng Invoice
-INSERT INTO Invoice (time_create, date_create, total, coupon_id)
-VALUES 
-('12:30:00', '2024-01-01', 90.00, 1),
-('15:45:00', '2024-02-15', 200.00, 2);
+INSERT INTO Invoice
+    (time_create, date_create, total, coupon_id)
+VALUES
+    ('12:30:00', '2024-01-01', 90.00, 1),
+    ('15:45:00', '2024-02-15', 200.00, 2);
 
 -- Thêm dữ liệu mẫu vào bảng InvoiceMouse
-INSERT INTO InvoiceMouse (invoice_id, mouse_id, quantity, money, total)
-VALUES 
-(1, 1, 2, 45.00, 90.00), 
-(2, 2, 4, 50.00, 200.00);
+INSERT INTO InvoiceMouse
+    (invoice_id, mouse_id, quantity, money, total)
+VALUES
+    (1, 1, 2, 45.00, 90.00),
+    (2, 2, 4, 50.00, 200.00);
 
 -- Insert data into ImageUrl table
 INSERT INTO ImageUrl
@@ -394,3 +406,26 @@ INSERT INTO ImageUrl
     (mouse_id, url)
 VALUES
     (5, 'https://product.hstatic.net/200000722513/product/0o6qlqve_83e210487fb64775a16dd18acc5b5bce_1024x1024.png');
+
+-- Tạo bảng Account
+CREATE TABLE Account
+(
+    id INT IDENTITY PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255),
+    avt VARCHAR(255),
+    name VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(50),
+    sex VARCHAR(10),
+    status INT
+);
+
+-- Thêm dữ liệu vào bảng Account
+INSERT INTO Account
+    (username, password, name, email, phone, sex, status)
+VALUES
+    ('admin', '123', 'Quản Trị Viên', 'khoacdpp02847@fpt.edu.vn', '0869938981', 'Male', 1),
+    ('user', '123', 'Người Dùng', 'khoacdpp02847@fpt.edu.vn', '0869938981', 'Male', 1);
+
+

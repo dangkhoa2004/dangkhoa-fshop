@@ -45,7 +45,7 @@ li {
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: white;
+    color: black;
 }
 
 .content .maintain .bigTitle .left {
@@ -111,7 +111,7 @@ li {
 }
 
 .content .maintain .bigTitle .left .breadcrumb li a {
-    color: white;
+    color: black;
     pointer-events: none;
 
 }

@@ -151,7 +151,8 @@ body {
 
 .content .maintain .bigTitle .left .breadcrumb li a {
     color: black;
-    cursor: pointer;
+    pointer-events: none;
+
 }
 
 .content .maintain .bigTitle .left .breadcrumb li a.active {

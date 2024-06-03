@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Home</title>
+    <title>Trang Chủ</title>
     <link rel="stylesheet" href="/style/layout.css">
     <link rel="stylesheet" href="/style/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -10,129 +10,134 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="background-color: rgb(222, 213, 213);">
     <div th:replace="layout/layout :: header"></div>
     <section>
-            <div class="title">
-        <div class="header_txt">
-            <div class="left">
-                <h1>Hãy lựa chọn <span>Chuột và bàn Phím</span></h1>
-                <p>GearVN là thương hiệu được sinh ra từ giấc mơ của một game thủ, phát triển bởi tập thể các game thủ
-                    để phục vụ cho cộng đồng game thủ Việt.
-                    <br>
-                    Đội ngũ tư vấn của GearVN không đơn thuần là nhân viên kinh doanh, chúng tôi còn là những người yêu
-                    game với mong muốn giúp bạn cùng sở thích có được dàn máy và gear phù hợp.
-                    <br>
-                    Sự hài lòng của khách hàng chính là động lực giúp GearVN không ngừng hoàn thiện, mang lại ngày càng
-                    nhiều giá trị tích cực cho cộng đồng.
-                    <br>
-                </p>
-                <a href="#" onclick="scrollToElement('teleport'); return false;">
-                    <i class="fa-solid fa-basket-shopping" style="color: black;"></i>
-                    <span>Mua ngay</span>
-                </a>
-            </div>
-            <img style="border-radius: 50%;"
-                src="https://techspace.vn/wp-content/uploads/2022/08/temp-bo-gaming-gears-fan-razer-nha-ngheo-1.jpg">
-        </div>
-        <h2 class="separator">
-            Điểm nổi bật
-        </h2>
-        <div class="sell-mouse">
-            <div class="item">
-                <div class="header">
-                    <i class="fa-solid fa-newspaper"></i>
-                    <h5>Mới nhất</h5>
+        <div class="title">
+            <div class="header_txt">
+                <div class="left">
+                    <h1>Hãy lựa chọn <span>Chuột và bàn Phím</span></h1>
+                    <p>GearVN là thương hiệu được sinh ra từ giấc mơ của một game thủ, phát triển bởi tập thể các game
+                        thủ
+                        để phục vụ cho cộng đồng game thủ Việt.
+                        <br>
+                        Đội ngũ tư vấn của GearVN không đơn thuần là nhân viên kinh doanh, chúng tôi còn là những người
+                        yêu
+                        game với mong muốn giúp bạn cùng sở thích có được dàn máy và gear phù hợp.
+                        <br>
+                        Sự hài lòng của khách hàng chính là động lực giúp GearVN không ngừng hoàn thiện, mang lại ngày
+                        càng
+                        nhiều giá trị tích cực cho cộng đồng.
+                        <br>
+                    </p>
+                    <a href="#" onclick="scrollToElement('teleport'); return false;">
+                        <i class="fa-solid fa-basket-shopping" style="color: black;"></i>
+                        <span>Mua ngay</span>
+                    </a>
                 </div>
-                <p>Khác biệt hoàn toàn với các sản phẩm khác, chúng tôi mang lại trải nghiệm chưa từng có !</p>
+                <img style="border-radius: 50%;"
+                    src="https://techspace.vn/wp-content/uploads/2022/08/temp-bo-gaming-gears-fan-razer-nha-ngheo-1.jpg">
             </div>
-            <div class="item">
-                <div class="header">
-                    <i class="fa-solid fa-certificate"></i>
-                    <h5>Chất lượng nhất</h5>
-                </div>
-                <p>Chúng tôi tự hào cung cấp sản phẩm với chất lượng vượt trội, đảm bảo sự hài lòng tuyệt đối cho bạn !
-                </p>
-            </div>
-            <div class="item">
-                <div class="header">
-                    <i class="fa-solid fa-money-bill"></i>
-                    <h5>Giá tốt nhất</h5>
-                </div>
-                <p>Sản phẩm tốt với mức giá cực kỳ hấp dẫn - một cơ hội không nên bỏ lỡ !</p>
-            </div>
-        </div>
-        <div id="teleport"></div>
-        <h2 class="separator">Sản phẩm hot nhất !</h2>
-        <div class="mouse-shop" id="mouse-shop">
-            <div class="category">
-                <a href="#">Giảm giá %</a>
-                <a href="#">Giá tốt nhất $</a>
-                <a href="#">Xu hướng</a>
-            </div>
-            <div class="mouse-list">
-                <div class="item" th:each="mouse : ${lstMouse}">
-                    <div th:if="${#lists.size(mouse.imageUrl) > 0}">
-                        <img th:src="@{${mouse.imageUrl[0].url}}" alt="mouse-image">
+            <h2 class="separator">
+                Điểm nổi bật
+            </h2>
+            <div class="sell-mouse">
+                <div class="item">
+                    <div class="header">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <h5>Mới nhất</h5>
                     </div>
-                    <div class="info">
-                        <div>
-                            <h5 th:text="${mouse.name}"></h5>
+                    <p>Khác biệt hoàn toàn với các sản phẩm khác, chúng tôi mang lại trải nghiệm chưa từng có !</p>
+                </div>
+                <div class="item">
+                    <div class="header">
+                        <i class="fa-solid fa-certificate"></i>
+                        <h5>Chất lượng nhất</h5>
+                    </div>
+                    <p>Chúng tôi tự hào cung cấp sản phẩm với chất lượng vượt trội, đảm bảo sự hài lòng tuyệt đối cho
+                        bạn !
+                    </p>
+                </div>
+                <div class="item">
+                    <div class="header">
+                        <i class="fa-solid fa-money-bill"></i>
+                        <h5>Giá tốt nhất</h5>
+                    </div>
+                    <p>Sản phẩm tốt với mức giá cực kỳ hấp dẫn - một cơ hội không nên bỏ lỡ !</p>
+                </div>
+            </div>
+            <div id="teleport"></div>
+            <h2 class="separator">Sản phẩm hot nhất !</h2>
+            <div class="mouse-shop" id="mouse-shop">
+                <div class="category">
+                    <a href="#">Giảm giá %</a>
+                    <a href="#">Giá tốt nhất $</a>
+                    <a href="#">Xu hướng</a>
+                </div>
+                <div class="mouse-list">
+                    <div class="item" th:each="mouse : ${lstMouse}">
+                        <div th:if="${#lists.size(mouse.imageUrl) > 0}">
+                            <img th:src="@{${mouse.imageUrl[0].url}}" alt="mouse-image">
+                        </div>
+                        <div class="info">
+                            <div>
+                                <h5 th:text="${mouse.name}"></h5>
+                            </div>
+                        </div>
+                        <div class="bid">
+                            <h6>Giá:
+                                <h5 style="color: red;" th:text="${mouse.formattedSalePrice}"></h5>
+                                <p style="color: #000; text-decoration: line-through;"
+                                    th:text="${mouse.formattedPrice}">
+                                </p>
+                            </h6>
+                            <a th:href="@{/buy/{id}(id=${mouse.id})}">Mua ngay</a>
                         </div>
                     </div>
-                    <div class="bid">
-                        <h6>Giá:
-                            <h5 style="color: red;" th:text="${mouse.formattedSalePrice}"></h5>
-                            <p style="color: #000; text-decoration: line-through;" th:text="${mouse.formattedPrice}">
-                            </p>
-                        </h6>
-                        <a th:href="@{/buy/{id}(id=${mouse.id})}">Mua ngay</a>
+                </div>
+            </div>
+            <div class="view-more">
+                <button id="view-more">
+                    <a href="http://localhost:8080/category">Xem thêm</a>
+                </button>
+            </div>
+            <h2 class="separator">
+                Sản phẩm bán chạy nhất !
+            </h2>
+            <div class="sellers">
+                <div class="item">
+                    <img
+                        src="https://product.hstatic.net/200000722513/product/gzsmk3te_fdfbbe49b1524481a9b9feeae16e6d66_1024x1024.png">
+                    <div class="info">
+                        <h4>Asus ROG Harpe Ace Aim Lab White</h4>
+                        <p>15.2K</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img
+                        src="https://product.hstatic.net/200000722513/product/zkcjs5el_4e9208da4d9648fba24bf590fed636cd_1024x1024.png">
+                    <div class="info">
+                        <h4>Wireless Corsair Darkstar RGB</h4>
+                        <p>12.7K</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img
+                        src="https://product.hstatic.net/200000722513/product/1-2_d48628cb79b3407cbc7b5c8e81c9db08_1024x1024.png">
+                    <div class="info">
+                        <h4>Razer Cobra Pro</h4>
+                        <p>7.9K</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img
+                        src="https://product.hstatic.net/200000722513/product/earvn-chuot-logitech-g-pro-wireless-1_d55861073737476eac32b63315542f31_a496c1da0e8d49509a60a8a87744cccf_1024x1024.png">
+                    <div class="info">
+                        <h4>Logitech G Pro Wireless</h4>
+                        <p>4.2K</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="view-more">
-            <button id="view-more">
-                <a href="http://localhost:8080/category">Xem thêm</a>
-            </button>
-        </div>
-        <h2 class="separator">
-            Sản phẩm bán chạy nhất !
-        </h2>
-        <div class="sellers">
-            <div class="item">
-                <img
-                    src="https://product.hstatic.net/200000722513/product/gzsmk3te_fdfbbe49b1524481a9b9feeae16e6d66_1024x1024.png">
-                <div class="info">
-                    <h4>Asus ROG Harpe Ace Aim Lab White</h4>
-                    <p>15.2K</p>
-                </div>
-            </div>
-            <div class="item">
-                <img
-                    src="https://product.hstatic.net/200000722513/product/zkcjs5el_4e9208da4d9648fba24bf590fed636cd_1024x1024.png">
-                <div class="info">
-                    <h4>Wireless Corsair Darkstar RGB</h4>
-                    <p>12.7K</p>
-                </div>
-            </div>
-            <div class="item">
-                <img
-                    src="https://product.hstatic.net/200000722513/product/1-2_d48628cb79b3407cbc7b5c8e81c9db08_1024x1024.png">
-                <div class="info">
-                    <h4>Razer Cobra Pro</h4>
-                    <p>7.9K</p>
-                </div>
-            </div>
-            <div class="item">
-                <img
-                    src="https://product.hstatic.net/200000722513/product/earvn-chuot-logitech-g-pro-wireless-1_d55861073737476eac32b63315542f31_a496c1da0e8d49509a60a8a87744cccf_1024x1024.png">
-                <div class="info">
-                    <h4>Logitech G Pro Wireless</h4>
-                    <p>4.2K</p>
-                </div>
-            </div>
-        </div>
         </div>
     </section>
     <div th:replace="layout/layout :: footer"></div>
