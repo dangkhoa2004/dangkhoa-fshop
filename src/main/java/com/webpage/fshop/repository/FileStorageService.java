@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 @Service
 public class FileStorageService {
     @Value("${file.upload-dir}")
-    private String uploadDir;
+    public String uploadDir;
 
     public void saveFile(MultipartFile file, String folderName) throws IOException {
         Path folderPath = Paths.get(uploadDir + File.separator + folderName);
