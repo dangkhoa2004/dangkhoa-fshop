@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const deviceInfoElement = document.getElementById('device-info');
 
             if (isLogin === true && username !== undefined) {
-                userLinkElement.innerHTML = `<a class="nav-link" href="/user/detail" id="nav-account"><i class="fa-solid fa-circle-user"></i>${username}</a>`;
+                userLinkElement.innerHTML = `<a class="nav-link" href="/user/detail"><i class="fa-solid fa-circle-user"></i>${username}</a>`;
                 deviceInfoElement.innerHTML = `
                     IPv4: ${ipv4Address || 'N/A'}, 
                     IPv6: ${ipv6Address || 'N/A'}, 

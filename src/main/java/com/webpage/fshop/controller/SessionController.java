@@ -4,8 +4,8 @@
  */
 package com.webpage.fshop.controller;
 
-import com.webpage.fshop.configuration.ConfigurationAPI;
-import com.webpage.fshop.configuration.SessionManager;
+import com.webpage.fshop.config.ConfigurationAPI;
+import com.webpage.fshop.config.SessionManager;
 import com.webpage.fshop.model.Account;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 04dkh
  */
 @RestController
-public class Sessioncomponent {
+public class SessionController {
 
     @GetMapping("/configurationAPI")
     public ConfigurationAPI getApiSession(HttpServletRequest request) {
