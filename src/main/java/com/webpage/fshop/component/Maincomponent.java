@@ -1,6 +1,6 @@
 package com.webpage.fshop.controller;
 
-import com.webpage.fshop.config.SessionManager;
+import com.webpage.fshop.configuration.SessionManager;
 import com.webpage.fshop.model.*;
 import com.webpage.fshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class MainController {
+public class Maincomponent {
 
     @Autowired
     public MouseRepository mouseRepo;

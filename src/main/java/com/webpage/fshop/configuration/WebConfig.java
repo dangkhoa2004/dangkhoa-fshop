@@ -1,4 +1,4 @@
-package com.webpage.fshop.config;
+package com.webpage.fshop.configuration;
 
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
