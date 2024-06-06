@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author 04dkh
  */
 @Repository
-public interface LEDRepository extends JpaRepository<LED, Integer>{
-    
+public interface LEDRepository extends JpaRepository<LED, Integer> {
+
 }

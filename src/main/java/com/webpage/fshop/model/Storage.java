@@ -5,6 +5,7 @@
 package com.webpage.fshop.model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -13,15 +14,15 @@ import java.util.*;
  */
 @Entity
 @Table(name = "Storage")
-public class Storage {
+public class Storage implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
-    
+
     @Column(name = "name", length = 255)
     public String name;
-    
+
     @OneToMany(mappedBy = "storage", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<MouseStorage> mouseStorages;
 
@@ -57,6 +58,5 @@ public class Storage {
     public void setMouseStorages(List<MouseStorage> mouseStorages) {
         this.mouseStorages = mouseStorages;
     }
-    
-    
+
 }

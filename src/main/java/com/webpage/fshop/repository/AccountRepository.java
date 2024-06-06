@@ -13,4 +13,3 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     Account findByUsername(@Param("username") String username);
 
 }
-

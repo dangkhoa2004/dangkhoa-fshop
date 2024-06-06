@@ -19,6 +19,7 @@ import java.nio.file.Paths;
  */
 @Service
 public class FileStorageService {
+
     @Value("${file.upload-dir}")
     private String uploadDir;
 

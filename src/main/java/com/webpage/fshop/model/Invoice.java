@@ -5,6 +5,7 @@
 package com.webpage.fshop.model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
@@ -15,9 +16,7 @@ import java.util.*;
  */
 @Entity
 @Table(name = "Invoice")
-@NamedEntityGraph(name = "Invoice.invoiceMice",
-        attributeNodes = @NamedAttributeNode("invoiceMice"))
-public class Invoice {
+public class Invoice implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,18 +36,18 @@ public class Invoice {
     public Coupon coupon;
 
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<InvoiceMouse> invoiceMice;
+    public List<DetailInvoice> detailInvoice;
 
     public Invoice() {
     }
 
-    public Invoice(int id, Time timeCreate, Date dateCreate, double total, Coupon coupon, List<InvoiceMouse> invoiceMice) {
+    public Invoice(int id, Time timeCreate, Date dateCreate, double total, Coupon coupon, List<DetailInvoice> detailInvoice) {
         this.id = id;
         this.timeCreate = timeCreate;
         this.dateCreate = dateCreate;
         this.total = total;
         this.coupon = coupon;
-        this.invoiceMice = invoiceMice;
+        this.detailInvoice = detailInvoice;
     }
 
     public int getId() {
@@ -91,12 +90,12 @@ public class Invoice {
         this.coupon = coupon;
     }
 
-    public List<InvoiceMouse> getInvoiceMice() {
-        return invoiceMice;
+    public List<DetailInvoice> getDetailInvoice() {
+        return detailInvoice;
     }
 
-    public void setInvoiceMice(List<InvoiceMouse> invoiceMice) {
-        this.invoiceMice = invoiceMice;
+    public void setDetailInvoice(List<DetailInvoice> detailInvoice) {
+        this.detailInvoice = detailInvoice;
     }
 
 }

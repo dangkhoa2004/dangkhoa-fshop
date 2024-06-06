@@ -4,7 +4,6 @@
  */
 package com.webpage.fshop.repository;
 
-
 import com.webpage.fshop.model.Battery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

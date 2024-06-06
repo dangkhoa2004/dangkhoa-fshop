@@ -5,6 +5,7 @@
 package com.webpage.fshop.model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 import java.sql.Date;
 
@@ -14,7 +15,7 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "Coupon")
-public class Coupon {
+public class Coupon implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,6 +83,5 @@ public class Coupon {
     public void setInvoices(List<Invoice> invoices) {
         this.invoices = invoices;
     }
-    
-    
+
 }

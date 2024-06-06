@@ -5,6 +5,7 @@
 package com.webpage.fshop.model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -12,15 +13,15 @@ import java.math.BigDecimal;
  * @author 04dkh
  */
 @Entity
-@Table(name = "invoiceMouse")
-public class InvoiceMouse {
+@Table(name = "DetailInvoice")
+public class DetailInvoice implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     @ManyToOne
-    @JoinColumn(name = "invoice_id")
+    @JoinColumn(name = "invoice_id", nullable = false)
     public Invoice invoice;
 
     @ManyToOne
@@ -36,10 +37,10 @@ public class InvoiceMouse {
     @Column(name = "total")
     public BigDecimal total;
 
-    public InvoiceMouse() {
+    public DetailInvoice() {
     }
 
-    public InvoiceMouse(int id, Invoice invoice, Mouse mouse, int quantity, BigDecimal money, BigDecimal total) {
+    public DetailInvoice(int id, Invoice invoice, Mouse mouse, int quantity, BigDecimal money, BigDecimal total) {
         this.id = id;
         this.invoice = invoice;
         this.mouse = mouse;

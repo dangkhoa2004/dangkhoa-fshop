@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "LED")
-public class LED implements Serializable{
+public class LED implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

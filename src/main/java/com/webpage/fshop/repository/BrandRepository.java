@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author 04dkh
  */
 @Repository
-public interface BrandRepository extends JpaRepository<Brand, Integer > {
-    
+public interface BrandRepository extends JpaRepository<Brand, Integer> {
+
 }

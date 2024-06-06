@@ -5,6 +5,7 @@
 package com.webpage.fshop.model;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 /**
  *
@@ -12,7 +13,7 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "MouseStorage")
-public class MouseStorage {
+public class MouseStorage implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,5 +71,5 @@ public class MouseStorage {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
+
 }

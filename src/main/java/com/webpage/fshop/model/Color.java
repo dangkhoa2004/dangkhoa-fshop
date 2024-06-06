@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -21,14 +22,15 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Color")
-public class Color {
+public class Color implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     @Column(name = "name", length = 255)
     public String name;
-    
+
     @OneToMany(mappedBy = "color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Mouse> mice;
 
@@ -64,5 +66,5 @@ public class Color {
     public void setMice(List<Mouse> mice) {
         this.mice = mice;
     }
-    
+
 }
