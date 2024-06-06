@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:8080/session-info')
+    fetch('http://localhost:8080/configurationAPI')
         .then(response => response.json())
         .then(data => {
             const isLogin = data.login;
-            const username = data.username;
+            const name = data.name;
             const ipv4Address = data.ipv4Address;
             const ipv6Address = data.ipv6Address;
             const deviceName = data.deviceName;
@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const userLinkElement = document.getElementById('user-link');
             const deviceInfoElement = document.getElementById('device-info');
 
-            if (isLogin === true && username !== undefined) {
-                userLinkElement.innerHTML = `<a class="nav-link" href="/user/detail"><i class="fa-solid fa-circle-user"></i>${username}</a>`;
+            if (isLogin && name !== undefined) {
+                userLinkElement.innerHTML = `<a class="nav-link" href="/logout"><i class="fa-solid fa-circle-user"></i> ${name}</a>`;
                 deviceInfoElement.innerHTML = `
                     IPv4: ${ipv4Address || 'N/A'}, 
                     IPv6: ${ipv6Address || 'N/A'}, 

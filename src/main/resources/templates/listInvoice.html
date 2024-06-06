@@ -10,7 +10,7 @@
 </head>
 
 <body style="background-color: rgb(222, 213, 213);">
-    <div th:replace="layout/layout :: header"></div>
+    <div th:replace="~{layout/layout :: header}"></div>
     <section>
         <table border="1">
             <thead>
@@ -42,7 +42,7 @@
             </tbody>
         </table>
     </section>
-    <div th:replace="layout/layout :: footer"></div>
+    <div th:replace="~{layout/layout :: footer}"></div>
 </body>
 
 </html>

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class ConfigurationAPI {
 
     public boolean login;
-    public String username;
+    public String name;
     public String ipv4Address;
     public String ipv6Address;
     public String deviceName;
@@ -24,9 +24,9 @@ public class ConfigurationAPI {
     public String operatingSystem;
     public String appVersion;
 
-    public ConfigurationAPI(boolean login, String username, String ipv4Address, String ipv6Address, String deviceName, LocalDateTime timestamp, String userRole, long sessionDuration, String browserInfo, String operatingSystem, String appVersion) {
+    public ConfigurationAPI(boolean login, String name, String ipv4Address, String ipv6Address, String deviceName, LocalDateTime timestamp, String userRole, long sessionDuration, String browserInfo, String operatingSystem, String appVersion) {
         this.login = login;
-        this.username = username;
+        this.name = name;
         this.ipv4Address = ipv4Address;
         this.ipv6Address = ipv6Address;
         this.deviceName = deviceName;
@@ -48,11 +48,11 @@ public class ConfigurationAPI {
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String name) {
+        this.name = name;
     }
 
     public String getIpv4Address() {

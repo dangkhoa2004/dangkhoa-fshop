@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -26,7 +26,7 @@ public class SessionController {
         if (account == null) {
             return new ConfigurationAPI(false, null, null, null, null, LocalDateTime.now(), null, 0, null, null, "1.0.0");
         }
-        String username = account.getUsername();
+        String name = account.getName();
         String ipAddress = request.getRemoteAddr();
         String ipv4Address = null;
         String ipv6Address = null;
@@ -45,7 +45,7 @@ public class SessionController {
             ipv4Address = ipAddress;
         }
 
-        return new ConfigurationAPI(isLogin, username, ipv4Address, ipv6Address, deviceName, timestamp, userRole, sessionDuration, browserInfo, operatingSystem, appVersion);
+        return new ConfigurationAPI(isLogin, name, ipv4Address, ipv6Address, deviceName, timestamp, userRole, sessionDuration, browserInfo, operatingSystem, appVersion);
     }
 
     public String getOperatingSystemFromUserAgent(String userAgent) {

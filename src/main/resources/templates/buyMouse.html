@@ -11,7 +11,7 @@
 </head>
 
 <body style="background-color: rgb(222, 213, 213);">
-    <div th:replace="layout/layout :: header"></div>
+    <div th:replace="~{layout/layout :: header}"></div>
     <section>
         <div class="banner-ad left">
             <a href="#">
@@ -184,7 +184,7 @@
         </div>
     </section>
 
-    <div th:replace="layout/layout :: footer"></div>
+    <div th:replace="~{layout/layout :: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

@@ -11,13 +11,13 @@
 </head>
 
 <body style="background-color: rgb(222, 213, 213);">
-    <div th:replace="layout/layout :: header"></div>
+    <div th:replace="~{layout/layout :: header}"></div>
     <section>
         <div class="tracking-item">
-            <h1 th:text="${mouse.name}"></h1>
-            <div th:if="${#lists.size(mouse.imageUrl) > 0}">
+            <!--<h1 th:text="${mouse.name}"></h1>-->
+<!--            <div th:if="${#lists.size(mouse.imageUrl) > 0}">
                 <img th:src="@{${mouse.imageUrl[0].url}}" alt="mouse-image">
-            </div>
+            </div>-->
             <div>
                 <span class="return-policy">Trả hàng miễn phí 15 ngày</span>
             </div>
@@ -49,7 +49,7 @@
             </div>
         </div>
     </section>
-    <div th:replace="layout/layout :: footer"></div>
+    <div th:replace="~{layout/layout :: footer}"></div>
 </body>
 <script>
 </script>

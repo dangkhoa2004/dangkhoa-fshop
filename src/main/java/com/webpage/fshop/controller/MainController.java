@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,239 +16,264 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    @Autowired
-    public MouseRepository mouseRepo;
+  @Autowired
+  public MouseRepository mouseRepo;
 
-    @Autowired
-    public BrandRepository brandRepo;
+  @Autowired
+  public BrandRepository brandRepo;
 
-    @Autowired
-    public ConnectRepository connectionRepo;
+  @Autowired
+  public ConnectRepository connectionRepo;
 
-    @Autowired
-    public LEDRepository ledRepo;
+  @Autowired
+  public LEDRepository ledRepo;
 
-    @Autowired
-    public TypeRepository typeRepo;
+  @Autowired
+  public TypeRepository typeRepo;
 
-    @Autowired
-    public BatteryRepository batteryRepo;
+  @Autowired
+  public BatteryRepository batteryRepo;
 
-    @Autowired
-    public ColorRepository colorRepo;
+  @Autowired
+  public ColorRepository colorRepo;
 
-    @Autowired
-    public FileStorageService fileStorageService;
+  @Autowired
+  public FileStorageService fileStorageService;
 
-    @Autowired
-    public InvoiceRepository invoiceRepo;
+  @Autowired
+  public InvoiceRepository invoiceRepo;
 
-    @Autowired
-    public CouponRepository couponRepo;
+  @Autowired
+  public CouponRepository couponRepo;
 
-    @Autowired
-    public AccountRepository accountRepo;
+  @Autowired
+  public AccountRepository accountRepo;
 
-    @Autowired
-    public InvoiceMouseRepository invoicemouseRepo;
+  @Autowired
+  public InvoiceMouseRepository invoicemouseRepo;
 
-    Account account = null;
+  Account account = null;
 
-    // Không cần isLogin
-    @GetMapping("/home")
-    public String home() {
-        return "home";
+  // Không cần isLogin
+  @GetMapping("/home")
+  public String home() {
+    return "home";
+  }
+
+  @GetMapping("/login")
+  public String login() {
+    return "login";
+  }
+
+  @PostMapping("/login")
+  public String login(@RequestParam("username") String username,
+      @RequestParam("password") String password, Model model) {
+    String textFail = null;
+    this.account = accountRepo.findByUsername(username);
+    if (this.account == null) {
+      textFail = "Đăng nhập thất bại !";
+      model.addAttribute("textFail", textFail);
+      return "login";
     }
+    SessionManager.login(account);
+    return "redirect:/fshop";
+  }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+  @GetMapping("/logout")
+  public String logout() {
+    SessionManager.logout();
+    return "redirect:/fshop";
+  }
+
+  @GetMapping("/fshop")
+  public String fshop(Model model) {
+    List<Mouse> lstMouse = mouseRepo.findAll();
+    model.addAttribute("lstMouse", lstMouse);
+    return "fshop";
+  }
+
+  @GetMapping("/category")
+  public String category(Model model) {
+    if (!SessionManager.isLogin()) {
+      return "redirect:/login";
     }
+    List<Mouse> lstMouse = this.mouseRepo.findAll();
+    model.addAttribute("lstMouse", lstMouse);
+    return "category";
+  }
 
-    @PostMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password,
-            Model model) {
-        String textFail = null;
-        this.account = accountRepo.findByUandP(username, password);
-        if (this.account == null) {
-            textFail = "Đăng nhập thất bại !";
-            model.addAttribute("textFail", textFail);
-            return "login";
-        }
-        SessionManager.login(account);
-        // return "fshop";
-        return "redirect:/fshop";
+  @GetMapping("/buy/{id}")
+  public String buyMouse(@PathVariable("id") int id, Model model) {
+    Mouse ms = mouseRepo.findById(id).orElseThrow();
+    List<Brand> brands = brandRepo.findAll();
+    List<Connect> connects = connectionRepo.findAll();
+    List<LED> leds = ledRepo.findAll();
+    List<Type> types = typeRepo.findAll();
+    List<Battery> batteries = batteryRepo.findAll();
+    List<Color> colors = colorRepo.findAll();
+    model.addAttribute("brands", brands);
+    model.addAttribute("connects", connects);
+    model.addAttribute("leds", leds);
+    model.addAttribute("types", types);
+    model.addAttribute("batteries", batteries);
+    model.addAttribute("colors", colors);
+    model.addAttribute("mouse", ms);
+    return "buyMouse";
+  }
+
+  @GetMapping("/trackings")
+  public String trackings(Model model) {
+    return "trackings";
+  }
+
+  @GetMapping("/trackings/{id}")
+  public String tracking(@PathVariable("id") int id, Model model) {
+    Invoice in = invoiceRepo.findById(id).orElseThrow();
+    List<Coupon> cps = couponRepo.findAll();
+    model.addAttribute("in", in);
+    model.addAttribute("cps", cps);
+    return "tracking";
+  }
+
+  @GetMapping("/carts")
+  public String cartMouse(Model model) {
+    // sẽ làm cart theo sessionLogin
+    // List<Cart> lstCart = this.mouseRepo.findAll();
+    // model.addAttribute("lstMouse", lstCart);
+    return "cartMouse";
+  }
+
+  // Cần isLogin
+  @GetMapping("/mouses")
+  public String listMouse(Model model) {
+    if (!SessionManager.isLogin()) {
+      return "redirect:/login";
     }
+    List<Mouse> lstMouse = mouseRepo.findAll();
+    List<Brand> brands = brandRepo.findAll();
+    List<Connect> connects = connectionRepo.findAll();
+    List<LED> leds = ledRepo.findAll();
+    List<Type> types = typeRepo.findAll();
+    List<Battery> batteries = batteryRepo.findAll();
+    List<Color> colors = colorRepo.findAll();
+    model.addAttribute("brands", brands);
+    model.addAttribute("connects", connects);
+    model.addAttribute("leds", leds);
+    model.addAttribute("types", types);
+    model.addAttribute("batteries", batteries);
+    model.addAttribute("colors", colors);
+    model.addAttribute("lstMouse", lstMouse);
+    return "listMouse";
+  }
 
-    @GetMapping("/fshop")
-    public String fshop(Model model) {
-        List<Mouse> lstMouse = mouseRepo.findAll();
-        model.addAttribute("lstMouse", lstMouse);
-        return "fshop";
+  @GetMapping("/invoices")
+  public String listInvoice(Model model) {
+    List<Invoice> lstInvoice = invoiceRepo.findAll();
+    model.addAttribute("lstInvoice", lstInvoice);
+    return "listInvoice";
+  }
+
+  @GetMapping("/mouses/{id}")
+  public String editMouse(@PathVariable("id") int id, Model model) {
+    if (!SessionManager.isLogin()) {
+      return "redirect:/mouses";
     }
+    Mouse ms = mouseRepo.findById(id).orElseThrow();
+    List<Brand> brands = brandRepo.findAll();
+    List<Connect> connects = connectionRepo.findAll();
+    List<LED> leds = ledRepo.findAll();
+    List<Type> types = typeRepo.findAll();
+    List<Battery> batteries = batteryRepo.findAll();
+    List<Color> colors = colorRepo.findAll();
+    model.addAttribute("brands", brands);
+    model.addAttribute("connects", connects);
+    model.addAttribute("leds", leds);
+    model.addAttribute("types", types);
+    model.addAttribute("batteries", batteries);
+    model.addAttribute("colors", colors);
+    model.addAttribute("mouse", ms);
+    return "editMouse";
+  }
 
-    @GetMapping("/category")
-    public String category(Model model) {
-        List<Mouse> lstMouse = this.mouseRepo.findAll();
-        model.addAttribute("lstMouse", lstMouse);
-        return "category";
+  @PostMapping("/update/{id}")
+  public String updateMouse(@PathVariable("id") int id, @ModelAttribute Mouse ms) {
+    if (!SessionManager.isLogin()) {
+      return "redirect:/login";
     }
+    Mouse existMouse = mouseRepo.findById(id).orElseThrow();
+    existMouse.setName(ms.getName());
+    existMouse.setDescription(ms.getDescription());
+    existMouse.setPrice(ms.getPrice());
+    existMouse.setSaleprice(ms.getSaleprice());
+    existMouse.setBrand(ms.getBrand());
+    existMouse.setConnect(ms.getConnect());
+    existMouse.setLed(ms.getLed());
+    existMouse.setType(ms.getType());
+    existMouse.setBattery(ms.getBattery());
+    existMouse.setColor(ms.getColor());
+    mouseRepo.save(existMouse);
+    return "redirect:/mouses";
+  }
 
-    @GetMapping("/buy/{id}")
-    public String buyMouse(@PathVariable("id") int id, Model model) {
-        Mouse ms = mouseRepo.findById(id).orElseThrow();
-        List<Brand> brands = brandRepo.findAll();
-        List<Connect> connects = connectionRepo.findAll();
-        List<LED> leds = ledRepo.findAll();
-        List<Type> types = typeRepo.findAll();
-        List<Battery> batteries = batteryRepo.findAll();
-        List<Color> colors = colorRepo.findAll();
-        model.addAttribute("brands", brands);
-        model.addAttribute("connects", connects);
-        model.addAttribute("leds", leds);
-        model.addAttribute("types", types);
-        model.addAttribute("batteries", batteries);
-        model.addAttribute("colors", colors);
-        model.addAttribute("mouse", ms);
-        return "buyMouse";
+  @GetMapping("/mouses/add")
+  public String addMouse(Model model) {
+    if (!SessionManager.isLogin()) {
+      return "redirect:/login";
     }
+    Mouse mouse = new Mouse();
+    model.addAttribute("mouse", mouse);
+    List<Brand> brands = brandRepo.findAll();
+    List<Connect> connects = connectionRepo.findAll();
+    List<LED> leds = ledRepo.findAll();
+    List<Type> types = typeRepo.findAll();
+    List<Battery> batteries = batteryRepo.findAll();
+    List<Color> colors = colorRepo.findAll();
+    model.addAttribute("brands", brands);
+    model.addAttribute("connects", connects);
+    model.addAttribute("leds", leds);
+    model.addAttribute("types", types);
+    model.addAttribute("batteries", batteries);
+    model.addAttribute("colors", colors);
+    return "addMouse";
+  }
 
-    @GetMapping("/trackings")
-    public String trackings(Model model) {
-        return "trackings";
+  @PostMapping("/store")
+  public String storeMouse(Mouse ms, @RequestParam("images") List<MultipartFile> images) {
+    if (!SessionManager.isLogin()) {
+      return "redirect:/mouse/add";
     }
-
-    @GetMapping("/trackings/{id}")
-    public String tracking(@PathVariable("id") int id, Model model) {
-        Mouse ms = mouseRepo.findById(id).orElseThrow();
-        Invoice in = invoiceRepo.findById(id).orElseThrow();
-        List<Coupon> cps = couponRepo.findAll();
-        model.addAttribute("mouse", ms);
-        model.addAttribute("in", in);
-        model.addAttribute("cps", cps);
-        return "tracking";
-    }
-
-    @GetMapping("/carts")
-    public String cartMouse(Model model) {
-        // sẽ làm cart theo sessionLogin
-        // List<Cart> lstCart = this.mouseRepo.findAll();
-        // model.addAttribute("lstMouse", lstCart);
-        return "cartMouse";
-    }
-
-    // Cần isLogin
-    @GetMapping("/mouses")
-    public String listMouse(Model model) {
-        List<Mouse> lstMouse = mouseRepo.findAll();
-        List<Brand> brands = brandRepo.findAll();
-        List<Connect> connects = connectionRepo.findAll();
-        List<LED> leds = ledRepo.findAll();
-        List<Type> types = typeRepo.findAll();
-        List<Battery> batteries = batteryRepo.findAll();
-        List<Color> colors = colorRepo.findAll();
-        model.addAttribute("brands", brands);
-        model.addAttribute("connects", connects);
-        model.addAttribute("leds", leds);
-        model.addAttribute("types", types);
-        model.addAttribute("batteries", batteries);
-        model.addAttribute("colors", colors);
-        model.addAttribute("lstMouse", lstMouse);
-        return "listMouse";
-    }
-
-    @GetMapping("/invoices")
-    public String listInvoice(Model model) {
-        List<Invoice> lstInvoice = invoiceRepo.findAll();
-        model.addAttribute("lstInvoice", lstInvoice);
-        return "listInvoice";
-    }
-
-    @GetMapping("/mouses/{id}")
-    public String editMouse(@PathVariable("id") int id, Model model) {
-        Mouse ms = mouseRepo.findById(id).orElseThrow();
-        List<Brand> brands = brandRepo.findAll();
-        List<Connect> connects = connectionRepo.findAll();
-        List<LED> leds = ledRepo.findAll();
-        List<Type> types = typeRepo.findAll();
-        List<Battery> batteries = batteryRepo.findAll();
-        List<Color> colors = colorRepo.findAll();
-        model.addAttribute("brands", brands);
-        model.addAttribute("connects", connects);
-        model.addAttribute("leds", leds);
-        model.addAttribute("types", types);
-        model.addAttribute("batteries", batteries);
-        model.addAttribute("colors", colors);
-        model.addAttribute("mouse", ms);
-        return "editMouse";
-    }
-
-    @PostMapping("/update/{id}")
-    public String updateMouse(@PathVariable("id") int id, @ModelAttribute Mouse ms) {
-        Mouse existMouse = mouseRepo.findById(id).orElseThrow();
-        existMouse.setName(ms.getName());
-        existMouse.setDescription(ms.getDescription());
-        existMouse.setPrice(ms.getPrice());
-        existMouse.setSaleprice(ms.getSaleprice());
-        existMouse.setBrand(ms.getBrand());
-        existMouse.setConnect(ms.getConnect());
-        existMouse.setLed(ms.getLed());
-        existMouse.setType(ms.getType());
-        existMouse.setBattery(ms.getBattery());
-        existMouse.setColor(ms.getColor());
-        mouseRepo.save(existMouse);
-        return "redirect:/mouses";
-    }
-
-    @GetMapping("/mouses/add")
-    public String addMouse(Model model) {
-        Mouse mouse = new Mouse();
-        model.addAttribute("mouse", mouse);
-        List<Brand> brands = brandRepo.findAll();
-        List<Connect> connects = connectionRepo.findAll();
-        List<LED> leds = ledRepo.findAll();
-        List<Type> types = typeRepo.findAll();
-        List<Battery> batteries = batteryRepo.findAll();
-        List<Color> colors = colorRepo.findAll();
-        model.addAttribute("brands", brands);
-        model.addAttribute("connects", connects);
-        model.addAttribute("leds", leds);
-        model.addAttribute("types", types);
-        model.addAttribute("batteries", batteries);
-        model.addAttribute("colors", colors);
-        return "addMouse";
-    }
-
-    @PostMapping("/store")
-    public String storeMouse(Mouse ms, @RequestParam("images") List<MultipartFile> images) {
+    try {
+      Mouse savedMouse = this.mouseRepo.save(ms);
+      List<Imageurl> imageUrls = new ArrayList<>();
+      String folderName = String.valueOf(savedMouse.getId());
+      for (MultipartFile image : images) {
         try {
-            Mouse savedMouse = this.mouseRepo.save(ms);
-            List<Imageurl> imageUrls = new ArrayList<>();
-            String folderName = String.valueOf(savedMouse.getId());
-            for (MultipartFile image : images) {
-                try {
-                    fileStorageService.saveFile(image, folderName);
-                    Imageurl imageUrl = new Imageurl();
-                    imageUrl.setUrl(folderName + "/" + image.getOriginalFilename());
-                    imageUrl.setMouse(savedMouse);
-                    imageUrls.add(imageUrl);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            savedMouse.setImageUrl(imageUrls);
-            this.mouseRepo.save(savedMouse);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "error";
+          fileStorageService.saveFile(image, folderName);
+          Imageurl imageUrl = new Imageurl();
+          imageUrl.setUrl(folderName + "/" + image.getOriginalFilename());
+          imageUrl.setMouse(savedMouse);
+          imageUrls.add(imageUrl);
+        } catch (IOException e) {
+          e.printStackTrace();
         }
-        return "redirect:/mouses";
+      }
+      savedMouse.setImageUrl(imageUrls);
+      this.mouseRepo.save(savedMouse);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return "error";
+    }
+    return "redirect:/mouses";
+  }
+
+  @GetMapping("delete/{id}")
+  public String deleteMouse(@PathVariable("id") int id) {
+    if (!SessionManager.isLogin()) {
+      return "redirect:/mouses";
     }
 
-    @GetMapping("delete/{id}")
-    public String deleteMouse(@PathVariable("id") int id) {
-        this.mouseRepo.deleteById(id);
-        return "redirect:/mouses";
-    }
+    this.mouseRepo.deleteById(id);
+    return "redirect:/mouses";
+  }
 }

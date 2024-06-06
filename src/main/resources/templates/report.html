@@ -9,11 +9,11 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body style="background-color: rgb(222, 213, 213);">
-    <div th:replace="layout/layout :: header"></div>
+    <div th:replace="~{layout/layout :: header}"></div>
     <section>
         <h1>Trang chủ</h1>
         <p>Đây là nội dung của trang chủ.</p>
     </section>
-    <div th:replace="layout/layout :: footer"></div>
+    <div th:replace="~{layout/layout :: footer}"></div>
 </body>
 </html>

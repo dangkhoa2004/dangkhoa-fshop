@@ -11,7 +11,7 @@
 </head>
 
 <body style="background-color: rgb(222, 213, 213);">
-    <div th:replace="layout/layout :: header"></div>
+    <div th:replace="~{layout/layout :: header}"></div>
     <section>
         <div class="content">
             <div class="maintain">
@@ -133,7 +133,7 @@
             </div>
         </div>
     </section>
-    <div th:replace="layout/layout :: footer"></div>
+    <div th:replace="~{layout/layout :: footer}"></div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

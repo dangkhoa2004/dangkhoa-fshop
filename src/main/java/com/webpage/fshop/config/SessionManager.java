@@ -26,6 +26,7 @@ public class SessionManager {
     }
 
     public static boolean isLogin() {
+
         return isLogin;
     }
 
@@ -46,4 +47,5 @@ public class SessionManager {
         Duration duration = Duration.between(sessionStartTime, LocalDateTime.now());
         return duration.getSeconds();
     }
+
 }

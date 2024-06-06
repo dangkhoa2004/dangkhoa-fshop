@@ -9,7 +9,8 @@ import org.springframework.data.repository.query.Param;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-    @Query("SELECT n FROM Account n WHERE n.username = :username AND n.password = :password")
-    Account findByUandP(@Param("username") String username, @Param("password") String password);
+    @Query("SELECT n FROM Account n WHERE n.username = :username")
+    Account findByUsername(@Param("username") String username);
 
 }
+

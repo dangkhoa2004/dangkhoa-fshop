@@ -11,7 +11,7 @@
 </head>
 
 <body style="background-color: rgb(222, 213, 213);">
-    <div th:replace="layout/layout :: header"></div>
+    <div th:replace="~{layout/layout :: header}"></div>
     <section>
         <div class="tracking-body">
             <div class="tracking-container">
@@ -23,7 +23,7 @@
             </div>
         </div>
     </section>
-    <div th:replace="layout/layout :: footer"></div>
+    <div th:replace="~{layout/layout :: footer}"></div>
 </body>
 <script>
     document.getElementById('trackingInput').addEventListener('keydown', function (event) {

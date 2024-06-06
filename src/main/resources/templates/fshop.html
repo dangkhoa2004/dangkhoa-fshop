@@ -11,7 +11,7 @@
 </head>
 
 <body style="background-color: rgb(222, 213, 213);">
-    <div th:replace="layout/layout :: header"></div>
+    <div th:replace="~{layout/layout :: header}"></div>
     <section>
         <div class="title">
             <div class="header_txt">
@@ -140,7 +140,8 @@
             </div>
         </div>
     </section>
-    <div th:replace="layout/layout :: footer"></div>
+    <div th:replace="~{layout/layout :: footer}"></div>
+    <script src="/js/API.js"></script>
 </body>
 <script>
     function scrollToElement(elementId) {
