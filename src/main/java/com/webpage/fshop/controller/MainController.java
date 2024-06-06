@@ -94,9 +94,9 @@ public class MainController {
 
   @GetMapping("/category")
   public String category(Model model) {
-    if (!SessionManager.isLogin()) {
-      return "redirect:/login";
-    }
+//    if (!SessionManager.isLogin()) {
+//      return "redirect:/login";
+//    }
     List<Mouse> lstMouse = this.mouseRepo.findAll();
     model.addAttribute("lstMouse", lstMouse);
     return "category";
@@ -146,7 +146,7 @@ public class MainController {
   // Cần isLogin
   @GetMapping("/mouses")
   public String listMouse(Model model) {
-    if (!SessionManager.isLogin()) {
+    if (SessionManager.isUser()) {
       return "redirect:/login";
     }
     List<Mouse> lstMouse = mouseRepo.findAll();
@@ -168,6 +168,9 @@ public class MainController {
 
   @GetMapping("/invoices")
   public String listInvoice(Model model) {
+    if (SessionManager.isUser()) {
+      return "redirect:/login";
+    }
     List<Invoice> lstInvoice = invoiceRepo.findAll();
     model.addAttribute("lstInvoice", lstInvoice);
     return "listInvoice";
@@ -175,8 +178,8 @@ public class MainController {
 
   @GetMapping("/mouses/{id}")
   public String editMouse(@PathVariable("id") int id, Model model) {
-    if (!SessionManager.isLogin()) {
-      return "redirect:/mouses";
+    if (SessionManager.isUser()) {
+      return "redirect:/login";
     }
     Mouse ms = mouseRepo.findById(id).orElseThrow();
     List<Brand> brands = brandRepo.findAll();
@@ -197,7 +200,7 @@ public class MainController {
 
   @PostMapping("/update/{id}")
   public String updateMouse(@PathVariable("id") int id, @ModelAttribute Mouse ms) {
-    if (!SessionManager.isLogin()) {
+    if (SessionManager.isUser()) {
       return "redirect:/login";
     }
     Mouse existMouse = mouseRepo.findById(id).orElseThrow();
@@ -217,7 +220,7 @@ public class MainController {
 
   @GetMapping("/mouses/add")
   public String addMouse(Model model) {
-    if (!SessionManager.isLogin()) {
+    if (SessionManager.isUser()) {
       return "redirect:/login";
     }
     Mouse mouse = new Mouse();
@@ -239,8 +242,8 @@ public class MainController {
 
   @PostMapping("/store")
   public String storeMouse(Mouse ms, @RequestParam("images") List<MultipartFile> images) {
-    if (!SessionManager.isLogin()) {
-      return "redirect:/mouse/add";
+    if (SessionManager.isUser()) {
+      return "redirect:/login";
     }
     try {
       Mouse savedMouse = this.mouseRepo.save(ms);
@@ -269,10 +272,9 @@ public class MainController {
 
   @GetMapping("delete/{id}")
   public String deleteMouse(@PathVariable("id") int id) {
-    if (!SessionManager.isLogin()) {
-      return "redirect:/mouses";
+    if (SessionManager.isUser()) {
+      return "redirect:/login";
     }
-
     this.mouseRepo.deleteById(id);
     return "redirect:/mouses";
   }

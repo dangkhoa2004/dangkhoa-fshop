@@ -7,123 +7,124 @@ package com.webpage.fshop.config;
 import java.time.LocalDateTime;
 
 /**
- *
  * @author 04dkh
  */
 public class ConfigurationAPI {
 
-    public boolean login;
-    public String name;
-    public String ipv4Address;
-    public String ipv6Address;
-    public String deviceName;
-    public LocalDateTime timestamp;
-    public String userRole;
-    public long sessionDuration;
-    public String browserInfo;
-    public String operatingSystem;
-    public String appVersion;
+  public boolean login;
+  public String role;
+  public String ipv4Address;
+  public String ipv6Address;
+  public String deviceName;
+  public LocalDateTime timestamp;
+  public String userRole;
+  public long sessionDuration;
+  public String browserInfo;
+  public String operatingSystem;
+  public String appVersion;
 
-    public ConfigurationAPI(boolean login, String name, String ipv4Address, String ipv6Address, String deviceName, LocalDateTime timestamp, String userRole, long sessionDuration, String browserInfo, String operatingSystem, String appVersion) {
-        this.login = login;
-        this.name = name;
-        this.ipv4Address = ipv4Address;
-        this.ipv6Address = ipv6Address;
-        this.deviceName = deviceName;
-        this.timestamp = timestamp;
-        this.userRole = userRole;
-        this.sessionDuration = sessionDuration;
-        this.browserInfo = browserInfo;
-        this.operatingSystem = operatingSystem;
-        this.appVersion = appVersion;
-    }
+  public ConfigurationAPI(boolean login, String name, String ipv4Address, String ipv6Address,
+      String deviceName, LocalDateTime timestamp, String userRole, long sessionDuration,
+      String browserInfo, String operatingSystem, String appVersion) {
+    this.login = login;
+    this.role = name;
+    this.ipv4Address = ipv4Address;
+    this.ipv6Address = ipv6Address;
+    this.deviceName = deviceName;
+    this.timestamp = timestamp;
+    this.userRole = userRole;
+    this.sessionDuration = sessionDuration;
+    this.browserInfo = browserInfo;
+    this.operatingSystem = operatingSystem;
+    this.appVersion = appVersion;
+  }
 
-    // Getter and setter methods for all fields
-    public boolean isLogin() {
-        return login;
-    }
+  // Getter and setter methods for all fields
+  public boolean isLogin() {
+    return login;
+  }
 
-    public void setLogin(boolean login) {
-        this.login = login;
-    }
+  public void setLogin(boolean login) {
+    this.login = login;
+  }
 
-    public String getUsername() {
-        return name;
-    }
+  public String getUsername() {
+    return role;
+  }
 
-    public void setUsername(String name) {
-        this.name = name;
-    }
+  public void setUsername(String name) {
+    this.role = name;
+  }
 
-    public String getIpv4Address() {
-        return ipv4Address;
-    }
+  public String getIpv4Address() {
+    return ipv4Address;
+  }
 
-    public void setIpv4Address(String ipv4Address) {
-        this.ipv4Address = ipv4Address;
-    }
+  public void setIpv4Address(String ipv4Address) {
+    this.ipv4Address = ipv4Address;
+  }
 
-    public String getIpv6Address() {
-        return ipv6Address;
-    }
+  public String getIpv6Address() {
+    return ipv6Address;
+  }
 
-    public void setIpv6Address(String ipv6Address) {
-        this.ipv6Address = ipv6Address;
-    }
+  public void setIpv6Address(String ipv6Address) {
+    this.ipv6Address = ipv6Address;
+  }
 
-    public String getDeviceName() {
-        return deviceName;
-    }
+  public String getDeviceName() {
+    return deviceName;
+  }
 
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
-    }
+  public void setDeviceName(String deviceName) {
+    this.deviceName = deviceName;
+  }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
+  public LocalDateTime getTimestamp() {
+    return timestamp;
+  }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
+  public void setTimestamp(LocalDateTime timestamp) {
+    this.timestamp = timestamp;
+  }
 
-    public String getUserRole() {
-        return userRole;
-    }
+  public String getUserRole() {
+    return userRole;
+  }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
+  public void setUserRole(String userRole) {
+    this.userRole = userRole;
+  }
 
-    public long getSessionDuration() {
-        return sessionDuration;
-    }
+  public long getSessionDuration() {
+    return sessionDuration;
+  }
 
-    public void setSessionDuration(long sessionDuration) {
-        this.sessionDuration = sessionDuration;
-    }
+  public void setSessionDuration(long sessionDuration) {
+    this.sessionDuration = sessionDuration;
+  }
 
-    public String getBrowserInfo() {
-        return browserInfo;
-    }
+  public String getBrowserInfo() {
+    return browserInfo;
+  }
 
-    public void setBrowserInfo(String browserInfo) {
-        this.browserInfo = browserInfo;
-    }
+  public void setBrowserInfo(String browserInfo) {
+    this.browserInfo = browserInfo;
+  }
 
-    public String getOperatingSystem() {
-        return operatingSystem;
-    }
+  public String getOperatingSystem() {
+    return operatingSystem;
+  }
 
-    public void setOperatingSystem(String operatingSystem) {
-        this.operatingSystem = operatingSystem;
-    }
+  public void setOperatingSystem(String operatingSystem) {
+    this.operatingSystem = operatingSystem;
+  }
 
-    public String getAppVersion() {
-        return appVersion;
-    }
+  public String getAppVersion() {
+    return appVersion;
+  }
 
-    public void setAppVersion(String appVersion) {
-        this.appVersion = appVersion;
-    }
+  public void setAppVersion(String appVersion) {
+    this.appVersion = appVersion;
+  }
 }
