@@ -1,20 +1,53 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.webpage.fshop.controller;
 
-import com.webpage.fshop.config.SessionManager;
-import com.webpage.fshop.model.*;
-import com.webpage.fshop.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import com.webpage.fshop.config.SecurityManager;
+import com.webpage.fshop.model.Account;
+import com.webpage.fshop.model.Battery;
+import com.webpage.fshop.model.Brand;
+import com.webpage.fshop.model.Color;
+import com.webpage.fshop.model.Connect;
+import com.webpage.fshop.model.Imageurl;
+import com.webpage.fshop.model.Invoice;
+import com.webpage.fshop.model.LED;
+import com.webpage.fshop.model.Mouse;
+import com.webpage.fshop.model.Type;
+import com.webpage.fshop.repository.AccountRepository;
+import com.webpage.fshop.repository.BatteryRepository;
+import com.webpage.fshop.repository.BrandRepository;
+import com.webpage.fshop.repository.ColorRepository;
+import com.webpage.fshop.repository.ConnectRepository;
+import com.webpage.fshop.repository.CouponRepository;
+import com.webpage.fshop.repository.FileStorageService;
+import com.webpage.fshop.repository.InvoiceMouseRepository;
+import com.webpage.fshop.repository.InvoiceRepository;
+import com.webpage.fshop.repository.LEDRepository;
+import com.webpage.fshop.repository.MouseRepository;
+import com.webpage.fshop.repository.TypeRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+/**
+ * @author 04dkh
+ */
+
 @Controller
-public class MainController {
+public class StaffController {
 
     @Autowired
     public MouseRepository mouseRepo;
@@ -54,96 +87,17 @@ public class MainController {
 
     Account account = null;
 
-    // Không cần isLogin
-    @GetMapping("/home")
-    public String home() {
-        return "home";
+    @GetMapping("/dashboard")
+    public String dashboard() {
+//        if (SessionManager.isUser()) {
+//            return "redirect:/login";
+//        }
+        return "dashboard";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam("username") String username,
-            @RequestParam("password") String password, Model model) {
-        String textFail = null;
-        this.account = accountRepo.findByUsername(username);
-        if (this.account == null) {
-            textFail = "Đăng nhập thất bại !";
-            model.addAttribute("textFail", textFail);
-            return "login";
-        }
-        SessionManager.login(account);
-        return "redirect:/fshop";
-    }
-
-    @GetMapping("/logout")
-    public String logout() {
-        SessionManager.logout();
-        return "redirect:/fshop";
-    }
-
-    @GetMapping("/fshop")
-    public String fshop(Model model) {
-        List<Mouse> lstMouse = mouseRepo.findAll();
-        model.addAttribute("lstMouse", lstMouse);
-        return "fshop";
-    }
-
-    @GetMapping("/category")
-    public String category(Model model) {
-        List<Mouse> lstMouse = this.mouseRepo.findAll();
-        model.addAttribute("lstMouse", lstMouse);
-        return "category";
-    }
-
-    @GetMapping("/buy/{id}")
-    public String buyMouse(@PathVariable("id") int id, Model model) {
-        Mouse ms = mouseRepo.findById(id).orElseThrow();
-        List<Brand> brands = brandRepo.findAll();
-        List<Connect> connects = connectionRepo.findAll();
-        List<LED> leds = ledRepo.findAll();
-        List<Type> types = typeRepo.findAll();
-        List<Battery> batteries = batteryRepo.findAll();
-        List<Color> colors = colorRepo.findAll();
-        model.addAttribute("brands", brands);
-        model.addAttribute("connects", connects);
-        model.addAttribute("leds", leds);
-        model.addAttribute("types", types);
-        model.addAttribute("batteries", batteries);
-        model.addAttribute("colors", colors);
-        model.addAttribute("mouse", ms);
-        return "buyMouse";
-    }
-
-    @GetMapping("/trackings")
-    public String trackings(Model model) {
-        return "trackings";
-    }
-
-    @GetMapping("/trackings/{id}")
-    public String tracking(@PathVariable("id") int id, Model model) {
-        Invoice in = invoiceRepo.findById(id).orElseThrow();
-        List<DetailInvoice> inm = invoicemouseRepo.findByInvoiceId(id);
-        model.addAttribute("inm", inm);
-        model.addAttribute("in", in);
-        return "tracking";
-    }
-
-    @GetMapping("/carts")
-    public String cartMouse(Model model) {
-        // sẽ làm cart theo sessionLogin
-        // List<Cart> lstCart = this.mouseRepo.findAll();
-        // model.addAttribute("lstMouse", lstCart);
-        return "cartMouse";
-    }
-
-    // Cần isLogin
     @GetMapping("/mouses")
     public String listMouse(Model model) {
-        if (SessionManager.isUser()) {
+        if (SecurityManager.isUser()) {
             return "redirect:/login";
         }
         List<Mouse> lstMouse = mouseRepo.findAll();
@@ -165,7 +119,7 @@ public class MainController {
 
     @GetMapping("/invoices")
     public String listInvoice(Model model) {
-        if (SessionManager.isUser()) {
+        if (SecurityManager.isUser()) {
             return "redirect:/login";
         }
         List<Invoice> lstInvoice = invoiceRepo.findAll();
@@ -175,7 +129,7 @@ public class MainController {
 
     @GetMapping("/mouses/{id}")
     public String editMouse(@PathVariable("id") int id, Model model) {
-        if (SessionManager.isUser()) {
+        if (SecurityManager.isUser()) {
             return "redirect:/login";
         }
         Mouse ms = mouseRepo.findById(id).orElseThrow();
@@ -197,7 +151,7 @@ public class MainController {
 
     @PostMapping("/update/{id}")
     public String updateMouse(@PathVariable("id") int id, @ModelAttribute Mouse ms) {
-        if (SessionManager.isUser()) {
+        if (SecurityManager.isUser()) {
             return "redirect:/login";
         }
         Mouse existMouse = mouseRepo.findById(id).orElseThrow();
@@ -217,7 +171,7 @@ public class MainController {
 
     @GetMapping("/mouses/add")
     public String addMouse(Model model) {
-        if (SessionManager.isUser()) {
+        if (SecurityManager.isUser()) {
             return "redirect:/login";
         }
         Mouse mouse = new Mouse();
@@ -239,7 +193,7 @@ public class MainController {
 
     @PostMapping("/store")
     public String storeMouse(Mouse ms, @RequestParam("images") List<MultipartFile> images) {
-        if (SessionManager.isUser()) {
+        if (SecurityManager.isUser()) {
             return "redirect:/login";
         }
         try {
@@ -269,7 +223,7 @@ public class MainController {
 
     @GetMapping("delete/{id}")
     public String deleteMouse(@PathVariable("id") int id) {
-        if (SessionManager.isUser()) {
+        if (SecurityManager.isUser()) {
             return "redirect:/login";
         }
         this.mouseRepo.deleteById(id);

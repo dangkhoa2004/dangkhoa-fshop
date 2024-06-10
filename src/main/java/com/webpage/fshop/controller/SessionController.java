@@ -1,14 +1,16 @@
 /*
-     * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-     * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.webpage.fshop.controller;
 
 import com.webpage.fshop.config.ConfigurationAPI;
-import com.webpage.fshop.config.SessionManager;
+import com.webpage.fshop.config.SecurityManager;
 import com.webpage.fshop.model.Account;
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.time.LocalDateTime;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +22,8 @@ public class SessionController {
 
     @GetMapping("/configurationAPI")
     public ConfigurationAPI getApiSession(HttpServletRequest request) {
-        boolean isLogin = SessionManager.isLogin();
-        Account account = SessionManager.isAccount();
+        boolean isLogin = SecurityManager.isLogin();
+        Account account = SecurityManager.isAccount();
         if (account == null) {
             return new ConfigurationAPI(false, null, null, null, null, LocalDateTime.now(), null, 0,
                     null, null, "1.0.0");
@@ -33,7 +35,7 @@ public class SessionController {
         String deviceName = request.getHeader("User-Agent");
         LocalDateTime timestamp = LocalDateTime.now();
         String userRole = account.getName();  // Assuming Account class has getRole() method
-        long sessionDuration = SessionManager.getSessionDuration();  // Assuming SessionManager has getSessionDuration() method
+        long sessionDuration = SecurityManager.getSessionDuration();  // Assuming SessionManager has getSessionDuration() method
         String browserInfo = request.getHeader("User-Agent");
         String operatingSystem = getOperatingSystemFromUserAgent(
                 browserInfo);  // You need to implement this method

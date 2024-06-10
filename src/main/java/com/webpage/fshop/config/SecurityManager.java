@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 /**
  * @author 04dkh
  */
-public class SessionManager {
+public class SecurityManager {
 
     public static boolean isLogin = false;
     public static Account account = null;
@@ -20,8 +20,8 @@ public class SessionManager {
 
     public static void login(Account account) {
         isLogin = true;
-        SessionManager.account = account;
-        SessionManager.sessionStartTime = LocalDateTime.now();
+        SecurityManager.account = account;
+        SecurityManager.sessionStartTime = LocalDateTime.now();
         if (isStaff()) {
             System.out.println("Đăng nhập với vai trò nhân viên.");
         } else if (isUser()) {
@@ -36,7 +36,7 @@ public class SessionManager {
     }
 
     public static Account isAccount() {
-        return SessionManager.account;
+        return SecurityManager.account;
     }
 
     public static boolean isStaff() {
@@ -55,8 +55,8 @@ public class SessionManager {
 
     public static void logout() {
         isLogin = false;
-        SessionManager.account = null;
-        SessionManager.sessionStartTime = null;
+        SecurityManager.account = null;
+        SecurityManager.sessionStartTime = null;
         System.out.println("Đăng xuất");
     }
 

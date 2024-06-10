@@ -8,3 +8,22 @@ function clearInputs() {
         select.selectedIndex = 0;
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownButton = document.getElementById('dropdownMenuButton');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    dropdownButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('#dropdownMenuButton')) {
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            }
+        }
+    });
+});
+

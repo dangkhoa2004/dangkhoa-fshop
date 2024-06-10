@@ -13,11 +13,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author 04dkh
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Imageurl")
 public class Imageurl implements Serializable {
@@ -33,27 +41,4 @@ public class Imageurl implements Serializable {
     @JoinColumn(name = "mouse_id")
     public Mouse mouse;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Mouse getMouse() {
-        return mouse;
-    }
-
-    public void setMouse(Mouse mouse) {
-        this.mouse = mouse;
-    }
 }

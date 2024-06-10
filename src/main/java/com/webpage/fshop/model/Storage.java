@@ -7,11 +7,19 @@ package com.webpage.fshop.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author 04dkh
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Storage")
 public class Storage implements Serializable {
@@ -25,38 +33,5 @@ public class Storage implements Serializable {
 
     @OneToMany(mappedBy = "storage", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<MouseStorage> mouseStorages;
-
-    public Storage() {
-    }
-
-    public Storage(int id, String name, List<MouseStorage> mouseStorages) {
-        this.id = id;
-        this.name = name;
-        this.mouseStorages = mouseStorages;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<MouseStorage> getMouseStorages() {
-        return mouseStorages;
-    }
-
-    public void setMouseStorages(List<MouseStorage> mouseStorages) {
-        this.mouseStorages = mouseStorages;
-    }
 
 }

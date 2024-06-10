@@ -7,11 +7,19 @@ package com.webpage.fshop.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author 04dkh
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "DetailInvoice")
 public class DetailInvoice implements Serializable {
@@ -36,65 +44,5 @@ public class DetailInvoice implements Serializable {
 
     @Column(name = "total")
     public BigDecimal total;
-
-    public DetailInvoice() {
-    }
-
-    public DetailInvoice(int id, Invoice invoice, Mouse mouse, int quantity, BigDecimal money, BigDecimal total) {
-        this.id = id;
-        this.invoice = invoice;
-        this.mouse = mouse;
-        this.quantity = quantity;
-        this.money = money;
-        this.total = total;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
-
-    public Mouse getMouse() {
-        return mouse;
-    }
-
-    public void setMouse(Mouse mouse) {
-        this.mouse = mouse;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public BigDecimal getMoney() {
-        return money;
-    }
-
-    public void setMoney(BigDecimal money) {
-        this.money = money;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
 
 }
