@@ -24,10 +24,6 @@ import lombok.Setter;
  *
  * @author 04dkh
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "Battery")
 public class Battery implements Serializable {
@@ -41,5 +37,38 @@ public class Battery implements Serializable {
 
     @OneToMany(mappedBy = "battery", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Mouse> mice;
+
+    public Battery() {
+    }
+
+    public Battery(int id, String name, List<Mouse> mice) {
+        this.id = id;
+        this.name = name;
+        this.mice = mice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Mouse> getMice() {
+        return mice;
+    }
+
+    public void setMice(List<Mouse> mice) {
+        this.mice = mice;
+    }
 
 }

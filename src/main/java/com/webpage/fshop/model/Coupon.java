@@ -17,10 +17,6 @@ import lombok.Setter;
  *
  * @author 04dkh
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "Coupon")
 public class Coupon implements Serializable {
@@ -40,5 +36,56 @@ public class Coupon implements Serializable {
 
     @OneToMany(mappedBy = "coupon", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Invoice> invoices;
+
+    public Coupon(int id, String code, int discount, Date expiryDate, List<Invoice> invoices) {
+        this.id = id;
+        this.code = code;
+        this.discount = discount;
+        this.expiryDate = expiryDate;
+        this.invoices = invoices;
+    }
+
+    public Coupon() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
+    }
 
 }

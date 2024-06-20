@@ -15,10 +15,6 @@ import lombok.Setter;
  *
  * @author 04dkh
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "MouseStorage")
 public class MouseStorage implements Serializable {
@@ -37,5 +33,47 @@ public class MouseStorage implements Serializable {
 
     @Column(name = "quantity")
     public int quantity;
+
+    public MouseStorage() {
+    }
+
+    public MouseStorage(int id, Mouse mouse, Storage storage, int quantity) {
+        this.id = id;
+        this.mouse = mouse;
+        this.storage = storage;
+        this.quantity = quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Mouse getMouse() {
+        return mouse;
+    }
+
+    public void setMouse(Mouse mouse) {
+        this.mouse = mouse;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
 }

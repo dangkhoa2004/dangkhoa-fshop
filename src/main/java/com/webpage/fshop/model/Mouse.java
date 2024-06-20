@@ -5,22 +5,12 @@
 package com.webpage.fshop.model;
 
 import java.io.Serializable;
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author 04dkh
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "Mouse")
 public class Mouse implements Serializable {
@@ -68,5 +58,119 @@ public class Mouse implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "color_id")
     public Color color;
+
+    public Mouse() {
+    }
+
+    public Mouse(int id, String name, String description, double price, double saleprice, List<Imageurl> imageUrl, Brand brand, Connect connect, LED led, Type type, Battery battery, Color color) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.saleprice = saleprice;
+        this.imageUrl = imageUrl;
+        this.brand = brand;
+        this.connect = connect;
+        this.led = led;
+        this.type = type;
+        this.battery = battery;
+        this.color = color;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getSaleprice() {
+        return saleprice;
+    }
+
+    public void setSaleprice(double saleprice) {
+        this.saleprice = saleprice;
+    }
+
+    public List<Imageurl> getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(List<Imageurl> imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Connect getConnect() {
+        return connect;
+    }
+
+    public void setConnect(Connect connect) {
+        this.connect = connect;
+    }
+
+    public LED getLed() {
+        return led;
+    }
+
+    public void setLed(LED led) {
+        this.led = led;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Battery getBattery() {
+        return battery;
+    }
+
+    public void setBattery(Battery battery) {
+        this.battery = battery;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
 }

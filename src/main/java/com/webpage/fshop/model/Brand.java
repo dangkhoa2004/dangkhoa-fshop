@@ -15,22 +15,14 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  *
  * @author 04dkh
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "Brand")
-public class Brand implements Serializable{
+public class Brand implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +30,41 @@ public class Brand implements Serializable{
 
     @Column(name = "name", length = 255)
     public String name;
-    
+
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Mouse> mice;
+
+    public Brand() {
+    }
+
+    public Brand(int id, String name, List<Mouse> mice) {
+        this.id = id;
+        this.name = name;
+        this.mice = mice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Mouse> getMice() {
+        return mice;
+    }
+
+    public void setMice(List<Mouse> mice) {
+        this.mice = mice;
+    }
 
 }

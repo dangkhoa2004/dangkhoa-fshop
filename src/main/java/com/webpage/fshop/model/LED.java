@@ -24,10 +24,6 @@ import lombok.Setter;
  *
  * @author 04dkh
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "LED")
 public class LED implements Serializable {
@@ -41,5 +37,38 @@ public class LED implements Serializable {
 
     @OneToMany(mappedBy = "led", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Mouse> mice;
+
+    public LED() {
+    }
+
+    public LED(int id, String name, List<Mouse> mice) {
+        this.id = id;
+        this.name = name;
+        this.mice = mice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Mouse> getMice() {
+        return mice;
+    }
+
+    public void setMice(List<Mouse> mice) {
+        this.mice = mice;
+    }
 
 }

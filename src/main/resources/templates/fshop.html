@@ -86,9 +86,9 @@
                         </div>
                         <div class="bid">
                             <h6>Giá:
-                                <h5 style="color: red;" th:text="${mouse.formattedSalePrice}"></h5>
+                                <h5 style="color: red;" th:text="${mouse.saleprice}"></h5>
                                 <p style="color: #000; text-decoration: line-through;"
-                                    th:text="${mouse.formattedPrice}">
+                                    th:text="${mouse.price}">
                                 </p>
                             </h6>
                             <a th:href="@{/buy/{id}(id=${mouse.id})}">Mua ngay</a>
